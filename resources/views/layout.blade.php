@@ -263,7 +263,17 @@
     <div class="xs-copyright copyright-gray">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-2">
+            <!-- ZERO.kz -->
+            <span id="_zero_69350">
+            <noscript>
+            <a href="http://zero.kz/?s=69350" target="_blank">
+            <img src="http://c.zero.kz/z.png?u=69350" width="88" height="31" alt="ZERO.kz" />
+            </a>
+            </noscript>
+            </span>
+          </div>
+          <div class="col-md-4">
             <div class="xs-copyright-text">
               Copyright &copy; {{ date('Y') }} GoMarket. Все права защищены.
             </div>
@@ -366,15 +376,6 @@
 
   </script>
   @yield('scripts')
-
-  <!-- ZERO.kz -->
-  <span id="_zero_69350">
-  <noscript>
-  <a href="http://zero.kz/?s=69350" target="_blank">
-  <img src="http://c.zero.kz/z.png?u=69350" width="88" height="31" alt="ZERO.kz" />
-  </a>
-  </noscript>
-  </span>
 
   <script type="text/javascript"><!--
   var _zero_kz_ = _zero_kz_ || [];
