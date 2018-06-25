@@ -300,7 +300,7 @@
   <script src="/assets/js/vertical-menu.js"></script>
   <script src="/assets/js/tweetie.js"></script>
   <script src="/assets/js/echo.min.js"></script>
-  <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+  <!-- <script src="/assets/js/jquery.ajaxchimp.min.js"></script> -->
   <script src="/assets/js/jquery.countdown.min.js"></script>
   <script src="/assets/js/jquery.waypoints.min.js"></script>
   <script src="/assets/js/spectragram.min.js"></script>
