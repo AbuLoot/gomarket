@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth', 'role:user'], function() {
 });
 
 // Joystick Administration
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:root', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('/', 'Joystick\AdminController@index');
 

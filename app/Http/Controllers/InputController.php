@@ -73,10 +73,10 @@ class InputController extends Controller
         $app->save();
 
         // Email subject
-        $subject = "Japan Import - novaya zayavka ot $request->name";
+        $subject = "GoMarket - novaya zayavka ot $request->name";
 
         // Email content
-        $content = "<h2>Japan Import</h2>";
+        $content = "<h2>GoMarket</h2>";
         $content .= "<b>Имя: $request->name</b><br>";
         $content .= "<b>Номер: $request->phone</b><br>";
         $content .= "<b>Email: $request->email</b><br>";
