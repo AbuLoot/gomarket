@@ -1,0 +1,68 @@
+.xs-deal-of-the-day-section {
+	position: relative;
+	padding: 125px 0;
+}
+
+.xs-best-deal-slider-content {
+	color: $color-white;
+	.price {
+		margin-bottom: 40px;
+		font-size: em(28px);
+		color: $color-white;
+		display: inline-block;
+		del {
+			color: #1f7ee8;
+		}
+	}
+	.btn.btn-success::before {
+		background-color: $bColor;
+	}
+}
+.best-deal-sub-title {
+	color: #62acff;
+	font-size: em(22px);
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+.best-deal-title {
+	font-size: em(42px);
+	font-weight: 700;
+	letter-spacing: -.3px;
+	margin-bottom: 25px;
+}
+
+.xs-slider-highlight {
+	position: relative;
+	&:hover {
+		.owl-prev,
+		.owl-next {
+			opacity: 1;
+		}
+		.owl-prev {
+			left: 40px;
+		}
+		.owl-next {
+			right: 40px;
+		}
+	}
+	.owl-prev,
+	.owl-next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		@include transition;
+		opacity: 0;
+		i {
+			color: #b1d6ff;
+			&:hover {
+				color: $color-white;
+			}
+		}
+	}
+	.owl-prev {
+		left: 0px;
+	}
+	.owl-next {
+		right: 0px;
+	}
+}

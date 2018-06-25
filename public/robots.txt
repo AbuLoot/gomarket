@@ -1,0 +1,22 @@
+User-agent: *
+Disallow : /*
+
+Allow    : /$
+Allow    : /sitemap.xml$
+
+Allow    : /images/*
+Allow    : /catalog/xiaomi$
+Allow    : /catalog/appleiphone$
+Allow    : /catalog/meizu$
+Allow    : /catalog/samsung$
+Allow    : /catalog/htc$
+Allow    : /catalog/huawei$
+Allow    : /catalog/oneplus$
+Allow    : /catalog/covers$
+Allow    : /catalog/protective$
+Allow    : /catalog/chargingdevice$
+Allow    : /catalog/adapters$
+Allow    : /catalog/headphones$
+Allow    : /catalog/usbcabels
+
+Sitemap: http://gomarket.kz/sitemap.xml

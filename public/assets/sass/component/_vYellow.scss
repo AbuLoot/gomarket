@@ -1,0 +1,154 @@
+.xs-banner{
+	&.v-yellow {
+		.xs-banner-content {
+			.xs-banner-title {
+				color: $color_semi_black;
+			}
+		}
+	}
+	&.xs-product-banner {
+		padding-top: 60px;
+		padding-bottom: 40px;
+	}
+}
+.xs-feauture-product-section {
+	&.v-yellow {
+		.product-title-v2 a strong {
+			color: $color_semi_black;
+		}
+	}
+}
+.v-yellow {
+	.btn {
+		color: $color_semi_black;
+		&:hover {
+			color: $color-white;
+		}
+	}
+	.btn-primary {
+		background-color: $color-gold;
+	}
+	.btn-outline-primary {
+		border-color: #959a9e;
+	}
+	.btn-outline-primary:hover {
+		color: $color-white;
+	}
+	.btn:not([data-toggle="popover"]).btn-outline-primary:hover {
+		color: $color-white;
+	}
+	.xs-product-offer-label {
+		background-color: $color_semi_black;
+	}
+	.price {
+		color: $color_semi_black;
+	}
+	.xs-progress .progress-bar {
+		background-color: $color-gold;
+	}
+	.product-title a {
+		color: $color-primary;
+	}
+	.xs-content-title {
+		color: $color_semi_black;
+	}
+	.xs-nav-tab .nav-link {
+		color: #b7b7b7;
+	}
+	.xs-nav-tab .nav-link.active, 
+	.xs-nav-tab .nav-link:hover {
+		color: $color_semi_black;
+	}
+	.xs-nav-tab .nav-link::before {
+		background-color: $color-gold;
+	}
+	.xs-nav-tab .nav-link::after {
+		border-top-color: $color-gold;
+	}
+	.product-title.highlight {
+		a {
+			color: #adb7c1;
+			strong {
+				color: $color-primary;
+			}
+		}
+	}
+	.product-feature-ribbon {
+		background-image: linear-gradient(45deg, white 0%, white 50%, $color-gold 50%, $color-gold 100%);
+		i {
+			color: $color_semi_black;
+		}
+	}
+	.product-item-meta li a:hover {
+		background-color: $color-gold;
+	}
+	.product-item-meta li a {
+		color: $color_semi_black;
+	}
+	.owl-dots .owl-dot.active span {
+		background-color: $color-gold;
+	}
+	.xs-simple-arrow {
+		color: $color-gold;
+	}
+	.add_to_wishlist,
+	.add_to_wishlist:hover,
+	.add_to_wishlist.pulse_effect i::after {
+		color: $color-primary;
+	}
+	.xs-watermark-text {
+		color: #f6d000;
+	}
+	.xs-slider-highlight .owl-prev i, .xs-slider-highlight .owl-next i {
+		color: #5b646c;
+	}
+	.xs-slider-highlight .owl-prev i:hover, .xs-slider-highlight .owl-next i:hover {
+		color: $color_semi_black;
+	}
+}
+/* daily deals */
+.v-yellow {
+	.xs-content-header.background-version {
+		background-color: $color-gold;
+	}
+	.xs-content-header.background-version .xs-content-title,
+	.xs-content-header.background-version .xs-custom-nav a {
+		color: $color_semi_black;
+	}
+	.xs-deal-of-the-week {
+		border-color: $color-gold;
+	}
+}
+/* deal of the day */
+.xs-deal-of-the-day-section {
+	&.v-yellow {
+		background-color: $color-gold;
+		.best-deal-sub-title {
+			color: #5b646c;
+		}
+		.best-deal-title {
+			color: $color_semi_black;
+		}
+		.xs-best-deal-slider-content .price del {
+			color: #d2b200;
+		}
+		.btn.btn-outline-secondary {
+			border-color: $color-primary;
+		}
+		.btn.btn-success {
+			background-color: $color_semi_black;
+			color: $color-white;
+		}
+	}
+}
+/* news letter version yellow */
+.xs-newsLetter-section  {
+	&.v-yellow {
+		background-color: $color-gold;
+		.newsletter-content i,
+		.newsletter-content .newsletter-title,
+		.newsletter-content p {
+			color: $color_semi_black;
+		}
+	}
+}

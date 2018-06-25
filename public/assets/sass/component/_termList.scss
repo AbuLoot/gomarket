@@ -1,0 +1,38 @@
+.terms-list-group {
+    padding: 60px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+}
+
+.terms-list {
+    margin-bottom: 40px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    i {
+        color: $color-primary;
+        font-size: em(10px);
+        padding-right: 8px;
+        margin-top: 4px;
+    }
+    .media-body {
+        > b {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        b {
+            font-weight: 500;
+        }
+        p {
+            color: #555555;
+            line-height: 1.74;
+            margin-bottom: 30px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            b {
+                color: $bColor;
+            }
+        }
+    }
+}

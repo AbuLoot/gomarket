@@ -1,0 +1,31 @@
+.xs-contact-form {
+	.h3 {
+		color: $bColor;
+		margin-bottom: 16px;
+		line-height: 1;
+		font-size: em(14px);
+	}
+	input:not([type="submit"]),
+	textarea {
+		border-color: #CCDCFE;
+		height: 52px;
+		border-radius: 0;
+		padding: 0 19px;
+		@include transition;
+	}
+	input:not([type="submit"]):focus,
+	textarea:focus {
+		border-color: $bColor;
+	}
+	textarea {
+		resize: none;
+		padding: 19px;
+		height: 122px;
+	}
+	.form-group {
+		margin-bottom: 30px;
+	}
+	input[type="submit"]:hover {
+		background-color: $color-secondary;
+	}
+}

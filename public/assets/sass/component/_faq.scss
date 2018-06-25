@@ -1,0 +1,39 @@
+.xs-faq-group {
+	[class^=col-]:first-child {
+		counter-reset: my-awesome-counter -1;
+		.xs-single-faq {
+			counter-increment: my-awesome-counter 2;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	[class^=col-]:last-child {
+		counter-reset: my-awesome-counter;
+		.xs-single-faq {
+			counter-increment: my-awesome-counter 2;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	h5 {
+		&::before {
+			content: counter(my-awesome-counter) ".";
+			padding-right: 8px;
+		}
+	}
+}
+.xs-single-faq {
+	padding: 30px;
+	background-color: #fafafa;
+	margin-bottom: 30px;
+	h5 {
+		font-size: em(18px);
+		margin-bottom: 15px;
+	}
+	p {
+		margin-bottom: 0;
+		color: #555555;
+	}
+}

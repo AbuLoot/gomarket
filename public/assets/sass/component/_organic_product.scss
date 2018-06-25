@@ -1,0 +1,92 @@
+$spacing1 : 40px;
+$spacing2: 30px;
+.xs-organic-product-thumb {
+	background: #f7f6f2;
+	background: -moz-linear-gradient(top, #f7f6f2 0%, #f7f6f2 60%, #ffffff 60%, #ffffff 100%);
+	background: -webkit-linear-gradient(top, #f7f6f2 0%,#f7f6f2 60%,#ffffff 60%,#ffffff 100%);
+	background: linear-gradient(to bottom, #f7f6f2 0%,#f7f6f2 60%,#ffffff 60%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f6f2', endColorstr='#ffffff',GradientType=0 );
+	border-radius: 4px;
+	padding: $spacing2 $spacing2 $spacing1;
+	position: relative;
+	text-align: center;
+	z-index: 1;
+	overflow: hidden;
+	@include transition;
+	backface-visibility: hidden;
+	margin-bottom: $spacing2;
+	&::before {
+		position: absolute;
+		content: "";
+		top: calc(60% - 42px);
+		left: 0;
+		background-image: url(../images/curve.png);
+		@include background-content;
+		width: 100%;
+		height: 42px;
+		z-index: -1;
+	}
+	.xs-product-header {
+		text-align: left;
+	}
+	.product-item-meta,
+	.hover-box {
+		opacity: 0;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		visibility: hidden;
+		backface-visibility: hidden;
+	}
+	.product-item-meta {
+		top: -25px;
+	}
+	.hover-box {
+		@include transition;
+		bottom: -20px;
+	}
+	.product-thumb {
+		margin: 30px 0;
+		min-height: 197px;
+		@include flex-position(flex,center,center);
+	}
+	.xs-product-header,
+	.content-box {
+		top: 0;
+		opacity: 1;
+		visibility: visible;
+		backface-visibility: hidden;
+	}
+	.content-box {
+		position: relative;
+		@include transition;
+	}
+	&:hover {
+		box-shadow: 0px 2px 6px 0px rgba(168, 168, 168, 0.2);
+		.xs-product-header,
+		.content-box  {
+			top: -20px;
+			opacity: 0;
+			visibility: hidden;
+		}
+		.product-item-meta,
+		.hover-box {
+			opacity: 1;
+			visibility: visible;
+		}
+		.product-item-meta {
+			top: $spacing2;
+		}
+		.hover-box {
+			bottom: $spacing1;
+		}
+	}
+	.product-title {
+		a:hover {
+			color: #ff6251;
+		}
+	}
+	.price {
+		font-size: em(16px);
+	}
+}

@@ -1,0 +1,43 @@
+.xs-brand-section {
+	padding: 80px 0;
+	border-top: 1px solid #e3e3e3;
+	&.brand-bg-version {
+		background-color: $color-primary;
+		border-top: 0px;
+	}
+}
+.xs-brand-content {
+	li {
+		min-width: calc(100% / 5);
+		float: left;
+		text-align: center;
+		a {
+			display: inline-block;
+			opacity: .5;
+			@include transition;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	&.version-2 {
+		li {
+			min-width: calc(100% / 6);
+			min-height: 60px;
+			@include flex-position(flex, center,center);
+			a {
+				opacity: 1;
+			}
+		}
+	}
+	&.version-3 {
+		li {
+			min-width: calc(100% / 6);
+			@include flex-position(flex, center,center);
+			min-height: 116px;
+			a {
+				opacity: 1;
+			}
+		}
+	}
+}

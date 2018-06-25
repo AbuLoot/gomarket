@@ -1,0 +1,60 @@
+.xs-slider-nav {
+	background-color: $bColor;
+	color: $color-white;
+	.slider-nav {
+		min-height: 60px;
+		@include flex-position(flex, center,center);
+		@include transition;
+		background-color: transparent;
+		position: relative;
+		&::before {
+			position: absolute;
+			content: "";
+			top: 0;
+			left: 0;
+			height: 4px;
+			width: 0%;
+			@include transition;
+			background-image: linear-gradient( to right, rgb(0,156,255) 0%, rgb(107,67,171) 100%);
+		}
+		h5 {
+			margin-bottom: 0;
+			font-size: em(14px);
+		}
+	}
+	.current {
+		.slider-nav {
+			background-color: #343434;
+			&::before {
+				width: 100%;
+			}
+		}
+	}
+}
+
+/* owl nav slider */
+.nav-slider-content {
+	.owl-prev,
+	.owl-next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: em(30px);
+		color: $color-white;
+	}
+	.owl-next {
+		right: 30px;
+	}
+	.owl-prev {
+		left: 30px;
+	}
+}
+
+.vendor-logo {
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 30px;
+	a {
+		display: inline-block;
+	}
+}

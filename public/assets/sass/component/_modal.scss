@@ -1,0 +1,232 @@
+/* input group addons */
+.xs-customer-form {
+    .input-group {
+        background-color: #FAFAFC;
+        border: 1px solid #eaeaea;
+        height: 42px;
+        margin-bottom: 20px;
+    }
+    input:not([type="submit"]) {
+        border: 0;
+		padding: 0 20px;
+		border-radius: 0;        
+        font-style: italic;
+		background-color: transparent;
+		font-size: em(14px);
+		font-style: normal;
+    }
+	i {
+		font-size: em(18px);
+		color: $color-primary;
+		padding: 0 20px;
+	}
+	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		color: #555555;
+		font-style: italic;
+		font-size: em(12px);
+	}
+	::-moz-placeholder { /* Firefox 19+ */
+		color: #555555;
+		font-style: italic;
+		font-size: em(12px);
+	}
+	:-ms-input-placeholder { /* IE 10+ */
+		color: #555555;
+		font-style: italic;
+		font-size: em(12px);
+	}
+	:-moz-placeholder { /* Firefox 18- */
+		color: #555555;
+		font-style: italic;
+		font-size: em(12px);
+    }
+    .input-group-text {
+        background-color: transparent;
+        border: 0px solid #ced4da;
+        border-radius: 0;
+	}
+	.btn-info {
+		background-color: #3b5999;
+	}
+	.btn-danger {
+		background-color: #dd4b39;
+	}
+	.btn {
+		border: 0;
+		cursor: pointer;
+	}
+	p {
+		margin: 20px 0;
+		color: #cccccc;
+		font-size: em(12px);
+		font-weight: 500;
+		text-align: center;
+	}
+	.btn-block+.btn-block {
+		margin-top: 10px;
+	}
+}
+// bootstrap modal
+.xs-modal ~ {
+	.modal-backdrop {
+		position: fixed;
+		background-color: transparent;
+        z-index: 9999;
+        // backface-visibility: hidden;
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			background-color: rgba(0,0,0,.87);
+			width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+			border-radius: 100%;
+			transform: scale(0.04) translateY(9999px);
+			overflow: hidden;
+            animation: menu-animation 1.2s ease-out forwards;
+            // backface-visibility: hidden;
+		}
+		&.show {
+			animation: menu-animation 1.2s ease-out forwards;
+            transform: scale(2) translateY(0);
+            // backface-visibility: hidden;
+		}
+	}
+}
+
+.xs-modal {
+	z-index: 99999;
+	.modal-content {
+		background-color: $color-white;
+		border-radius: 10px;
+		box-shadow: 0px 6px 23px 0px rgba(135, 135, 135, 0.118);
+		max-width: 100%;
+		padding: 60px;
+	}
+	.modal-dialog {
+		position: absolute;
+		top: -100%;
+		left: 0;
+		transform: translate(-50%,-50%);
+		transition: .55s;
+		background-color: transparent;
+		min-width: 570px;
+		opacity: 0;
+		margin: 0;
+		z-index: 9999;
+	}
+	&.show {
+		.modal-dialog {
+			transform: translate(-50%, -50%);
+			transition: top .53s ease-out, opacity .35s ease-out;
+			transition-delay: .7s;
+			opacity: 1;
+			top: 50%;
+			left: 50%;
+		}
+    }
+}
+
+/* tab nav */
+.xs-tab-nav {
+	justify-content: center;
+    border-color: #F1F1F1;
+    margin-bottom: 20px;
+	.nav-link {
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+		padding-bottom: 10px;
+		position: relative;
+		color: #D1D1D1;
+		font-weight: 600;
+		font-size: em(18px);
+		@extend .transition;
+		&:hover:before ,
+		&.active:before {
+			width: calc(100% + 18px);
+		}
+		&:hover ,
+		&:hover:before ,
+		&.active:before,
+		&.active {
+			color: $color-primary;
+		}
+		&:before {
+			position: absolute;
+			content: "";
+			bottom: -1px;
+			left: 50%;
+			height: 2px;
+			width: 0;
+			transform: translateX(-50%);
+			background-color: $color-primary;
+			@extend .transition;
+		}
+	}
+	.nav-item {
+		margin-bottom: 0;
+		margin-right: 35px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+@-webkit-keyframes menu-animation {
+	0% {
+		opacity: 0;
+		transform: scale(0.04) translateY(300%);
+	}
+	40% {
+		transform: scale(0.04) translateY(0);
+		transition: ease-out;
+	}
+	40% {
+		transform: scale(0.04) translateY(0);
+	}
+	60% {
+		opacity: 1;
+		transform: scale(0.02) translateY(0px);
+	}
+	61% {
+		opacity: 1;
+		transform: scale(0.04) translateY(0px);
+	}
+	99.9% {
+		opacity: 1;
+		height: 0;
+		padding-bottom: 100%;
+		border-radius: 100%;
+	}
+	100% {
+		opacity: 1;
+		transform: scale(2) translateY(0px);
+		height: 100%;
+		padding-bottom: 0;
+		border-radius: 0;
+	}
+}
+
+.modal button.close {
+	position: absolute;
+    right: 20px;
+	top: 20px;
+	outline: none;
+	z-index: 99;
+}
+
+/* quick view modal*/ 
+.xs-quick-view-modal {
+	.modal-dialog {
+		min-width: 1170px;
+	}
+	.modal-content {
+		padding: 30px;
+	}
+}

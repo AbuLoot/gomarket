@@ -1,0 +1,22 @@
+.xs-funfact-section {
+	padding-top: 200px;
+	padding-bottom: 100px;
+	@include background-content;
+}
+.xs-single-fun-fact {
+	color: $color-white;
+	i {
+		font-size: em(60px);
+		padding-right: 20px;
+	}
+	h4 {
+		font-size: em(18px);
+		@include altFont;
+		margin-bottom: 5px;
+	}
+	p {
+		font-size: em(32px);
+		font-weight: 500;
+		margin-bottom: 0;
+	}
+}

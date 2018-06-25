@@ -1,0 +1,70 @@
+.xs-single-team {
+	text-align: center;
+	background-color: $color-white;
+	margin-bottom: 30px;
+	.xs-overlay,
+	.team-hover-content {
+		opacity: 0;
+		@include transition;
+	}
+	&:hover {
+		.xs-overlay {
+			opacity: .7;
+		}
+		.team-hover-content {
+			top: 50%;
+			opacity: 1;
+		}
+	}
+	.team-thumb {
+		position: relative;
+	}
+	.team-hover-content {
+		position: absolute;
+		top: 35%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+	.team-info {
+		padding: 30px;
+	}
+	.team-designation {
+		font-size: em(14px);
+		color: $color-primary;
+		margin-bottom: 15px;
+	}
+	.team-name {
+		margin-bottom: 0;
+		font-size: em(20px);
+		a {
+			color: $bColor;
+		}
+	}
+	.xs-social-list {
+		li {
+			margin-right: 14px;
+			a {
+				color: $color-white;
+				font-size: em(14px);
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+	&.team-hiring-info {
+		background-color: #62ab00;
+		width: 100%;
+		display: table;
+		.hiring-info {
+			display: table-cell;
+			vertical-align: middle;
+			color: $color-white;
+			p {
+				font-weight: 500;
+				margin-bottom: 15px;
+			}
+		}
+	}
+}

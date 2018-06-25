@@ -1,0 +1,215 @@
+.xs-navbar-search {
+    margin-top: 5px;
+    height: 60px;
+    border: 2px solid #e7e7e7;
+    border-radius: 4px;
+    .input-group {
+        height: 100%;
+    }
+    input:not([type="submit"]) {
+        border: 0px;
+        border-radius: 0;
+        padding-left: 28px;
+        font-size: em(14px);
+    }
+    .xs-category-select {
+        border: 0px;
+        height: 100%;
+        padding-left: 20px;
+        appearance: none;
+        color: #555555;
+        min-width: 160px;
+        max-width: 190px;
+        cursor: pointer;
+        background-image: url('../images/arrow-2.png');
+        background-repeat: no-repeat;
+        background-position: center right 19px;
+        padding-right: 40px;
+        white-space: nowrap;
+        background-color: transparent;
+    }
+    .xs-category-select-wraper {
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 1px;
+            background-color: #e7e7e7;
+        }
+    }
+    .btn[type="submit"] {
+        height: calc(100% + 4px);
+        background-color: $color-primary;
+        width: 68px;
+        font-size: em(14px);
+        color: #f7f8fa;
+        border-radius: 0 4px 4px 0;
+        margin-right: -2px;
+        margin-top: -2px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.xs-navDown {
+    .btn:not([type="submit"]) {
+        width: 100%;
+        font-size: em(12px);
+        color: #797979 !important;
+        letter-spacing: .2px;
+        padding: 8px 12px;
+        border: 2px solid #e7e7e7;
+        transition: all .6s;
+        strong {
+            display: block;
+            font-size: 1.286em;
+            text-transform: uppercase;
+            color: $color-primary;
+            @include transition;
+        }
+        &:hover {
+            color: $color-white !important;
+            strong {
+                color: $color-white !important;
+            }
+        }
+    }
+    &.transparent-header-info {
+        .row {
+            margin-right: 0;
+        }
+        .xs-logo-wraper {
+            padding: 25px 0;
+        }
+        .xs-header-info {
+            text-align: right;
+            padding: 38px 0;
+        }
+    }
+    &.v-yellow {
+        .xs-vartical-menu .cd-dropdown-trigger, 
+        .xs-vartical-menu .cd-dropdown-trigger:hover, 
+        .xs-vartical-menu .cd-dropdown-trigger.dropdown-is-active:hover {
+            background-color: #f7f7f7;
+            color: $color_semi_black;
+        }
+        .xs-vartical-menu.v-gray .cd-dropdown-trigger::before, 
+        .xs-vartical-menu.v-gray .cd-dropdown-trigger::after {
+            background: $color_semi_black;
+        }
+        .xs-navbar-search .btn[type="submit"] {
+            background-color: $color-gold;
+        }
+        .btn:not([type="submit"]) {
+            strong {
+                color: $color_semi_black;
+            }
+        }
+    }
+    &.navDown-v5 {
+        > .container {
+            position: relative;
+        }
+        .xs-menus-group {
+            position: static;
+        }
+        .xs-vartical-menu .cd-dropdown-trigger {
+            background-color: $color-yellow;
+            padding: 28px 42px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            max-height: 73px;
+        }
+        .menu-label {
+            background-color: $color-yellow;
+            top: 0;
+            &::before {
+                border-left-color: $color-yellow;
+                border-top-color: $color-yellow;
+            }
+            &.highlight {
+                background-color: #e53935;
+                &::before {
+                    border-left-color: #e53935;
+                    border-top-color: #e53935;
+                }
+            }
+        }
+        .xs-menus .nav-menu > li > a {
+            padding: 35px 30px 21px;
+        }
+        .xs-single-wishList {
+            font-size: em(25px);
+        }
+        .xs-wish-list-item {
+            padding: 23px 0 0;
+        }
+        .xs-miniCart-dropdown {
+            .xs-item-count {
+                top: -17px;
+            }
+        }
+        .xs-vartical-menu .cd-dropdown-content, .xs-vartical-menu .cd-dropdown:before {
+            border-color: $color-yellow;
+        }
+    }
+    &.color-white {
+        .xs-menus .nav-menu > li > a .submenu-indicator-chevron {
+            border-color: transparent $color-white $color-white transparent;
+        }
+        .xs-menus .nav-menu > li > a,
+        .xs-single-wishList {
+            color: $color-white;
+        }
+    }
+    &.secondary-color-v {
+        .xs-vartical-menu .cd-dropdown-trigger {
+            background-color: $color-violet;
+        }
+        .xs-single-wishList {
+            color: $color-white;
+        }
+        .xs-single-wishList .xs-item-count.highlight {
+            background-color: $color-secondary;
+        }
+        .xs-menus .nav-menu > li.active a ,
+        .xs-menus .nav-menu > li:hover > a ,
+        .xs-menus .nav-menu > li > a:hover {
+            color: $color-white;
+        }
+        .xs-menus .nav-menu > .focus > a .submenu-indicator-chevron, 
+        .xs-menus .nav-menu > li:hover > a .submenu-indicator-chevron, 
+        .xs-menus .nav-menu > .active > a .submenu-indicator-chevron {
+            border-color: transparent $color-secondary $color-secondary transparent;
+        }
+        .xs-vartical-menu .cd-dropdown-content, .xs-vartical-menu .cd-dropdown:before {
+            border-color: $color-secondary;
+        }
+        >.container > .row {
+            position: relative;
+            &::before {
+                content: "";
+                width: calc(100% - 30px);
+                height: 1px;
+                background-color: $color-secondary;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 0;
+            }
+        }
+    }
+}
+
+.megamenu-list>li>a:hover {
+    background-color: transparent;
+    color: $bColor;
+    @include transition();
+}
+.megamenu-list-title>a {
+    pointer-events: none;
+}

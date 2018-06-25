@@ -1,0 +1,151 @@
+.xs-product-widget {
+	margin-bottom: 30px;
+	background-color: $color-white;
+	border: 1px solid #e3e3e3;
+	@include transition;
+	position: relative;
+	&:hover {
+		box-shadow: $secondary-shadow;
+		border-color: transparent;
+		&:hover {
+			img {
+				opacity: .7;
+			}
+		}
+	}
+	img {
+		opacity: 1;
+		@include transition;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+	img ~ {
+		.product-widget-content {
+			padding: 0px 20px;
+		}
+	}
+	.product-widget-content {
+		padding: 30px;
+	}
+	&.version-2 {
+		border: 0;
+		&:hover {
+			box-shadow: none;
+		}
+	}
+	&.version-thumb {
+		&:hover {
+			box-shadow: none;
+		}
+	}
+	&.version-gradient {
+		background: linear-gradient(to right, #f7f6f2 0%, #f7f6f2 20%, #ffffff 20%, #ffffff 100%);
+		border: 2px solid #f7f6f2;
+		border-radius: 4px;
+		z-index: 1;
+		.xs-product-thumb {
+			padding-left: 40px;
+			min-width: 130px;
+			align-self: center;
+			justify-content: center;
+			~ .product-widget-content {
+				padding: 20px 20px 20px 30px;
+			}
+		}
+		&::before {
+			position: absolute;
+			content: "";
+			left: 20%;
+			top: 0;
+			background-image: url(../images/curve-small.png);
+			height: 130px;
+			width: 22px;
+			transform: translateX(-50%);
+			z-index: -1;
+		}
+		&:hover {
+			box-shadow: none;
+			border-color: #f7f6f2;
+		}
+	}
+}
+  
+
+.xs-tab-slider {
+	.owl-stage {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+.xs-product-slider-4 ,
+.xs-product-slider-5 ,
+.xs-product-slider-6 {
+	.xs-product-widget  {
+		margin-bottom: 12px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+/* version thumb */
+.version-thumb {
+	.xs-product-widget {
+		border: 0px;
+		margin-bottom: 20px;
+		&:hover {
+			box-shadow: none;
+		}
+		.price {
+			del {
+				display: block;
+				padding-left: 0;
+			}
+		}
+	}
+}
+
+/* version border right */
+.version-border-right {
+	.xs-product-widget {
+		border: 0px;
+		border-right: 1px solid #f1f1f1;
+		&:hover {
+			border-color: transparent;
+		}
+	}
+	.owl-item {
+		&.last-child {
+			.xs-product-widget {
+				border-right-color: transparent;
+			}
+		}
+	}
+}
+
+/* product thumb verison */
+.product-thumb-version {
+	.xs-product-widget {
+		border: 0;
+		border-right: 1px solid #ededed;
+		margin-bottom: 30px;
+		&:hover {
+			box-shadow: none;
+		}
+		img ~ .product-widget-content {
+			padding: 0px 10px;
+		}
+		.price {
+			color: $color-primary;
+		}
+		img {
+			padding-left: 6px;
+		}
+	}
+	[class^='col-']:last-child {
+		.xs-product-widget {
+			border-right: 0px;
+		}
+	}
+}

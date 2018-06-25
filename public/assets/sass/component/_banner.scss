@@ -1,0 +1,364 @@
+.xs-banner-item {
+	@include background-content;
+	min-height: 660px;
+	@include flex-position(flex,center,center);
+	position: relative;
+	.xs-watermark-text {
+		z-index: 2;
+	}
+	.large-version {
+		opacity: .05;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+.xs-banner-slider {
+	position: relative;
+	&.owl-carousel .owl-item img {
+		width: auto;
+	}
+	.owl-next ,
+	.owl-prev,
+	.owl-dots {
+		margin: 0;
+		position: absolute;
+		bottom: 39px;
+		line-height: 1;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.owl-dots {
+		left: calc(50% - 40px);
+		bottom: 47px;
+	}
+	.owl-prev {
+		left: calc(50% - 110px);
+	}
+	.owl-next {
+		left: calc(50% + 30px);
+	}
+	.owl-prev,
+	.owl-next {
+		&.disabled {
+			opacity: 0;
+		}
+	}
+}
+
+.xs-simple-arrow {
+	color: $color-primary;
+	font-size: em(30px);
+	@include transition;
+}
+  
+.xs-banner-image {
+	align-self: center;
+}
+.xs-banner-content {
+	align-self: center;
+	text-align: center;
+	.xs-banner-sub-title {
+		font-weight: 300;
+		color: $color-primary;
+		font-size: em(28px);
+		letter-spacing: -.3px;
+		margin-bottom: 20px;
+	}
+	.xs-banner-title {
+		font-size: em(49px);
+		font-weight: 700;
+		letter-spacing: -2px;
+		margin-bottom: 50px;
+	}
+	.btn-outline-primary {
+		border-width: 2px;
+		border-color: $color-primary;
+		padding: 15px 61px;
+	}
+	.btn {
+		font-size: em(12px);
+		font-weight: 700;
+	}
+	.btn-primary {
+		background-color: $color-primary;
+	}
+	.xs-btn-wraper {
+		justify-content: center;
+	}
+}
+
+.xs-banner {
+	.xs-banner-content {
+		.btn-primary {
+			padding: 18px 41px;
+		}
+	}
+}
+
+/* banner version 2 */
+$bannerHeight: 550px;
+.xs-banner-slider-2 {
+	.xs-banner-item {
+		margin-left: 0;
+		margin-right: 0;
+		min-height: $bannerHeight;
+	}
+	.xs-banner-content {
+		.xs-banner-sub-title {
+			font-size: em(22px);
+		}
+		.xs-banner-title {
+			font-size: em(38px);
+			margin-bottom: 30px;
+		}
+		.xs-btn-wraper {
+			justify-content: flex-start;
+		}
+	}
+	.owl-dots {
+		margin-top: 0;
+		position: absolute;
+		bottom: 40px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+.xs-banner {
+	.xs-feature-product {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.xs-feature-product,
+	.xs-feature-product img {
+		min-height: (($bannerHeight - 30) / 2);
+	}
+}
+
+/* banner slider version 3 */
+.xs-banner-slider-3 {
+	$spacing: 80px;
+	@include background-content;
+	background-color: #f7f7f7;
+	.xs-banner-content {
+		padding-left: $spacing;
+		.xs-banner-sub-title {
+			font-size: em(26px);
+			font-weight: 400;
+		}
+		.xs-banner-title {
+			font-size: em(52px);
+			font-weight: 500;
+			margin-bottom: 30px;
+		}
+		.xs-btn-wraper {
+			justify-content: flex-start;
+		}
+	}
+	.xs-banner-item {
+		min-height: 550px;
+	}
+	.xs-banner-image {
+		padding-right: 50px;
+	}
+	.owl-dots {
+		margin-top: 0;
+		position: absolute;
+		bottom: calc(#{$spacing} - 20px);
+		left: $spacing;
+	}
+}
+
+/* banner version 4 */
+.xs-banner {
+	&.xs-banner-v4 {
+		.xs-banner-item {
+			min-height: 600px;
+		}
+	}
+}
+/* banner slider version 4 */
+.xs-banner-slider-4 {
+	.xs-banner-content {
+		text-align: left;
+	}
+	.xs-btn-wraper {
+		justify-content: flex-start;
+	}
+	.xs-banner-sub-title {
+		font-size: em(26px);
+	}
+	.xs-banner-title {
+		font-size: em(42px);
+		margin-bottom: 30px;
+	}
+	.owl-dots {
+		text-align: left;
+		margin-top: 0;
+		width: calc(520px + .2em);
+		margin: 0 auto;
+		position: relative;
+		bottom: 39px;
+	}
+	@include background-content;
+}
+
+/* banner version 5 */
+.xs-banner-v5 {
+	.xs-banner-item {
+		min-height: 980px;
+		overflow: hidden;
+		&::before {
+			position: absolute;
+			content: "";
+			bottom: -60px;
+			left: 50%;
+			transform: translateX(-50%);
+			background-image: url(../images/welcome/curve.png);
+			@include background-content;
+			height: 100px;
+			width: 370px;
+			z-index: 2;
+		}
+	}
+	[class^="col"] {
+		z-index: 9;
+	}
+	.xs-banner-content {
+		text-align: left;
+		.xs-banner-sub-title {
+			color: $color-secondary;
+			@include altFont;
+			margin-bottom: 0;
+		}
+		.xs-banner-title {
+			font-size: em(82px);
+			margin-bottom: 0;
+		}
+		p {
+			font-size: em(18px);
+			color: #666666;
+		}
+		.btn:not(.btn-outline-success) {
+			padding: 18px 60px;
+		}
+		.btn-outline-success {
+			padding: 16px 49px;
+		}
+	}
+}
+
+/* fullwidth container */ 
+.container-fullwidth {
+	.xs-banner-content {
+		.xs-banner-title {
+			font-size: em(40px);
+		}
+		.xs-banner-sub-title {
+			font-size: em(25px);
+		}
+		.btn-outline-primary {
+			border-color: $color-primary;
+		}
+	}
+}
+
+/* banner slider five */ 
+.xs-banner-slider-5 {
+	position: relative;
+	.owl-dots {
+		margin-top: -46px;
+		bottom: 0;
+	}
+}
+
+/* vendor slider */
+.xs-banner {
+	&.vendor-welcome {
+		padding-bottom: 30px;
+	}
+	&.v-yellow {
+		.btn:not([data-toggle="popover"]) {
+			color: #333e48;
+		}
+		.btn:not([data-toggle="popover"]).btn-primary {
+			background-color: $color-gold;
+		}
+	}
+}
+
+/* banner slider version 6 */
+.xs-banner-slider-6 {
+	.xs-banner-item {
+		margin-left: -1px;
+		margin-right: 0;
+		min-height: 530px;
+	}
+	~ [class^=col-] .xs-banner-campaign img,
+	.xs-banner-item {
+		border-radius: 6px;
+	}
+	.xs-banner-content {
+		text-align: left;
+		color: $color-white;
+		padding-left: 80px;
+		width: 100%;
+		.xs-banner-sub-title {
+			color: $color-white;
+			font-size: em(25px);
+		}
+		.xs-banner-title {
+			font-size: em(40px);
+			margin-bottom: 26px;
+		}
+		.btn {
+			color: $color_semi_black;
+			&:hover {
+				color: $color-white;
+			}
+		}
+		.btn.btn-outline-primary {
+			border-color: $color-white;
+			color: $color-white;
+		}
+		.btn:not([data-toggle="popover"]).btn-primary {
+			background-color: $color-gold;
+		}
+	}
+	.xs-btn-wraper {
+		justify-content: flex-start;
+	}
+	.owl-dots {
+		margin-top: 0;
+		position: absolute;
+		bottom: 46px;
+		left: 50%;
+		transform: translateX(-50%);
+		.owl-dot {
+			span {
+				background-color: #e1e1e1;
+			}
+			&.active {
+				span {
+					background-color: $color-gold;
+				}
+			}
+		}
+	}
+	.owl-stage-outer,
+	.owl-stage,
+	.owl-item,
+	.xs-banner-item  {
+		height: 100%;
+	}
+}
+
+.banner-fullwidth-version-2 {
+	margin-bottom: 30px;
+	.xs-banner-campaign {
+		margin-bottom: 30px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

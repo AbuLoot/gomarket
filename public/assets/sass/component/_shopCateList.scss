@@ -1,0 +1,129 @@
+.shop-cate-list {
+	padding: 15px 20px;
+	border: 1px solid #eaeaea;
+	margin-bottom: 30px;
+	.shop-cate-title {
+		display: inline-block;
+		h5 {
+			font-size: em(16px);
+			margin-bottom: 0;
+		}
+	}
+	.shop-catelist-item {
+		float: right;
+	}
+}
+.shop-catelist-item {
+	li {
+		display: inline-block;
+		.media {
+			align-items: center;
+		}
+		.media-body {
+			.custom-control {
+				display: inline-block;
+				margin-bottom: 0;
+				padding-left: 10px;
+				min-height: 0;
+				line-height: 1;
+			}
+		}
+		h6 {
+			font-size: em(14px);
+			margin-bottom: 0;
+			font-weight: 400;
+			padding-right: 20px;
+			margin-top: 2px;
+		}
+	}
+	.custom-control.custom-radio {
+		.custom-control-label::after, 
+		.custom-control-label::before {
+			@include equal-size(15px);
+			background-size: 60% 60%;
+        }
+	}
+	> li {
+		margin-right: 30px;
+		padding-right: 30px;
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 36px;
+			width: 1px;
+			background-color: #eaeaea;
+		}
+		&:last-child {
+			padding-right: 0;
+			margin-right: 0;
+			&::before {
+				display: none;
+			}
+		}
+	}
+}
+
+.shop-view-nav {
+	border-bottom: 0px;
+	.nav-item {
+		margin-bottom: 0;
+		margin-right: 10px;
+		&:last-child {
+			margin-right: 0;
+		}
+		.nav-link {
+			padding: 0;
+			border: 0px;
+			color: #c3c3c3;
+			@include transition;
+			&.active {
+				color: $color-primary;
+			}
+		}
+	}
+}
+.product-ordering {
+    border: 0px;
+    color: $color-primary;
+    background-image: url(../images/arrow-blue.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    appearance: none;
+    min-width: 160px;
+    max-width: 170px;
+    white-space: nowrap;
+    padding-right: 15px;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.category-v4 {
+	.xs-product-wraper {
+		padding: 0;
+		text-align: center;
+		margin-bottom: 30px;
+		border-color: #eaeaea;
+		margin-left: -1px;
+		&:hover {
+			box-shadow: none;
+			border-color: #eaeaea;
+		}
+		.xs-product-content {
+			padding: 30px;
+			padding-top: 0;
+		}
+	}
+}
+
+#list-justify {
+	.xs-single-product {
+		margin-bottom: 30px;
+	}
+}
+#listSmall {
+	margin-bottom: 30px;
+}

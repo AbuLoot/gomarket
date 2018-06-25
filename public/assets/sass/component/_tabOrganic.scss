@@ -1,0 +1,29 @@
+.xs-nav-tab-v2 {
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0px;
+    margin-bottom: 40px;
+    .nav-item {
+        margin-bottom: 0;
+    }
+    .nav-link {
+        border: 2px solid #f1f1f1;
+        padding: 16px 50px;
+        line-height: 1;
+        border-radius: 25px;
+        font-size: em(12px);
+        font-weight: 700;
+        color: #666666;
+        @include transition;
+        &.active,
+        &:hover {
+            border-color: transparent;
+            background-color: $color-secondary;
+            color: $color-white;
+        }
+    }
+    .nav-filter-img {
+        min-height: 173px;
+        max-width: 268px;
+    }
+}

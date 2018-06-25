@@ -1,0 +1,44 @@
+.entry-summary {
+	padding-top: 50px;
+}
+.summary-content {
+	.entry-title {
+		font-size: em(14px);
+		font-weight: 400;
+		color: $color-primary;
+		margin-bottom: 15px;
+	}
+	.product-title {
+		font-size: em(22px);
+		margin-bottom: 20px;
+	}
+	.star-rating {
+		margin-bottom: 20px;
+		line-height: 1;
+		.value {
+			top: -2px;
+		}
+	}
+	.price {
+		margin-bottom: 20px;
+	}
+}
+.xs-add-to-chart-form {
+	margin-bottom: 30px;
+	.xs_input_number {
+		display: inline-block;
+		float: left;
+	}
+	.w-quantity-btn {
+		text-align: right;
+	}
+}
+.xs-wishlist-and-compare {
+	@include equal-size-lineHeight(52px);
+	display: inline-block;
+	border: 1px solid #eaeaea;
+	border-radius: 4px;
+	color: #999999;
+	font-size: em(16px);
+	text-align: center;
+}

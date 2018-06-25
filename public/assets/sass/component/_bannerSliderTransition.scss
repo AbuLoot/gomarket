@@ -1,0 +1,100 @@
+.owl-carousel {
+	.active {
+		[class^=anim-] {
+			backface-visibility: hidden;
+		}
+		.animInLeft {
+			animation: animInLeft 1s ease 0s both;
+		}
+		.animInRight {
+			animation: animInRight 1s ease 0s both;
+		}
+		.animInTop { 
+			animation: animInTop 1s ease 0s both; 
+		}
+		.animInBottom { 
+			animation: animInBottom 1s ease 0s both; 
+		}
+		.xs-banner-title.animInLeft {
+			animation-duration: 1.5s;
+			animation-delay: 1s;
+		}
+
+		.xs-banner-sub-title.animInTop {
+			animation-duration: 1s;
+			animation-delay: 1.5s;
+		}
+		.xs-banner-title.animInBottom {
+			animation-duration: 1.5s;
+			animation-delay: 1.5s;
+		}
+		.xs-banner-image.animInRight {
+			animation-delay: 1s;
+		}
+
+		.btn.animInLeft {
+			animation-duration: 1.5s;
+			animation-delay: 1.5s;
+		}
+		.btn.animInLeft + .btn.animInRight {
+			animation-duration: 1.7s;
+			animation-delay: 2s;
+		}
+
+		.best-deal-title.animInRight {
+			animation-delay: 1s;
+		}
+		.price.animInRight {
+			animation-delay: 1.5s;
+		}
+		.xs-best-deal-slider-content .btn.animInLeft {
+			animation-delay: 2s;
+		}
+		.xs-best-deal-slider-content .btn.animInLeft + .btn.animInRight {
+			animation-delay: 2.5s;
+		}
+	}
+	&.xs-banner-slider-3,
+	&.xs-banner-slider-4 {
+		.active {
+			.xs-banner-image.animInRight {
+				animation-duration: 2s;
+				animation-delay: 2s;
+			}
+		}
+	}
+}
+
+
+@keyframes animInLeft {
+	0% {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animInRight {
+	0% {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to { opacity: 1 }
+}
+@keyframes animInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to { opacity: 1 }
+}

@@ -1,0 +1,94 @@
+.shop-category {
+	.widget:not(.widget_banner) {
+		padding: 20px;
+		border: 1px solid #eaeaea;
+	}
+	.widget {
+		margin-bottom: 30px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.widget-title {
+		font-size: em(16px);
+		font-weight: 500;
+		margin-bottom: 15px;
+	}
+}
+
+.widget_range {
+	.price_label {
+		margin-bottom: 20px;
+		justify-content: space-between;
+		label {
+			color: #000000;
+			font-weight: 500;
+			font-size: em(16px);
+			margin-bottom: 0;
+		}
+		input {
+			border: 0px;
+			text-align: right;
+			color: $color-primary;
+			font-size: em(12px);
+			display: inline-block;
+			margin-top: 3px;
+			max-width: 50%;
+		}
+	}
+	.ui-state-default, 
+	.ui-widget-content .ui-state-default {
+		border: 0;
+		@include equal-size(14px);
+		background-color: $color-primary;
+		border-radius: 50%;
+		top: -6px;
+		cursor: pointer;
+	}
+	.ui-widget-content {
+		border-radius: 0;
+		background-color: #efefef;
+		height: 2px;
+		border: 0px;
+	}
+	.ui-slider .ui-slider-range {
+		background-color: $color-primary;
+	}
+	.ui-widget-content .ui-state-default:nth-child(even) {
+		margin-left: 0;
+	}
+	.ui-widget-content .ui-state-default:nth-child(odd) {
+		margin-left: -14px;
+	}
+}
+
+.widget_cate {
+	.custom-control {
+		margin-bottom: 10px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		label {
+			cursor: pointer;
+			color: $bColor;
+			span {
+				padding-left: 5px;
+			}
+		}
+	}
+}
+
+.widget_rate {
+	.rate-list {
+		li {
+			margin-bottom: 10px;
+			.star-rating {
+				width: 100%;
+				text-align: left;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

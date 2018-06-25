@@ -1,0 +1,45 @@
+/* promotion code */
+.xs-promotion {
+	border: 0;
+	border-radius: 0;
+	margin-bottom: 0;
+	padding: 12px 0;
+	&.alert-info {
+		background-color: #ff6251;
+		strong {
+			background-color: #e15546;
+		}
+	}
+	p {
+		margin-bottom: 0;
+		color: $color-white;
+		font-size: em(12px);
+	}
+	strong {
+		font-weight: 500;
+		border-radius: 4px;
+		padding: 7px 15px;
+		margin-right: 16px;
+	}
+	.close {
+		opacity: 1;
+		color: #FFF;
+		text-shadow: none;
+		font-size: em(14px);
+		&:focus {
+			outline: none;
+		}
+	}
+	&.alert-success {
+		background-color: $color-secondary;
+	}
+	&.promotion-v2 {
+		padding: 12px 0;
+		p {
+			text-align: center;
+		}
+		.close {
+			font-size: em(14px);
+		}
+	}
+}

@@ -1,0 +1,144 @@
+.xs-banner-offer {
+	@include background-content;
+	border-radius: 6px;
+}
+.xs-banner-offer ,
+.xs-offer-text {
+	min-height: 300px;
+	max-height: 320px;
+}
+.xs-offer-text {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding-left: 50px;
+	h2 {
+		font-weight: 300;
+		font-size: em(40px);
+		margin-bottom: 5px;
+	}
+	h3 {
+		margin-bottom: 30px;
+		font-weight: 700;
+		font-size: em(35px);
+	}
+}
+.xs-offer-product-img {
+    margin-top: -28px;
+    text-align: right;
+}
+
+/* offer short banner */
+.small-offer-banner {
+	background-color: #f7f7f7;
+	border-radius: 6px;
+	padding: 30px;
+	max-height: 250px;
+	min-height: 250px;
+	cursor: pointer;
+	@include transition;
+	&:hover {
+		box-shadow: $secondary-shadow;
+	}
+	.media-body {
+		position: relative;
+		top: 63px;
+		left: 10px;
+		img {
+			transform: scale(1);
+			@include transition;
+			backface-visibility: hidden;
+			user-select: none;
+		}
+	}
+	&:hover {
+		.media-body {
+			img {
+				transform: scale(1.05);
+			}
+		}
+	}
+	&.offer-banner-v2 {
+		h2,h3 {
+			font-size: em(24px);
+			letter-spacing: -.3px;
+		}
+		h2 {
+			font-weight: 300;
+			margin-bottom: 0px;
+		}
+		h3 {
+			font-weight: 700;
+			margin-bottom: 20px;
+		}
+		.media-body {
+			top: 33px;
+		}
+	}
+	&.offer-banner-v3 {
+		h2 {
+			font-weight: 300;
+			color: #0063d1;
+			font-size: em(18px);
+			margin-bottom: 10px;
+		}
+		h3 {
+			font-size: em(28px);
+			font-weight: 300;
+			span {
+				font-weight: 700;
+			}
+		}
+		.media-body {
+			top: 80px;
+		}
+		.offer-banner-content {
+			max-width: 50%;
+		}
+	}
+}
+.offer-banner-content {
+	max-width: 60%;
+	.product-categories {
+		font-size: em(18px);
+		margin-bottom: 10px;
+		display: block;
+		a {
+			color: #74a8e5;
+		}
+	}
+	h3 {
+		font-size: em(30px);
+		font-weight: 700;
+		margin-bottom: 19px;
+	}
+}
+
+/* small offer banner version 2 */
+.small-offer-banner-v2 {
+	.small-offer-banner {
+		background-repeat: no-repeat;
+		background-position: right bottom;
+		background-size: cover;
+		margin-bottom: 20px;
+		min-height: 277px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.offer-banner-content {
+		max-width: 50%;
+		p {
+			color: $color-primary;
+			margin-bottom: 8px;
+		}
+		h3 {
+			font-size: em(18px);
+			font-weight: 300;
+			span {
+				font-weight: 500;
+				display: block;
+			}
+		}
+	}
+}

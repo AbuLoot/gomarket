@@ -1,0 +1,42 @@
+.xs-deal-of-the-day-organic {
+	position: relative;
+	padding: 110px 0;
+	z-index: 1;
+	.xs-gradient {
+		z-index: -2;
+	}
+	.xs-watermark-text {
+		top: 50%;
+		bottom: inherit;
+		transform: translateY(-50%);
+		font-size: em(150px);
+		color: #e2f6e5;
+		z-index: -1;
+	}
+}
+
+.xs-organic-info-content {
+	position: relative;
+	z-index: 2;
+	.organic-info-title {
+		margin-bottom: 30px;
+	}
+	p {
+		color: #666666;
+		margin-bottom: 25px;
+	}
+	.btn:not(.btn-outline-success) {
+		padding: 18px 60px;
+	}
+}
+.organic-info-subtitle {
+	color: #7fbb00;
+	@include altFont;
+	font-size: em(32px);
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+.organic-info-title {
+	font-weight: 700;
+	font-size: em(52px);
+}

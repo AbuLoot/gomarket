@@ -1,0 +1,136 @@
+.xs-feature-product {
+	position: relative;
+	margin-bottom: 30px;
+	&.highlight {
+		margin-bottom: 0;
+		.xs-feature-product-info {
+			padding: 60px;
+		}
+	}
+	.xs-product-offer-label {
+		position: absolute;
+		bottom: 90px;
+		left: 60px;
+	}
+	cursor: pointer;
+	overflow: hidden;
+	> img {
+		transition: transform .6s cubic-bezier(0,0,.44,1.18);
+		transform: scale3d(1,1,1);
+	}
+	&:hover {
+		> img {
+			transform: scale3d(1.1,1.1,1);
+		}
+	}
+}
+.xs-feature-product-info {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 30px;
+	width: 100%;
+	height: 100%;
+	.xs-cate-btn {
+		@include flex-position(inline-flex,center,center);
+		width: 100%;
+		height: 100%;
+		background-color: rgba($color-primary, .9);
+		color: #f5f5f5;
+		font-size: em(18px);
+		font-weight: 500;
+	}
+}
+
+.product-title-v2 {
+	font-size: em(14px);
+	font-weight: 400;
+	margin-bottom: 30px;
+	a {
+		color: $color-primary;
+		display: inline-block;
+		@include transition;
+		strong {
+			color: $bColor;
+			display: block;
+			font-size: 1.714em;
+			margin-top: 4px;
+			@include transition;
+		}
+		&:hover {
+			color: $bColor;
+			strong {
+				color: $color-primary;
+			}
+		}
+	}
+	&.large {
+		font-size: em(18px);
+		strong {
+			font-size: 2em;
+			margin-top: 0;
+		}
+	}
+}
+
+/* feature product version 4 */
+.feature-product-v4 {
+	.xs-product-wraper,
+	.xs-list-group {
+		padding: 20px;
+		border: 0px;
+		background-color: $color-white;
+	}
+	.product-item-meta {
+		background-color: $color-white;
+		border-top: 1px solid;
+		border-bottom: 1px solid;
+		border-color: #f1f1f1;
+	}
+	.price {
+		color: $color-primary;
+		font-size: em(14px);
+	}
+}
+@keyframes show {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+.xs-single-product {
+	position: relative;
+	@include transition;
+	.xs-list-group {
+		display: none;
+		animation: show .4s ease;
+		animation-fill-mode: forwards;
+		position: absolute;
+		z-index: 2;
+    	width: 100%;
+	}
+	&:hover {
+		.xs-product-wraper {
+			box-shadow: none;
+		}
+		box-shadow: 2px 11px 20px 0px rgba(144, 144, 144, 0.2);
+		.product-item-meta {
+			opacity: 1;
+			top: -15px;
+		}
+		.xs-list-group {
+			box-shadow: 2px 11px 20px 0px rgba(144, 144, 144, 0.2);
+			display: block;
+			opacity: 1;
+		}
+		.product-title {
+			a {
+				color: $color-primary;
+			}
+		}
+	}
+}

@@ -1,0 +1,248 @@
+.xs-bg {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.content-center {
+	text-align: center;
+	margin: 0 auto;
+}
+.content-left {
+	margin: 0 auto 0 0;
+}
+.content-right {
+	text-align: left;
+	margin: 0 0 0 auto;
+}
+
+.transition {
+	transition: all .4s ease;
+}
+
+$section-padding: 80px;
+.xs-section-padding {
+	padding: $section-padding 0;
+}
+.xs-section-padding-2 {
+	padding: calc(#{$section-padding} / 2) 0;
+}
+.xs-feature-product-tab.xs-section-padding-2 {
+	padding-bottom: 10px;
+}
+.xs-section-padding-bottom {
+	padding-bottom: $section-padding;
+}
+.xs-section-padding-top {
+	padding-top: $section-padding;
+}
+.xs-box-shadow {
+	box-shadow: $primary-shadow;
+}
+.xs-feauture-product-section.xs-section-padding {
+	padding: $section-padding 0 50px 0;
+}
+
+.xs-box-shadow-2 {
+	box-shadow: $secondary-shadow;
+}
+
+//margins
+.xs-margin-0 {
+	margin: 0;
+}
+.xs-mb-0 {
+	margin-bottom: 0;
+}
+.xs-mb-10 {
+	margin-bottom: 10px;
+}
+.xs-mb-20 {
+	margin-bottom: 20px;
+}
+.xs-mb-30 {
+	margin-bottom: 30px;
+}
+.xs-mb-40 {
+	margin-bottom: 40px;
+}
+.xs-mb-50 {
+	margin-bottom: 50px;
+}
+.xs-mb-60 {
+	margin-bottom: 60px;
+}
+.xs-mb-70 {
+	margin-bottom: 70px;
+}
+.xs-mb-80 {
+	margin-bottom: 80px;
+}
+.xs-mb-90 {
+	margin-bottom: 90px;
+}
+.xs-mb-100 {
+	margin-bottom: 100px;
+}
+// xs padding 
+.xs-padding-0 {
+	padding: 0;
+}
+
+// padding top
+.xs-pt-20 {
+	padding-top: 20px;
+}
+.xs-pt-50 {
+	padding-top: 50px;
+}
+// margin top
+.xs-mt-30 {
+	margin-top: 30px;
+}
+
+// color list
+.color-black {
+	color: $color-black;
+}
+.color-white {
+	color: $color-white;
+}
+.color-primary {
+	color: $color-primary;
+}
+.color-secondary {
+	color: $color-secondary;
+}
+.color-yellow {
+	color: $color-gold;
+}
+.color-red {
+	color: #d31242;
+}
+.color-semi-black {
+	color: $color_semi_black;
+}
+
+/* padding right */
+.xs-pr-90 {
+	padding-right: 90px;
+}
+
+// bg list
+.bg-black {
+	background-color: $color-black;
+}
+.bg-white {
+	background-color: $color-white;
+}
+.bg-xs-primary {
+	background-color: $color-primary;
+}
+.bg-xs-secondary {
+	background-color: $color-secondary;
+}
+.bg-gray {
+	background-color: $color-gray;
+}
+.bg-yellow {
+	background-color: $color-gold;
+}
+.bg-red {
+	background-color: #d31242;
+}
+.bg-semi-black {
+	background-color: $color_semi_black;
+}
+.bg-teal {
+	background-color: #15c1d7;
+}
+.bg-chocolate {
+	background-color: #8c6e63;
+}
+.bg-navyBlue {
+	background-color: #0059a7;
+}
+.bg-blue {
+	background-color: #5c6dbd;
+}
+.bg-green {
+	background-color: #009893;
+}
+
+// overlay list
+.xs-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: .5;
+	z-index: 0;
+}
+
+.parallax-window {
+	background-attachment: fixed;
+}
+
+/* Lead paragraph */ 
+.lead {
+	font-size: em(16px);
+	font-weight: 400;
+}
+
+/* button wraper margin */ 
+.xs-btn-wraper {
+	.btn,
+	a {
+        margin-right: 20px;
+        &:last-child {
+            margin-right: 0;
+        }
+	}
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* remove from control focus box shadow */
+.form-control {
+	&:focus {
+		box-shadow: none;
+	}
+}
+
+/* five column in one */
+.col-md-5-1 {
+    flex: 0 0 20%;
+	max-width: 20%;
+	position: relative;
+	width: 100%;
+}
+
+/* xs gradient */
+.xs-gradient {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient( to top, rgb(241,253,231) 0%, rgb(231,254,240) 75%, rgb(220,255,249) 100%);
+}
+
+/* water mark title */
+.xs-watermark-text {
+	display: block;
+	position: absolute;
+	font-size: em(160px);
+	color: #0869d5;
+	font-weight: 700;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	pointer-events: none;
+	&.large-version {
+		font-size: 380px;
+		color: #000000;
+		text-indent: -65px;
+	}
+}

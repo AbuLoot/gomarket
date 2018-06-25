@@ -1,0 +1,33 @@
+.xs-organic-featured-item-section {
+	position: relative;
+	padding: 100px 0;
+	.xs-watermark-text {
+		z-index: -1;
+		top: 50%;
+		bottom: inherit;
+		transform: translateY(-50%);
+		font-size: em(240px);
+		color: #e2f6e5;
+	}
+	.xs-gradient {
+		z-index: -2;
+	}
+}
+.xs-organic-feature-product {
+	position: relative;
+	z-index: 2;
+	.xs-popover-wraper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 68%;
+		.btn {
+			position: relative;
+			&:last-child {
+				float: right;
+				top: 90px;
+			}
+		}
+	}
+}

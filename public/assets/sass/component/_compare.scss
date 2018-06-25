@@ -1,0 +1,49 @@
+.table-comapre-list {
+	text-align: center;
+	th {
+		width: 17%;
+		font-size: em(14px);
+		font-weight: 400;
+		vertical-align: middle;
+		b {
+			font-size: em(16px);
+			font-weight: 500;
+		}
+	}
+	td {
+		width: 41.5%;
+		padding: 15px;
+		.btn {
+			display: inline-block;
+		}
+		b {
+			font-weight: 500;
+			color: $color-primary;
+		}
+	}
+	.xs-list {
+		text-align: left;
+		padding: 15px;
+		$spcaing: 20px;
+		li {
+			padding-left: $spcaing;
+		}
+		&.arrow {
+			li:before {
+				position: absolute;
+				margin-left: -$spcaing;
+				padding-right: 0;	
+			}
+		}
+	}
+	&.table-bordered {
+		th , td {
+			border: 1px solid #eaeaea;
+		}
+		thead {
+			th {
+				border-bottom: 0px;
+			}
+		}
+	}
+}

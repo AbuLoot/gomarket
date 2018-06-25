@@ -1,0 +1,56 @@
+.customer-info-forms {
+	&.row {
+		flex-wrap: nowrap;
+	}
+	[class^=col-]:first-child {
+		padding-right: 65px;
+		position: relative;
+		&::before {
+			position: absolute;
+			content: "";
+			top: 0;
+			right: 0;
+			height: 100%;
+			width: 1px;
+			background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 25%,rgba(234,234,234,1) 75%,rgba(255,255,255,1) 100%);
+		}
+	}
+	[class^=col-]:last-child {
+		padding-left: 65px;
+	}
+	position: relative;
+}
+  
+.xs-customer-form-wraper {
+	h3 {
+		font-size: em(22px);
+		margin-bottom: 13px;
+	}
+	p {
+		font-size: em(12px);
+		line-height: 1.833;
+		margin-bottom: 20px;
+	}
+	.xs-customer-form {
+		.input-group {
+			background-color: transparent;
+		}
+	}
+}
+
+.form-separetor {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 2;
+	transform: translate(-50%, -50%);
+	@include equal-size-lineHeight(52px);
+	border-radius: 100%;
+	border: 1px solid #eaeaea;
+	text-align: center;
+	margin-bottom: 0;
+	font-size: em(12px);
+	font-weight: 500;
+	color: #cccccc;
+	background-color: $color-white;
+}

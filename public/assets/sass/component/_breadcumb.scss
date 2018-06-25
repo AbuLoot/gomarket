@@ -1,0 +1,44 @@
+.xs-breadcumb {
+    background-color: #fafafa;
+    padding: 29px 0;
+    min-height: 80px;
+	.breadcrumb {
+        background-color: inherit;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .breadcrumb-item {
+        margin-right: 25px;
+        a {
+            color: $bColor;
+            margin-left: 25px;
+        }
+        &::before {
+            padding: 0 10px;
+        }
+        +.breadcrumb-item {
+            &::before {
+                content: '>';
+                color: #777777;
+            }
+            a {
+                color: #777777;
+            }
+        }
+        &:nth-child(2):before {
+            color: $bColor;
+        }
+        &.active {
+            margin-right: 0;
+            color: $bColor;
+            &::before {
+                margin-right: 25px;
+            }
+        }
+        &:first-child {
+            a {
+                margin-left: 0;
+            }
+        }
+    }
+}
