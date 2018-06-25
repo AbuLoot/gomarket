@@ -24,7 +24,7 @@
             @foreach ($products as $product)
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="xs-product-wraper">
-                  <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->category->title }}">
+                  <a href="/goods/{{ $product->id.'-'.$product->slug }}"><img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->category->title }}"></a>
                   <div class="xs-product-content"><br>
                     <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                     <span class="price version-2">
