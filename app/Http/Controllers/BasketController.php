@@ -150,7 +150,7 @@ class BasketController extends Controller
         try {
 
             Mail::send('vendor.mail.html.layout', ['order' => $order], function($message) use ($name) {
-                $message->to('issayev.adilet@gmail.com', 'GoMarket')->subject('GoMarket - Новый заказ от '.$name);
+                $message->to('abdulaziz.abishov@gmail.com, issayev.adilet@gmail.com', 'GoMarket')->subject('GoMarket - Новый заказ от '.$name);
                 $message->from('electron.servant@gmail.com', 'Electron Servant');
             });
 

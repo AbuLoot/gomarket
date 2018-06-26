@@ -94,12 +94,16 @@
       <label for="options_id">Опции</label>
       <select id="options_id" name="options_id[]" class="form-control" size="10" multiple>
         <option value=""></option>
-        @foreach($options as $option)
-          @if ($product->options->contains($option->id))
-            <option value="{{ $option->id }}" selected>{{ $option->title }}</option>
-          @else
-            <option value="{{ $option->id }}">{{ $option->title }}</option>
-          @endif
+        @forelse ($grouped as $data => $group)
+          <optgroup label="{{ $data }}">
+            @foreach ($group as $option)
+              @if ($product->options->contains($option->id))
+                <option value="{{ $option->id }}" selected>{{ $option->title }}</option>
+              @else
+                <option value="{{ $option->id }}">{{ $option->title }}</option>
+              @endif
+            @endforeach
+          </optgroup>
         @endforeach
       </select>
     </div>

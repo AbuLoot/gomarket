@@ -25,7 +25,7 @@
               <div class="tab-pane fade show @if($k == '0') active @endif" id="today-{{ $mode->slug }}" role="tabpanel" aria-labelledby="{{ $mode->slug }}-tab">
                 <div class="carousel slide" id="{{ $mode->slug }}Carousel" data-ride="carousel" data-interval="false">
                   <div class="carousel-inner">
-                    @foreach($mode->products->take(16)->chunk(8) as $key => $chunk)
+                    @foreach($mode->products->where('status', 1)->take(16)->chunk(8) as $key => $chunk)
                       <div class="carousel-item @if($key == '0') active @endif">
                         <div class="row">
                           @foreach($chunk as $product)

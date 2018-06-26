@@ -123,10 +123,11 @@ class ProductController extends Controller
     {
         $categories = Category::get()->toTree();
         $companies = Company::get();
-        $options = Option::all();
+        $options = Option::orderBy('sort_id')->get();
+        $grouped = $options->groupBy('data');
         $modes = Mode::all();
 
-        return view('joystick-admin.products.create', ['modes' => $modes, 'categories' => $categories, 'companies' => $companies, 'options' => $options]);
+        return view('joystick-admin.products.create', ['modes' => $modes, 'categories' => $categories, 'companies' => $companies, 'options' => $options, 'grouped' => $grouped]);
     }
 
     public function store(Request $request)
@@ -220,10 +221,11 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $categories = Category::get()->toTree();
         $companies = Company::get();
-        $options = Option::all();
+        $options = Option::orderBy('sort_id')->get();
+        $grouped = $options->groupBy('data');
         $modes = Mode::all();
 
-        return view('joystick-admin.products.edit', ['modes' => $modes, 'product' => $product, 'categories' => $categories, 'companies' => $companies, 'options' => $options]);
+        return view('joystick-admin.products.edit', ['modes' => $modes, 'product' => $product, 'categories' => $categories, 'companies' => $companies, 'options' => $options, 'grouped' => $grouped]);
     }
 
     public function update(Request $request, $id)

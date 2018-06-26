@@ -22,7 +22,7 @@ class PageController extends Controller
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
         $trend_mode = Mode::where('slug', 'trend')->first();
-        $categories_part = Category::whereIn('slug', ['gadjets', 'life-style', 'accessuary'])->orderBy('sort_id')->get();
+        $categories_part = Category::whereIn('slug', ['gadjets', 'life-style'])->orderBy('sort_id')->get();
 
         $ids = collect();
 
@@ -40,9 +40,8 @@ class PageController extends Controller
         // $products_viewed = Product::where('status', 1)->whereIn('id', $viewed['products_id'])->orderBy('sort_id')->take(18)->get();
         $products_part = Product::where('status', 1)->whereIn('category_id', $ids[0])->orderBy('sort_id')->take(16)->get();
         $products_part2 = Product::where('status', 1)->whereIn('category_id', $ids[1])->orderBy('sort_id')->take(16)->get();
-        $products_part3 = Product::where('status', 1)->whereIn('category_id', $ids[2])->orderBy('sort_id')->take(16)->get();
 
-        $group_products = [0 => $products_part, 1 => $products_part2, 2 => $products_part3];
+        $group_products = [0 => $products_part, 1 => $products_part2];
 
         return view('pages.index', compact('modes', 'slide_mode', 'trend_mode', 'categories_part', 'group_products'));
     }

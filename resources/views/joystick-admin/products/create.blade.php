@@ -84,8 +84,12 @@
       <label for="options_id">Опции</label>
       <select id="options_id" name="options_id[]" class="form-control" size="10" multiple>
         <option value=""></option>
-        @foreach($options as $option)
-          <option value="{{ $option->id }}">{{ $option->title }}</option>
+        @forelse ($grouped as $data => $group)
+          <optgroup label="{{ $data }}">
+            @foreach ($group as $option)
+              <option value="{{ $option->id }}">{{ $option->title }}</option>
+            @endforeach
+          </optgroup>
         @endforeach
       </select>
     </div>

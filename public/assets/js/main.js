@@ -222,7 +222,7 @@ $(document).ready(function() {
 	/*==========================================================
 				5. single banner slider
 	======================================================================*/
-	if ( $( '.xs-banner-slider' ).length > 0 ) {
+	if ($( '.xs-banner-slider' ).length > 0 ) {
 		$( ".xs-banner-slider" ).myOwl({
 			items: 1,
 			loop: true,
@@ -230,6 +230,8 @@ $(document).ready(function() {
 			dots: true,
 			nav: true,
 			autoplay: true,
+			autoplayTimeout: 3000,
+			autoplayHoverPause:false,
 			responsive: {
 				// breakpoint from 0 up
 				0 : {

@@ -10,8 +10,8 @@
 
   <!-- BANNER -->
   <section class="xs-banner">
-    <div class="xs-banner-slider owl-carousel" style="max-height: 600px; background-image:url('/img/slider/background_4.jpg'); background-repeat: no-repeat; background-position: center;">
-      @foreach($slide_mode->products->take(10) as $slide_product)
+    <div class="owl-carousel xs-banner-slider" style="max-height: 600px; background-image:url('/img/slider/background_4.jpg'); background-repeat: no-repeat; background-position: center;">
+      @foreach($slide_mode->products->where('status', 1)->take(10) as $slide_product)
         <div class="xs-banner-item">
           <div class="container">
             <div class="row">
