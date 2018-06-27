@@ -167,7 +167,7 @@ class PageController extends Controller
 
     public function contacts()
     {
-        $page = Page::where('slug', 'contacts')->firstOrFail();
+        $page = Page::where('slug', 'kontakty')->firstOrFail();
 
         return view('pages.contacts')->with('page', $page);
     }

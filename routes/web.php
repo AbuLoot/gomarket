@@ -91,5 +91,5 @@ Route::get('catalog', 'PageController@catalog');
 Route::get('catalog/{category}', 'PageController@categoryProducts');
 Route::get('goods/{id}-{product}', 'PageController@product');
 Route::get('catalog/brand/{company}', 'PageController@brandProducts');
-Route::get('contacts', 'PageController@contacts');
+Route::get('kontakty', 'PageController@contacts');
 Route::get('{page}', 'PageController@page');

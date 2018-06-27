@@ -18,10 +18,9 @@
         </tr>
       </thead>
       <tbody>
-        <?php $i = 1; ?>
         @forelse ($apps as $app)
           <tr>
-            <td>{{ $i++ }}</td>
+            <td>{{ $app->id }}</td>
             <td>{{ $app->name }}</td>
             <td>{{ $app->email }}</td>
             <td>{{ $app->phone }}</td>

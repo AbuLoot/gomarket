@@ -147,15 +147,25 @@ class BasketController extends Controller
 
         $name = $request->name;
 
-        try {
+        // Email subject
+        $subject = "GoMarket - novaya zayavka ot $request->name";
 
-            Mail::send('vendor.mail.html.layout', ['order' => $order], function($message) use ($name) {
-                $message->to(['abdulaziz.abishov@gmail.com', 'issayev.adilet@gmail.com'], 'GoMarket')->subject('GoMarket - Новый заказ от '.$name);
-                $message->from('electron.servant@gmail.com', 'Electron Servant');
-            });
+        $headers = "From: info@gomarket.kz \r\n" .
+                   "MIME-Version: 1.0" . "\r\n" . 
+                   "Content-type: text/html; charset=UTF-8" . "\r\n";
+
+        $content = view('vendor.mail.html.layout', ['order' => $order])->render();
+
+        try {
+            mail('abdulaziz.abishov@gmail.com, issayev.adilet@gmail.com', $subject, $content, $headers);
 
             $status = 'alert-success';
             $message = 'Ваш заказ принят!';
+
+            // Mail::send('vendor.mail.html.layout', ['order' => $order], function($message) use ($name) {
+            //     $message->to(['abdulaziz.abishov@gmail.com', 'issayev.adilet@gmail.com'], 'GoMarket')->subject('GoMarket - Новый заказ от '.$name);
+            //     $message->from('electron.servant@gmail.com', 'Electron Servant');
+            // });
 
         } catch (Exception $e) {
 
@@ -165,7 +175,9 @@ class BasketController extends Controller
 
         $request->session()->forget('items');
 
-        return redirect('/')->with('status', $message);
+        return redirect()->back()->with([
+            'info' => $message
+        ]);
     }
 
     public function destroy(Request $request, $id)

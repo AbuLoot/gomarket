@@ -10,7 +10,7 @@ class AppController extends Controller
 {
     public function index()
     {
-    	$apps = App::orderBy('created_at')->paginate(50);
+    	$apps = App::orderBy('created_at', 'desc')->paginate(50);
 
         return view('joystick-admin.apps.index', compact('apps'));
     }
