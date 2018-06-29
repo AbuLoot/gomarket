@@ -91,7 +91,7 @@
           <div class="row">
             <?php $images = unserialize($trend_product->images); ?>
             <div class="col-md-6 align-self-center xs-deal-img animInLeft">
-              <img style="max-height: 450px" src="/img/products/{{ $trend_product->path.'/'.$images[1]['image'] }}" alt="">
+              <img style="max-height: 450px" src="/img/products/{{ $trend_product->path.'/'.$images[0]['image'] }}" alt="">
             </div>
             <div class="col-md-6 align-self-center">
               <div class="xs-best-deal-slider-content">

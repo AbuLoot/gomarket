@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col-md-7 col-xs-8">
           <ul class="xs-top-bar-info xs-social-list">
-            <li><a href="#"><i class="material-icons">place</i> г. Алматы, ул. Желтоксана 78/86</a></li>
+            <li><a href="#"><i class="material-icons">place</i> г. Алматы, ул. Желтоксан 78/86</a></li>
             <li><a href="#"><i class="material-icons">access_time</i> c 10:00 до 20:00 Без выходных!</a></li>
           </ul>
         </div>
@@ -104,7 +104,7 @@
           <div class="col-lg-3 xs-logo-wraper">
             <div class="header-phones text-right">
               <!-- <h5 class="xs-phone margin-top-5">[WhatsApp]</h5> -->
-              <h5 class="xs-phone"><a href="whatsapp://send?phone=+77005035045" class="color-primary"><strong><span class="w4"><span class="fa fa-whatsapp" ></span></span> +7 (707) 2017555</strong></a></h5>
+              <h5 class="xs-phone"><a href="whatsapp://send?phone=+77072017555" class="color-primary"><strong><span class="w4"><span class="fa fa-whatsapp" ></span></span> +7 (707) 2017555</strong></a></h5>
               <h5 class="xs-phone"><a href="tel:+77072017555" class="color-primary"><strong><i class="material-icons">phone_android</i> +7 (707) 2017555</strong></a></h5>
             </div>
           </div>
@@ -251,7 +251,7 @@
           <div class="col-md-4 col-lg-3 footer-widget">
             <h3 class="widget-title">Наши контакты</h3>
               <span>GoMarket, Inc.</span><br>
-              <span>ул. Желтоксана 78/86</span><br>
+              <span>ул. Желтоксан 78/86</span><br>
               <span>Алматы, Казахстан </span><br>
               <span>Phone: +7 707 201 75 55</span><br>
               <span>WhatsApp: +7 (707) 201-75-55</span><br>
