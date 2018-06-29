@@ -302,30 +302,30 @@ class ProductController extends Controller
             $images = array_sort_recursive($images);
         }
 
-        // if (count($request->remove_images) > 0) {
+        if (count($request->remove_images) > 0) {
 
-        //     foreach ($request->remove_images as $key => $value) {
+            foreach ($request->remove_images as $key => $value) {
 
-        //         if (!isset($request->images[$value])) {
+                if (!isset($request->images[$value])) {
 
-        //             if ($product->image === 'preview-'.$images[$value]['image']) {
+                    if ($product->image === 'preview-'.$images[$value]['image']) {
 
-        //                 Storage::delete('img/products/'.$product->path.'/'.$product->image);
-        //                 $introImage = 'no-image-middle.png';
-        //             }
+                        Storage::delete('img/products/'.$product->path.'/'.$product->image);
+                        $introImage = 'no-image-middle.png';
+                    }
 
-        //             Storage::delete([
-        //                 'img/products/'.$product->path.'/'.$images[$value]['image'],
-        //                 'img/products/'.$product->path.'/'.$images[$value]['present_image'],
-        //                 'img/products/'.$product->path.'/'.$images[$value]['mini_image']
-        //             ]);
+                    Storage::delete([
+                        'img/products/'.$product->path.'/'.$images[$value]['image'],
+                        'img/products/'.$product->path.'/'.$images[$value]['present_image'],
+                        'img/products/'.$product->path.'/'.$images[$value]['mini_image']
+                    ]);
 
-        //             unset($images[$value]);
-        //         }
-        //     }
+                    unset($images[$value]);
+                }
+            }
 
-        //     $images = array_sort_recursive($images);
-        // }
+            $images = array_sort_recursive($images);
+        }
 
         $product->sort_id = ($request->sort_id > 0) ? $request->sort_id : $product->count() + 1;
         $product->category_id = $request->category_id;
