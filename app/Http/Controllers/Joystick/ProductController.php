@@ -35,12 +35,13 @@ class ProductController extends Controller
         $text = trim(strip_tags($request->text));
 
         $products = Product::search($text)->paginate(50);
+        $modes = Mode::all();
 
         $products->appends([
             'text' => $request->text,
         ]);
 
-        return view('joystick-admin.products.found', compact('text', 'products'));
+        return view('joystick-admin.products.found', compact('text', 'modes', 'products'));
     }
 
     public function priceForm()
@@ -144,9 +145,7 @@ class ProductController extends Controller
 
         $dirName = $category->id.'/'.time();
 
-        if ( ! file_exists('img/products/'.$category->id)) {
-            Storage::makeDirectory('/img/products/'.$dirName);
-        }
+        mkdir(public_path().'/img/products/'.$dirName);
 
         if ($request->hasFile('images')) {
 
@@ -201,7 +200,7 @@ class ProductController extends Controller
         $product->images = serialize($images);
         $product->path = $dirName;
         $product->lang = $request->lang;
-        $product->mode = $request->mode;
+        $product->mode = (isset($request->mode)) ? $request->mode : 0;
         $product->status = ($request->status == 'on') ? 1 : 0;
         $product->save();
 
@@ -245,7 +244,7 @@ class ProductController extends Controller
 
             if ( ! file_exists('img/products/'.$product->category->id)) {
                 $product->path = $product->category->id.'/'.time();
-                Storage::makeDirectory('img/products/'.$product->path);
+                mkdir(public_path().'img/products/'.$product->path);
             }
 
             foreach ($request->file('images') as $key => $image)
@@ -261,7 +260,7 @@ class ProductController extends Controller
                             Storage::delete('img/products/'.$product->path.'/'.$product->image);
                         }
 
-                        $this->resizeImage($image, 200, 200, 'img/products/'.$product->path.'/preview-'.$imageName, 100);
+                        $this->resizeImage($image, 200, 200, '/img/products/'.$product->path.'/preview-'.$imageName, 100);
                         $introImage = 'preview-'.$imageName;
                     }
 
@@ -269,13 +268,13 @@ class ProductController extends Controller
                     $color = 'rgba(0, 0, 0, 0)';
 
                     // Storing original images
-                    $this->resizeImage($image, 1024, 768, 'img/products/'.$product->path.'/'.$imageName, 90, null, $color);
+                    $this->resizeImage($image, 1024, 768, '/img/products/'.$product->path.'/'.$imageName, 90, null, $color);
 
                     // Creating present images
-                    $this->resizeImage($image, 250, 250, 'img/products/'.$product->path.'/present-'.$imageName, 100);
+                    $this->resizeImage($image, 250, 250, '/img/products/'.$product->path.'/present-'.$imageName, 100);
 
                     // Creating mini images
-                    $this->resizeImage($image, 100, 100, 'img/products/'.$product->path.'/mini-'.$imageName, 100);
+                    $this->resizeImage($image, 100, 100, '/img/products/'.$product->path.'/mini-'.$imageName, 100);
 
                     if (isset($images[$key])) {
 

@@ -32,7 +32,7 @@ trait ImageTrait {
             $frame->insert($watermark, 'bottom-left', 65, 65);
         }
 
-        $frame->save($path, $quality);
+        $frame->save(public_path().$path, $quality);
     }
 
     public function cropImage($image, $width, $height, $path, $quality)
@@ -43,6 +43,6 @@ trait ImageTrait {
             $newImage->crop($width, $height);
         }
 
-        $newImage->save($path, $quality);
+        $newImage->save(public_path().$path, $quality);
     }
 }

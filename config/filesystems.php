@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'joystick'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,6 +42,11 @@ return [
     */
 
     'disks' => [
+
+        'joystick' => [
+            'driver' => 'local',
+            'root' => public_path(),
+        ],
 
         'local' => [
             'driver' => 'local',
