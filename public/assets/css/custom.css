@@ -146,6 +146,7 @@
   position: absolute;
   top: 20px;
   left: 0;
+  z-index: 2000;
 }
 .offer > div {
   padding: 3px 5px;

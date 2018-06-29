@@ -8,6 +8,13 @@
           <a href="/goods/{{ $product->id.'-'.$product->slug }}">
             <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->category->title }}">
           </a>
+          <div class="offer">
+            @foreach($product->modes as $m)
+              @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+              @endif
+            @endforeach
+          </div>
           <div class="xs-product-content"><br>
             <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
             <span class="price version-2">{{ $product->price }}〒</span>

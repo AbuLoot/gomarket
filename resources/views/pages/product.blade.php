@@ -25,6 +25,13 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="xs-sync-slider-preview">
+            <div class="offer">
+              @foreach($product->modes as $m)
+                @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                  <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+                @endif
+              @endforeach
+            </div>
             <div class="sync-slider-preview owl-carousel">
             @if ($product->images != '')
               <?php $c = 0; ?>
@@ -196,6 +203,13 @@
               <a href="/goods/{{ $product->id.'-'.$product->slug }}">
                 <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->title }}">
               </a>
+              <div class="offer">
+                @foreach($product->modes as $m)
+                  @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                    <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+                  @endif
+                @endforeach
+              </div>
               <div class="xs-product-content text-center">
                 <span class="product-categories">
                   <a href="/catalog/{{ $product->category->slug }}" rel="tag">{{ $product->category->title }}</a>
@@ -206,14 +220,14 @@
                   <del>{{ $product->price * 1.1 }}〒</del>
                 </span>
               </div>
-              <div class="xs-product-hover-area clearfix">
+              <!-- <div class="xs-product-hover-area clearfix">
                 <div class="float-left">
                   <a href="#"><i class="icon icon-online-shopping-cart"></i> В корзину</a>
                 </div>
                 <div class="float-right">
                   <a href="#"><i class="icon icon-shuffle-arrow"></i>Сравнить</a>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         @endforeach

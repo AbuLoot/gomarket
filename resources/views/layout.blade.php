@@ -174,13 +174,13 @@
                   <span class="xs-item-count highlight">0</span>
                   <i class="icon icon-heart"></i>
                 </a>
-              </span> -->
+              </span>
               <span class="xs-wish-list">
                 <a href="compare.html" class="xs-single-wishList d-none d-md-none d-lg-block">
                   <span class="xs-item-count highlight">0</span>
                   <i class="icon icon-arrows"></i>
                 </a>
-              </span>
+              </span> -->
 
               <?php $items = session('items'); ?>
               <div class="dropdown dropright xs-miniCart-dropdown">
@@ -250,12 +250,12 @@
           </div>
           <div class="col-md-4 col-lg-3 footer-widget">
             <h3 class="widget-title">Наши контакты</h3>
-              <span>GoMarket, Inc.</span><br>
-              <span>ул. Желтоксан 78/86</span><br>
-              <span>Алматы, Казахстан </span><br>
-              <span>Phone: +7 707 201 75 55</span><br>
-              <span>WhatsApp: +7 (707) 201-75-55</span><br>
-              <span>Email: info@gomarket.kz</span>
+            <span>GoMarket, Inc.</span><br>
+            <span>ул. Желтоксан 78/86</span><br>
+            <span>Алматы, Казахстан </span><br>
+            <span>Phone: +7 707 201 75 55</span><br>
+            <span>WhatsApp: +7 (707) 201-75-55</span><br>
+            <span>Email: info@gomarket.kz</span>
           </div>
         </div>
       </div>
@@ -281,10 +281,10 @@
           <div class="col-md-6">
             <ul class="xs-social-list version-2">
               <li><a href="#"><i class="fa fa-google-plus"></i>Google+</a></li>
-              <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+              <li><a href="https://www.facebook.com/gomarket.kz/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
               <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-              <li><a href="#"><i class="fa fa-vk"></i>Вконтакте</a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
+              <li><a href="https://vk.com/gmarket2k17" target="_blank"><i class="fa fa-vk"></i>Вконтакте</a></li>
+              <li><a href="https://www.instagram.com/gomarket.kz/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
             </ul>
           </div>
         </div>
