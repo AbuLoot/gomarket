@@ -158,7 +158,7 @@ class ProductController extends Controller
 
                     // Creating preview image
                     if ($key == 0) {
-                        $this->resizeImage($image, 200, 200, 'img/products/'.$dirName.'/preview-'.$imageName, 100);
+                        $this->resizeImage($image, 200, 200, '/img/products/'.$dirName.'/preview-'.$imageName, 100);
                         $introImage = 'preview-'.$imageName;
                     }
 
@@ -166,14 +166,14 @@ class ProductController extends Controller
                     $color = 'rgba(0, 0, 0, 0)';
 
                     // Storing original images
-                    // $image->storeAs('img/products/'.$dirName, $imageName);
-                    $this->resizeImage($image, 1024, 768, 'img/products/'.$dirName.'/'.$imageName, 90, null, $color);
+                    // $image->storeAs('/img/products/'.$dirName, $imageName);
+                    $this->resizeImage($image, 1024, 768, '/img/products/'.$dirName.'/'.$imageName, 90, null, $color);
 
                     // Creating present images
-                    $this->resizeImage($image, 250, 250, 'img/products/'.$dirName.'/present-'.$imageName, 100);
+                    $this->resizeImage($image, 250, 250, '/img/products/'.$dirName.'/present-'.$imageName, 100);
 
                     // Creating mini images
-                    $this->resizeImage($image, 100, 100, 'img/products/'.$dirName.'/mini-'.$imageName, 100);
+                    $this->resizeImage($image, 100, 100, '/img/products/'.$dirName.'/mini-'.$imageName, 100);
 
                     $images[$key]['image'] = $imageName;
                     $images[$key]['present_image'] = 'present-'.$imageName;
@@ -302,7 +302,7 @@ class ProductController extends Controller
             $images = array_sort_recursive($images);
         }
 
-        if (count($request->remove_images) > 0) {
+        if (isset($request->remove_images) && count($request->remove_images) > 0) {
 
             foreach ($request->remove_images as $key => $value) {
 
@@ -340,7 +340,7 @@ class ProductController extends Controller
         $product->presense = $request->presense;
         $product->meta_description = $request->meta_description;
         $product->description = $request->description;
-        $product->characteristic = $request->characteristic;
+        $product->characteristic = (isset($request->characteristic)) ? $request->characteristic : '';
         if (isset($introImage)) $product->image = $introImage;
         $product->images = serialize($images);
         $product->lang = $request->lang;
