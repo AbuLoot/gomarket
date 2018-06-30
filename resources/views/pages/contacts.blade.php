@@ -71,6 +71,11 @@
     </div>
   </section>
 
+  <!-- MAPS -->
+  <section>
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa324317b2b149b9cfcd3531d7d8c6664a4ab53409ceb8bdd912e2ca392a3a464&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=false"></script>
+  </section>
+
 @endsection
 
 @section('scripts')

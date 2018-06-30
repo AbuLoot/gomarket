@@ -282,7 +282,7 @@
             <ul class="xs-social-list version-2">
               <li><a href="#"><i class="fa fa-google-plus"></i>Google+</a></li>
               <li><a href="https://www.facebook.com/gomarket.kz/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+              <!-- <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li> -->
               <li><a href="https://vk.com/gmarket2k17" target="_blank"><i class="fa fa-vk"></i>Вконтакте</a></li>
               <li><a href="https://www.instagram.com/gomarket.kz/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
             </ul>

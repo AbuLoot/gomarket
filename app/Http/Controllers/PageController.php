@@ -109,7 +109,7 @@ class PageController extends Controller
         $options = DB::table('products')
             ->join('product_option', 'products.id', '=', 'product_option.product_id')
             ->join('options', 'options.id', '=', 'product_option.option_id')
-            ->select('options.id', 'options.slug', 'options.title')
+            ->select('options.id', 'options.slug', 'options.title', 'options.data')
             ->where('category_id', $category->id)
             ->where('status', 1)
             ->distinct()
