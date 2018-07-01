@@ -37,13 +37,13 @@
                 <!-- Body content -->
                 <tr>
                   <td class="content-cell">
-                    <h1>Спасибо за покупку, ваш заказ в обработке. С уважением компания GoMarket.</h1>
-                    <h2>Номер вашего заказа: {{ $order->id }}</h2>
+                    <h2>Спасибо за покупку, ваш заказ в обработке. С уважением компания GoMarket.</h2>
+                    <h3>Номер вашего заказа: {{ $order->id }}</h3>
                     <b>Ваше Имя: {{ $order->name }}</b><br>
                     <b>Номер телефона: {{ $order->phone }}</b><br>
                     <b>Email: {{ $order->email }}</b><br>
-                    <b>Для города: {{ $order->city->title }}</b>
-                    <b>Дата заказа: {{ $order->created_at }}</b>
+                    <b>Для города: {{ $order->city->title }}</b><br>
+                    <b>Дата заказа: {{ $order->created_at }}</b><br>
                     <b>Товары:
                       <?php $countAllProducts = unserialize($order->count); $i = 0; ?>
                       @foreach ($countAllProducts as $id => $countProduct)
@@ -52,7 +52,7 @@
                         @endif
                         <?php $i++; ?>
                       @endforeach
-                    </b>
+                    </b><br>
                     <b>Сумма: {{ $order->amount }}〒</b><br>
                   </td>
                 </tr>
