@@ -41,9 +41,9 @@
                     <b>Имя: {{ $order->name }}</b><br>
                     <b>Номер: {{ $order->phone }}</b><br>
                     <b>Email: {{ $order->email }}</b><br>
-                    <b>Для города: {{ $order->city->title }}</b><br>
-                    <b>Дата заказа: {{ $order->created_at }}</b><br>
-                    <b>Товары:<br>
+                    <b>Для города: {{ $order->city->title }}</b>
+                    <b>Дата заказа: {{ $order->created_at }}</b>
+                    <b>Товары:
                       <?php $countAllProducts = unserialize($order->count); $i = 0; ?>
                       @foreach ($countAllProducts as $id => $countProduct)
                         @if (isset($order->products[$i]) AND $order->products[$i]->id == $id)
@@ -51,7 +51,7 @@
                         @endif
                         <?php $i++; ?>
                       @endforeach
-                    </b><br>
+                    </b>
                     <b>Сумма: {{ $order->amount }}〒</b><br>
                     <b>Дата:  <?php echo date('Y-m-d'); ?></b><br>
                     <b>Время: <?php echo date('G:i');  ?></b>

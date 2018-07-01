@@ -44,7 +44,7 @@
                     <b>Email: {{ $order->email }}</b><br>
                     <b>Для города: {{ $order->city->title }}</b><br>
                     <b>Дата заказа: {{ $order->created_at }}</b><br>
-                    <b>Товары:
+                    <b>Товары:<br>
                       <?php $countAllProducts = unserialize($order->count); $i = 0; ?>
                       @foreach ($countAllProducts as $id => $countProduct)
                         @if (isset($order->products[$i]) AND $order->products[$i]->id == $id)
