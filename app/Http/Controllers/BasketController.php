@@ -169,7 +169,7 @@ class BasketController extends Controller
 
             $message = view('partials.mail-client-order', ['order' => $order])->render();
 
-            mail($order->email, 'GoMarket - ваш заказ: '$order->id, $message, $headers);
+            mail($order->email, 'GoMarket - ваш заказ: '.$order->id, $message, $headers);
 
         } catch (Exception $e) {
 

@@ -27,6 +27,24 @@ class ProductController extends Controller
         $categories = Category::get()->toTree();
         $modes = Mode::all();
 
+        // $categories_part = Category::whereIn('slug', ['gadjets', 'life-style'])->orderBy('sort_id')->get();
+
+        // $ids = collect();
+        // $ids = $categories_part->descendants()->pluck('id');
+
+        // dd($ids);
+        // foreach ($categories_part as $key => $category_item) {
+
+        //     if ($category_item->children && count($category_item->children) > 0) {
+
+        //         $ids[$key] = $category_item->children->pluck('id');
+        //     }
+        // }
+
+        // $group_ids = $ids->collapse();
+        // dd($group_ids);
+
+
         return view('joystick-admin.products.index', ['categories' => $categories, 'products' => $products, 'modes' => $modes]);
     }
 
