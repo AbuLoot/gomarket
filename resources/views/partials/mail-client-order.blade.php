@@ -37,9 +37,10 @@
                 <!-- Body content -->
                 <tr>
                   <td class="content-cell">
-                    <h2>GoMarket - Новый заказ</h2>
-                    <b>Имя: {{ $order->name }}</b><br>
-                    <b>Номер: {{ $order->phone }}</b><br>
+                    <h1>Спасибо за покупку, ваш заказ в обработке. С уважением компания GoMarket.</h1>
+                    <h2>Номер вашего заказа: {{ $order->id }}</h2>
+                    <b>Ваше Имя: {{ $order->name }}</b><br>
+                    <b>Номер телефона: {{ $order->phone }}</b><br>
                     <b>Email: {{ $order->email }}</b><br>
                     <b>Для города: {{ $order->city->title }}</b>
                     <b>Дата заказа: {{ $order->created_at }}</b>
@@ -53,8 +54,6 @@
                       @endforeach
                     </b>
                     <b>Сумма: {{ $order->amount }}〒</b><br>
-                    <b>Дата:  <?php echo date('Y-m-d'); ?></b><br>
-                    <b>Время: <?php echo date('G:i');  ?></b>
                   </td>
                 </tr>
               </table>

@@ -44,6 +44,7 @@
         <li>
           <div class="media xs-feature">
             <i class="icon icon-cart d-flex mr-3 align-self-center"></i>
+            <!-- <i class="material-icons">shopping_cart</i> -->
             <div class="media-body xs-feature-text">
               <h4>Бесплатная доставка<br> от 30 000тг по Алмате</h4>
               <span></span>
@@ -53,6 +54,7 @@
         <li>
           <div class="media xs-feature">
             <i class="icon icon-team d-flex mr-3 align-self-center"></i>
+            <!-- <i class="material-icons">shopping_cart</i> -->
             <div class="media-body xs-feature-text">
               <h4>6 месяцев гарантии для аксессуаров</h4>
               <span></span>
@@ -62,6 +64,7 @@
         <li>
           <div class="media xs-feature">
             <i class="icon icon-u-turn d-flex mr-3 align-self-center"></i>
+            <!-- <i class="material-icons">shopping_cart</i> -->
             <div class="media-body xs-feature-text">
               <h4>12 месяцев гарантии для смартфонов</h4>
               <span></span>
@@ -71,6 +74,7 @@
         <li>
           <div class="media xs-feature">
             <i class="icon icon-support d-flex mr-3 align-self-center"></i>
+            <!-- <i class="material-icons">shopping_cart</i> -->
             <div class="media-body xs-feature-text">
               <h4>24/7</h4>
               <span>Онлайн поддержка</span>

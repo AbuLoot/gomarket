@@ -10,6 +10,7 @@
       <thead>
         <tr class="active">
           <td>№</td>
+          <td>Дата</td>
           <td>Заказчик</td>
           <td>Телефон</td>
           <td>Email</td>
@@ -24,10 +25,11 @@
         @forelse ($orders as $order)
           <tr>
             <td>{{ $order->id }}</td>
+            <td>{{ $order->created_at }}</td>
             <td>{{ $order->name }}</td>
             <td>{{ $order->phone }}</td>
             <td>{{ $order->email }}</td>
-            <td>{{ $order->city_id }}</td>
+            <td>{{ $order->city->title }}</td>
             <td>
               <?php $countAllProducts = unserialize($order->count); $i = 0; ?>
               @foreach ($countAllProducts as $id => $countProduct)

@@ -12,4 +12,9 @@ class City extends Model
     {
         return $this->belongsTo('App\Country', 'country_id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }

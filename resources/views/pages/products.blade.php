@@ -67,61 +67,6 @@
                 </div>
               @endforeach
             </form>
-
-            <!-- <div class="widget widget_cate">
-              <h5 class="widget-title">Диагональ экрана</h5>
-              <form action="#" method="POST" class="shop_cate_form">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="tenInch">
-                  <label class="custom-control-label" for="tenInch">10"<span>(68)</span></label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="nineSeven">
-                  <label class="custom-control-label" for="nineSeven">9.7"<span>(5)</span></label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="tenOneInch">
-                  <label class="custom-control-label" for="tenOneInch">10.1"<span>(7)</span></label>
-                </div>
-              </form>
-            </div>
-            <div class="widget widget_cate">
-              <h5 class="widget-title">Операционная система</h5>
-              <form action="#" method="POST" class="shop_cate_form">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="android_7">
-                  <label class="custom-control-label" for="android_7">Android 7.0 <span>(2)</span></label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="android_6">
-                  <label class="custom-control-label" for="android_6">Android 6.0<span>(50)</span></label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="android_5">
-                  <label class="custom-control-label" for="android_5">Android 5.0<span>(70)</span></label>
-                </div>
-              </form>
-            </div>
-            <div class="widget widget_cate">
-              <h5 class="widget-title">Объем данных</h5>
-              <form action="#" method="POST" class="shop_cate_form">
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="sixty-four" name="customRadio" class="custom-control-input">
-                  <label class="custom-control-label" for="sixty-four">64<span>(15)</span></label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="thirty-two" name="customRadio" class="custom-control-input">
-                  <label class="custom-control-label" for="thirty-two">32<span>(20)</span></label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="sixteen" name="customRadio" class="custom-control-input">
-                  <label class="custom-control-label" for="sixteen">16<span>(18)</span></label>
-                </div>
-              </form>
-            </div> -->
-            <!-- <div class="widget widget_banner">
-              <img src="assets/images/image_loader.gif" data-echo="assets/images/web_banner/shop_offer_banner.png" alt="">
-            </div> -->
           </aside>
         </section>
 

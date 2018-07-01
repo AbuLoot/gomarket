@@ -154,7 +154,7 @@ class BasketController extends Controller
                    "MIME-Version: 1.0" . "\r\n" . 
                    "Content-type: text/html; charset=UTF-8" . "\r\n";
 
-        $content = view('vendor.mail.html.layout', ['order' => $order])->render();
+        $content = view('partials.mail-new-order', ['order' => $order])->render();
 
         try {
             mail('abdulaziz.abishov@gmail.com, issayev.adilet@gmail.com', $subject, $content, $headers);
@@ -166,6 +166,10 @@ class BasketController extends Controller
             //     $message->to(['abdulaziz.abishov@gmail.com', 'issayev.adilet@gmail.com'], 'GoMarket')->subject('GoMarket - Новый заказ от '.$name);
             //     $message->from('electron.servant@gmail.com', 'Electron Servant');
             // });
+
+            $message = view('partials.mail-client-order', ['order' => $order])->render();
+
+            mail($order->email, 'GoMarket - ваш заказ: '$order->id, $message, $headers);
 
         } catch (Exception $e) {
 

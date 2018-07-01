@@ -17,4 +17,9 @@ class Order extends Model
     {
     	return $this->belongsToMany('App\Product', 'product_order');
     }
+
+    public function city()
+    {
+        return $this->belongsTo('App\City', 'city_id');
+    }
 }
