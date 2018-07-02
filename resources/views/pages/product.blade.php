@@ -90,12 +90,12 @@
                   <div class="clearfix"></div>
                 </form>
               </div>
-              <div class="col-md-2">
+              <!-- <div class="col-md-2">
                 <a href="#" class="xs-wishlist-and-compare"><i class="fa fa-heart" aria-hidden="true"></i></a>
               </div>
               <div class="col-md-2">
                 <a href="#" class="xs-wishlist-and-compare"><i class="icon icon-shuffle-arrow" aria-hidden="true"></i></a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

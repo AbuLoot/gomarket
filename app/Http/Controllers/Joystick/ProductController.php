@@ -163,7 +163,7 @@ class ProductController extends Controller
 
         $dirName = $category->id.'/'.time();
 
-        mkdir(public_path().'/img/products/'.$dirName);
+        Storage::makeDirectory('/img/products/'.$dirName);
 
         if ($request->hasFile('images')) {
 
@@ -262,7 +262,7 @@ class ProductController extends Controller
 
             if ( ! file_exists('img/products/'.$product->category->id)) {
                 $product->path = $product->category->id.'/'.time();
-                mkdir(public_path().'img/products/'.$product->path);
+                Storage::makeDirectory('img/products/'.$product->path);
             }
 
             foreach ($request->file('images') as $key => $image)
