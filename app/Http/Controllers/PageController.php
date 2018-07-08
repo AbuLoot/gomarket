@@ -57,7 +57,7 @@ class PageController extends Controller
     {
         $category = Category::where('slug', $category_slug)->first();
 
-        if (isset($request->options_id) AND !empty($request->options_id) and !isset($request->price_from)) {
+        if (isset($request->options_id) AND !empty($request->options_id)) {
 
             list($keys, $options_id) = array_divide($request->options_id);
 
@@ -66,11 +66,13 @@ class PageController extends Controller
                     $query->whereIn('option_id', $options_id);
                 })->paginate(12);
 
-            $products->appends([
-                'options_id' => $options_id
-            ]);
+            // $products->appends([
+            //     'options_id' => $options_id
+            // ]);
 
-            return response()->json(view('pages.products-render', ['products' => $products])->render());
+            if ($request->ajax()) {
+                return response()->json(view('pages.products-render', ['products' => $products])->render());
+            }
         }
         /*else if (isset($request->options_id) AND !empty($request->options_id) AND isset($request->price_from, $request->price_to)) {
 
