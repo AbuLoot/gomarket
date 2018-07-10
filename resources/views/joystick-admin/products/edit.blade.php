@@ -91,7 +91,7 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="options_id">Опции</label>
+      <label for="options_id">Опции (зажмите Ctrl чтобы выбрать несколько вариантов)</label>
       <select id="options_id" name="options_id[]" class="form-control" size="10" multiple>
         <option value=""></option>
         @forelse ($grouped as $data => $group)
@@ -157,7 +157,7 @@
       @endfor
     </div>
     <div class="form-group">
-      <label for="modes_id">Режим</label>
+      <label for="modes_id">Режим (зажмите Ctrl чтобы выбрать несколько вариантов)</label>
       <select id="modes_id" name="modes_id[]" class="form-control" size="6" multiple>
         <option value=""></option>
         @foreach($modes as $mode)

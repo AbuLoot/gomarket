@@ -77,7 +77,7 @@
             <!-- <i class="material-icons">shopping_cart</i> -->
             <div class="media-body xs-feature-text">
               <!-- <h4>24/7</h4> -->
-              <h4>Лучшие Цены</h4>
+              <h4>Лучшие цены</h4>
               <!-- <span>Онлайн поддержка</span> -->
             </div>
           </div>

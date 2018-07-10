@@ -86,7 +86,7 @@
               <td class="text-danger">Неактивен</td>
             @endif
             <td class="text-right text-nowrap">
-              <a class="btn btn-link btn-xs" href="#" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
+              <a class="btn btn-link btn-xs" href="/goods/{{ $product->id.'-'.$product->slug }}" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
               <a class="btn btn-link btn-xs" href="{{ route('products.edit', $product->id) }}" title="Редактировать"><i class="material-icons md-18">mode_edit</i></a>
               <form class="btn-delete" method="POST" action="{{ route('products.destroy', $product->id) }}" accept-charset="UTF-8">
                 <input name="_method" type="hidden" value="DELETE">
