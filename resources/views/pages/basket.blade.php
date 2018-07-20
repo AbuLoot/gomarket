@@ -40,7 +40,7 @@
                 <tr>
                   <td>
                     <img src="/img/products/{{ $product->path.'/'.$product->image }}" style="width:80px;height:80px;">
-                    <a href="/goods/{{ $product->id.'/'.$product->slug }}">{{ $product->title }}</a>
+                    <a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a>
                   </td>
                   <td>{{ $product->price }} тг</td>
                   <td style="width:100px;"><input type="number" class="form-control" name="count[{{ $product->id }}]" min="1" max="1000" value="1"></td>
