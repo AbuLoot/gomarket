@@ -1,78 +1,26 @@
 @extends('layout')
 
-@section('title_description', $category->title_description)
-
-@section('meta_description', $category->meta_description)
-
 @section('content')
 
-  <!-- BREADCRUMB -->
+  <!--BREADCRUMB-->
   <div class="xs-breadcumb">
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ $category->title }}</li>
+          <li class="breadcrumb-item active" aria-current="page">Мои избранные</li>
         </ol>
       </nav>
     </div>
   </div>
 
-  <!-- SHOP SECTION -->
-  <section class="xs-section-padding">
+  <!-- ORDERS -->
+  <section class="xs-section-padding about-content-left">
     <div class="container">
       <div class="row">
-        <section class="col-md-3 col-lg-3">
-          <!-- SIDEBAR -->
-          <aside class="shop-category">
-
-            <!-- <h4>Фильтр</h4> -->
-            <form action="/catalog/{{ $category->slug }}" method="get" id="filter">
-              {{ csrf_field() }}
-              <!-- <div class="widget widget_range">
-                <div class="price_label media">
-                  <label for="amount">Фильтр:</label>
-                </div>
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-group input-price {{ $errors->has('from') ? 'has-error' : '' }}">
-                      <input type="text" class="form-control " name="price_from" id="price-from" placeholder="От" minlength="2" maxlength="40" value="{{ '' }}" required>
-                      @if ($errors->has('from'))
-                        <span class="help-block">{{ $errors->first('from') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group input-price {{ $errors->has('to') ? 'has-error' : '' }}">
-                      <input type="text" class="form-control " name="price_to" id="price-to" placeholder="До" minlength="5" maxlength="80" value="{{ '' }}" required>
-                      @if ($errors->has('to'))
-                        <span class="help-block">{{ $errors->first('to') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-outline-primary btn-compact" id="filter-btn">Поиск</button>
-              </div> -->
-              <h4>Фильтр</h4><br>
-
-              @foreach ($grouped as $data => $group)
-                <div class="widget widget_cate">
-                  <h5 class="widget-title">{{ $data }}</h5>
-                  @foreach ($group as $option)
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="o{{ $option->id }}" name="options_id[]" value="{{ $option->id }}">
-                      <label class="custom-control-label" for="o{{ $option->id }}">{{ $option->title }}</label>
-                    </div>
-                  @endforeach
-                </div>
-              @endforeach
-            </form>
-          </aside>
-        </section>
 
         <?php $items = session('items'); ?>
         <?php $favorites = session('favorites'); ?>
-
         <section class="col-md-9 col-lg-9" id="products">
           <div class="row category-v4">
             @foreach ($products as $product)
@@ -118,6 +66,7 @@
   </section>
 
 @endsection
+
 
 @section('scripts')
   <script>
@@ -183,78 +132,4 @@
     }
   </script>
 
-  <script>
-    // Filter products
-    $('#filter').on('click', 'input', function(e) {
-
-      var optionsId = new Array();
-      var page = $(location).attr('href').split('catalog')[1];
-
-      $('input[name="options_id[]"]:checked').each(function() {
-        optionsId.push($(this).val());
-      });
-
-      if (optionsId.length > 0) {
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          data: {
-            "options_id": optionsId
-          },
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      } else {
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      }
-    });
-
-    // Filter products
-    $('#filter-bt1  ').click(function() {
-
-      var priceFrom = $('#price-from').val();
-      var priceTo = $('#price-to').val();
-      var optionsId = new Array();
-      var page = $(location).attr('href').split('catalog')[1];
-
-      $('input[name="options_id[]"]:checked').each(function() {
-        optionsId.push($(this).val());
-      });
-
-      if (priceFrom > 0) {
-
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          data: {
-            "price_from": priceFrom,
-            "price_to": priceTo,
-            "options_id": optionsId
-          },
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      } else {
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      }
-    });
-  </script>
 @endsection

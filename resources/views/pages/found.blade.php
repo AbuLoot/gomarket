@@ -25,6 +25,13 @@
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="xs-product-wraper">
                   <a href="/goods/{{ $product->id.'-'.$product->slug }}"><img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->category->title }}"></a>
+                  <div class="offer">
+                    @foreach($product->modes as $m)
+                      @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
+                        <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+                      @endif
+                    @endforeach
+                  </div>
                   <div class="xs-product-content"><br>
                     <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                     <span class="price version-2">
@@ -79,7 +86,7 @@
           dataType: "json",
           data: {},
           success: function(data) {
-            $('*[data-favorite-id="'+productId+'"]').replaceWith('<button type="button" class="btn btn-like btn-default" data-favorite-id="'+data.id+'" onclick="toggleFavorite(this);"><span class="glyphicon glyphicon-heart '+data.cssClass+'"></span></button>');
+            $('*[data-favorite-id="'+productId+'"]').replaceWith('<button type="button" class="btn '+data.cssClass+' m-10 btn-sm" data-favorite-id="'+data.id+'" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>');
           }
         });
       } else {
@@ -88,3 +95,4 @@
     }
   </script>
 @endsection
+

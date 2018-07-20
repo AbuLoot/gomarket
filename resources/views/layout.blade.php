@@ -169,13 +169,15 @@
           <!-- COUNTS -->
           <div class="col-lg-2 col-xs-2 xs-order-2 xs-wishlist-group2">
             <div class="xs-wish-list-item">
-              <!-- <span class="xs-wish-list">
-                <a href="#" class="xs-single-wishList d-none d-md-none d-lg-block">
-                  <span class="xs-item-count highlight">0</span>
+
+              <?php $favorites = session('favorites'); ?>
+              <span class="xs-wish-list">
+                <a href="/favorites" class="xs-single-wishList d-none d-md-none d-lg-block">
+                  <span class="xs-item-count highlight" id="count-favorites">{{ (is_array($favorites)) ? count($favorites['products_id']) : 0 }}</span>
                   <i class="icon icon-heart"></i>
                 </a>
               </span>
-              <span class="xs-wish-list">
+              <!-- <span class="xs-wish-list">
                 <a href="compare.html" class="xs-single-wishList d-none d-md-none d-lg-block">
                   <span class="xs-item-count highlight">0</span>
                   <i class="icon icon-arrows"></i>

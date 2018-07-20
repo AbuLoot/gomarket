@@ -102,6 +102,11 @@
 .xs-navDown.secondary-color-v .xs-menus .nav-menu > li > a:hover {
   color: #ffffff;
 }
+@media (min-width: 768px) {
+  .btn-search.input-group-btn {
+    width: 11%;
+  }
+}
 .list-group-item.active {
   background-color: #931881;
   border-color: #931881;
@@ -127,7 +132,14 @@
   color: #FFFFFF;
 }
 .btn:not([data-toggle="popover"]).btn-compact {
-  padding: 10px 20px;
+  padding: 6px 20px;
+}
+.price {
+  display: block;
+  margin-bottom: 10px;
+}
+.m-10 {
+  margin: 0 5px;
 }
 .input-price > input {
   border-color: #CCDCFE;
@@ -135,7 +147,10 @@
   border-radius: 0;
   padding: 0 15px;
 }
-
+.btn:not([data-toggle="popover"]).btn-outline-primary {
+  /*padding: 6px 19px 4px;*/
+  border-color: #c723ad;
+}
 .xs-product-category > .product-title {
   min-height: 70px;
 }
@@ -158,6 +173,7 @@
 .offer-best-price { background-color: #80E80Cbd; }
 .offer-novelty { background-color: #00CDFFbd; }
 .offer-stock { background-color: #C71FADbd; }
+.offer-plus-gift { background-color: #111111bd; }
 
 @media (max-width: 768px) {
   .offer > div {

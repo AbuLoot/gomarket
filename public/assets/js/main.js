@@ -230,7 +230,7 @@ $(document).ready(function() {
 			dots: true,
 			nav: true,
 			autoplay: true,
-			autoplayTimeout: 3000,
+			autoplayTimeout: 4000,
 			autoplayHoverPause:false,
 			responsive: {
 				// breakpoint from 0 up

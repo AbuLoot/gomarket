@@ -10,6 +10,7 @@ use Storage;
 
 use App\Page;
 use App\Mode;
+use App\Slide;
 use App\Option;
 use App\Product;
 use App\Company;
@@ -22,6 +23,7 @@ class PageController extends Controller
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
         $trend_mode = Mode::where('slug', 'trend')->first();
+        $slide_items = Slide::where('status', 1)->get();
         $categories_part = Category::whereIn('slug', ['gadjets', 'life-style'])->orderBy('sort_id')->get();
 
         $ids = collect();
@@ -43,7 +45,7 @@ class PageController extends Controller
 
         $group_products = [0 => $products_part, 1 => $products_part2];
 
-        return view('pages.index', compact('modes', 'slide_mode', 'trend_mode', 'categories_part', 'group_products'));
+        return view('pages.index', compact('modes', 'slide_mode', 'trend_mode', 'slide_items', 'categories_part', 'group_products'));
     }
 
     public function page($slug)
@@ -138,7 +140,7 @@ class PageController extends Controller
     {
         $product = Product::where('id', $product_id)->firstOrFail();
         $category = Category::where('id', $product->category_id)->firstOrFail();
-        $products = Product::search($product->title)->take(4)->get();
+        $products = Product::search($product->title)->where('status', 1)->take(4)->get();
 
 /*        if (Session::has('viewed')) {
 

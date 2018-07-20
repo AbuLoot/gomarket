@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('orders', 'Joystick\OrderController');
     Route::resource('pages', 'Joystick\PageController');
     Route::resource('products', 'Joystick\ProductController');
+    Route::resource('slide', 'Joystick\SlideController');
     Route::get('products-search', 'Joystick\ProductController@search');
     Route::get('products-category/{id}', 'Joystick\ProductController@categoryProducts');
     Route::get('products-actions', 'Joystick\ProductController@actionProducts');
@@ -82,7 +83,8 @@ Route::post('store-order', 'BasketController@storeOrder');
 
 
 // Favorite Actions
-// Route::get('toggle-favorite/{id}', 'FavoriteController@toggleFavorite');
+Route::get('favorites', 'FavoriteController@getFavorites');
+Route::get('toggle-favorite/{id}', 'FavoriteController@toggleFavorite');
 
 
 // Pages

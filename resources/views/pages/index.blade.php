@@ -7,27 +7,22 @@
 @section('content')
 
   <?php $items = session('items'); ?>
+  <?php $favorites = session('favorites'); ?>
 
   <!-- BANNER -->
   <section class="xs-banner">
-    <div class="owl-carousel xs-banner-slider" style="max-height: 600px; background-image:url('/img/slider/background_4.jpg'); background-repeat: no-repeat; background-position: center;">
-      @foreach($slide_mode->products->where('status', 1)->take(10) as $slide_product)
-        <div class="xs-banner-item">
+    <div class="xs-banner-slider owl-carousel">
+      @foreach($slide_items as $slide_item)
+        <div class="xs-banner-item" style="color: {{ $slide_item->color }}; max-height: 600px; background-image:url('/img/slide/{{ $slide_item->image }}'); background-repeat: no-repeat; background-position: center center;">
           <div class="container">
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="xs-banner-content content-right">
-                  <h2 class="xs-banner-sub-title animInLeft">{{ $slide_product->title }}</h2>
-                  <h3 class="xs-banner-title animInLeft">{{ str_limit($slide_product->meta_description, 60) }}</h3>
-                  <div class="xs-btn-wraper">
-                    <a href="/goods/{{ $slide_product->id.'-'.$slide_product->slug }}" class="btn btn-primary btn-outline-cart- btn-sm text-uppercase">Подробнее</a>
+            <div class="row-">
+              <div class="col-lg-7 float-{{ $slide_item->direction }}">
+                <div class="xs-banner-content content-{{ $slide_item->direction }} text-{{ $slide_item->direction }}">
+                  <h2 class="xs-banner-sub-title animInLeft">{{ $slide_item->title }}</h2>
+                  <h3 class="xs-banner-title animInLeft">{{ $slide_item->marketing }}</h3>
+                  <div class="xs-btn-wraper-">
+                    <a href="/{{ $slide_item->link }}" class="btn btn-primary btn-outline-cart- btn-sm text-uppercase">Подробнее</a>
                   </div>
-                </div>
-              </div>
-              <div class="col-lg-5">
-                <?php $images = unserialize($slide_product->images); ?>
-                <div class="xs-banner-image animInRight">
-                  <img src="/img/products/{{ $slide_product->path.'/'.$images[0]['image'] }}" alt="{{ $slide_product->title }}">
                 </div>
               </div>
             </div>
@@ -101,7 +96,7 @@
                   </a>
                   <div class="offer">
                     @foreach($product->modes as $m)
-                      @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                      @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
                         <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
                       @endif
                     @endforeach
@@ -109,10 +104,17 @@
                   <div class="xs-product-content">
                     <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                     <span class="price"><b>{{ $product->price }}〒</b> <del></del></span>
-                    @if (is_array($items) AND isset($items['products_id'][$product->id]))
-                      <a href="/basket" class="btn btn-dark btn-compact" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
+
+                    @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
+                      <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
                     @else
-                      <button class="btn btn-primary btn-outline-cart- btn-compact btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
+                      <button type="button" class="btn btn-outline-primary btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
+                    @endif
+
+                    @if (is_array($items) AND isset($items['products_id'][$product->id]))
+                      <a href="/basket" class="btn btn-dark btn-compact m-10" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
+                    @else
+                      <button class="btn btn-primary btn-compact m-10 btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
                     @endif
                   </div>
                 </div>
@@ -193,7 +195,7 @@
                                 </a>
                                 <div class="offer">
                                   @foreach($product->modes as $m)
-                                    @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                                    @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
                                       <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
                                     @endif
                                   @endforeach
@@ -204,10 +206,17 @@
                                   </span>
                                   <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                                   <span class="price"><b>{{ $product->price }}〒</b> <del></del></span>
-                                  @if (is_array($items) AND in_array($product->id, $items['products_id']))
-                                    <a href="/basket" class="btn btn-dark btn-compact" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
+
+                                  @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
+                                    <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
                                   @else
-                                    <button class="btn btn-primary btn-outline-cart- btn-compact btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
+                                    <button type="button" class="btn btn-outline-primary btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
+                                  @endif
+
+                                  @if (is_array($items) AND in_array($product->id, $items['products_id']))
+                                    <a href="/basket" class="btn btn-dark btn-compact m-10" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
+                                  @else
+                                    <button class="btn btn-primary btn-compact m-10 btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
                                   @endif
                                 </div>
                               </div>
@@ -319,7 +328,8 @@
           dataType: "json",
           data: {},
           success: function(data) {
-            $('*[data-favorite-id="'+productId+'"]').replaceWith('<button type="button" class="btn btn-like btn-default" data-favorite-id="'+data.id+'" onclick="toggleFavorite(this);"><span class="glyphicon glyphicon-heart '+data.cssClass+'"></span></button>');
+            $('*[data-favorite-id="'+productId+'"]').replaceWith('<button type="button" class="btn '+data.cssClass+' btn-compact m-10 btn-sm" data-favorite-id="'+data.id+'" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>');
+            $('#count-favorites').text(data.countFavorites);
           }
         });
       } else {

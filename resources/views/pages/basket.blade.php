@@ -114,7 +114,7 @@
             <div class="row">
               <div class="col-md-4 form-group">
                 <label for="city_id">Регион</label>
-                <select id="city_id" name="city_id" class="form-control">
+                <select id="city_id" name="city_id" class="form-control" required>
                   <option value=""></option>
                   @foreach($countries as $country)
                     <optgroup label="{{ $country->title }}">

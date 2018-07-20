@@ -27,7 +27,7 @@
           <div class="xs-sync-slider-preview">
             <div class="offer">
               @foreach($product->modes as $m)
-                @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
                   <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
                 @endif
               @endforeach
@@ -82,18 +82,23 @@
                   <div class="w-quantity-btn">
                     <?php $items = session('items'); ?>
                     @if (is_array($items) AND isset($items['products_id'][$product->id]))
-                      <a href="/basket" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h6"></i> Оформить</a>
+                      <a href="/basket" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i> Оформить</a>
                     @else
-                      <button class="btn btn-primary btn-outline-cart- btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h6"></span> Добавить</button>
+                      <button type="button" class="btn btn-primary btn-outline-cart- btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span> Добавить</button>
                     @endif
                   </div>
                   <div class="clearfix"></div>
                 </form>
               </div>
-              <!-- <div class="col-md-2">
-                <a href="#" class="xs-wishlist-and-compare"><i class="fa fa-heart" aria-hidden="true"></i></a>
-              </div>
               <div class="col-md-2">
+                <?php $favorites = session('favorites'); ?>
+                @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
+                  <button type="button" class="btn btn-dark m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
+                @else
+                  <button type="button" class="btn btn-outline-primary m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
+                @endif
+              </div>
+              <!-- <div class="col-md-2">
                 <a href="#" class="xs-wishlist-and-compare"><i class="icon icon-shuffle-arrow" aria-hidden="true"></i></a>
               </div> -->
             </div>
@@ -205,7 +210,7 @@
               </a>
               <div class="offer">
                 @foreach($product->modes as $m)
-                  @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+                  @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
                     <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
                   @endif
                 @endforeach
@@ -258,7 +263,7 @@
           dataType: "json",
           data: {},
           success: function(data) {
-            $('*[data-basket-id="'+productId+'"]').replaceWith('<a href="/basket" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h6"></i> Оформить</a>');
+            $('*[data-basket-id="'+productId+'"]').replaceWith('<a href="/basket" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i> Оформить</a>');
             $('#count-items').text(data.countItems);
 
             var newItem =
@@ -283,6 +288,25 @@
             }
 
             alert('Товар добавлен в корзину');
+          }
+        });
+      } else {
+        alert("Ошибка сервера");
+      }
+    }
+
+    function toggleFavorite (f) {
+      var productId = $(f).data("favorite-id");
+
+      if (productId != '') {
+        $.ajax({
+          type: "get",
+          url: '/toggle-favorite/'+productId,
+          dataType: "json",
+          data: {},
+          success: function(data) {
+            $('*[data-favorite-id="'+productId+'"]').replaceWith('<button type="button" class="btn '+data.cssClass+' m-10 btn-sm" data-favorite-id="'+data.id+'" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>');
+            $('#count-favorites').text(data.countFavorites);
           }
         });
       } else {

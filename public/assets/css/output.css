@@ -1373,8 +1373,9 @@ body .xs-promotion ~ .header-transparent {
   align-self: center; }
 
 .xs-banner-content {
-  align-self: center;
-  text-align: center; }
+  /*align-self: center;*/
+  /*text-align: center;*/
+  }
   .xs-banner-content .xs-banner-sub-title {
     font-weight: 300;
     color: #c71fad;

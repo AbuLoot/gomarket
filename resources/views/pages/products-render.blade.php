@@ -1,5 +1,6 @@
 
   <?php $items = session('items'); ?>
+  <?php $favorites = session('favorites'); ?>
 
   <div class="row category-v4">
     @foreach ($products as $product)
@@ -10,7 +11,7 @@
           </a>
           <div class="offer">
             @foreach($product->modes as $m)
-              @if(in_array($m->slug, ['novelty', 'best-price', 'stock']))
+              @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
                 <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
               @endif
             @endforeach
@@ -18,6 +19,13 @@
           <div class="xs-product-content"><br>
             <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
             <span class="price version-2">{{ $product->price }}〒</span>
+
+            @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
+              <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
+            @else
+              <button type="button" class="btn btn-outline-primary btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
+            @endif
+
             @if (is_array($items) AND isset($items['products_id'][$product->id]))
               <a href="/basket" class="btn btn-dark btn-compact" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
             @else

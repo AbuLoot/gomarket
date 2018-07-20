@@ -180,7 +180,7 @@ class ProductController extends Controller
                     }
 
                     // $watermark = Image::make('img/watermark.png');
-                    $color = 'rgba(0, 0, 0, 0)';
+                    $color = 'rgba(255, 255, 255, 0)';
 
                     // Storing original images
                     // $image->storeAs('/img/products/'.$dirName, $imageName);
@@ -283,7 +283,7 @@ class ProductController extends Controller
                     }
 
                     // $watermark = Image::make('img/watermark.png');
-                    $color = 'rgba(0, 0, 0, 0)';
+                    $color = 'rgba(255, 255, 255, 0)';
 
                     // Storing original images
                     $this->resizeImage($image, 1024, 768, '/img/products/'.$product->path.'/'.$imageName, 90, null, $color);

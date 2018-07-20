@@ -57,10 +57,8 @@
             <h4>Нет записи</h4>
           @endforelse
 
-
-  <!-- Pagination -->
-  {{ $orders->links('vendor.pagination.bootstrap-4') }}
-
+          <!-- Pagination -->
+          {{ $orders->links('vendor.pagination.bootstrap-4') }}
         </div>
       </div>
     </div>

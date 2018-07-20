@@ -6,36 +6,34 @@ use Illuminate\Http\Request;
 
 use Session;
 use App\Product;
-use App\Country;
-use App\Order;
 
 class FavoriteController extends Controller
 {
     public function clearFavorites()
     {
-        Session::forget('items');
+        $request->session()->forget('favorites');
 
         return redirect('/');
     }
 
     public function toggleFavorite(Request $request, $id)
     {
-        if (Session::has('favorites')) {
+        if ($request->session()->has('favorites')) {
 
-            $favorites = Session::get('favorites');
+            $favorites = $request->session()->get('favorites');
 
 			if (in_array($id, $favorites['products_id'])) {
-				$css_class = '';
+				$css_class = 'btn-outline-primary';
 				unset($favorites['products_id'][$id]);
 			}
 			else {
-				$css_class = 'text-success';
+				$css_class = 'btn-dark';
             	$favorites['products_id'][$id] = $id;
 			}
 
             $count = count($favorites['products_id']);
 
-            Session::set('favorites', $favorites);
+            $request->session()->put('favorites', $favorites);
 
             return response()->json(['id' => $id, 'cssClass' => $css_class, 'countFavorites' => $count]);
         }
@@ -43,46 +41,32 @@ class FavoriteController extends Controller
         $favorites = [];
         $favorites['products_id'][$id] = $id;
 
-        Session::set('favorites', $favorites);
+        $request->session()->put('favorites', $favorites);
 
-        return response()->json(['id' => $id, 'cssClass' => 'text-success', 'countFavorites' => 1]);
+        return response()->json(['id' => $id, 'cssClass' => 'btn-dark btn-compact', 'countFavorites' => 1]);
     }
 
-    public function favorites()
+    public function getFavorites(Request $request)
     {
-        if (Session::has('items')) {
+        if ($request->session()->has('favorites')) {
 
-            $items = Session::get('items');
-            $products = Product::whereIn('id', $items['products_id'])->get();
+            $favorites = $request->session()->get('favorites');
+            $products = Product::whereIn('id', $favorites['products_id'])->paginate(24);
         }
         else {
             $products = collect();
         }
 
-        return view('site.favorites', compact('products'));
-    }
-
-    public function order()
-    {
-        $countries = Country::all();
-
-        if (Session::has('items')) {
-
-            $items = Session::get('items');
-            $products = Product::whereIn('id', $items['products_id'])->get();
-
-        }
-
-        return view('site.order', compact('products', 'countries'));
+        return view('pages.favorites', compact('products'));
     }
 
     public function destroy($id)
     {
-        $items = Session::get('items');
+        $favorites = $request->session()->get('favorites');
 
-        unset($items['products_id'][$id]);
+        unset($favorites['products_id'][$id]);
 
-        Session::set('items', $items);
+        $request->session()->put('favorites', $favorites);
 
         return redirect('favorites');
     }
