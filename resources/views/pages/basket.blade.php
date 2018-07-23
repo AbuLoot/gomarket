@@ -154,7 +154,9 @@
             <div class="row">
               <div class="col-md-12">
                 <label class="radio-inline">
-                  <input type="radio" name="pay" value="card" disabled> Скоро - Оплата картой (Visa, MasterCard)
+                  <input type="radio" name="pay" value="card" disabled>
+                  Оплата банковским переводом (Счет на оплату)
+                  <!-- Скоро - Оплата картой (Visa, MasterCard) -->
                 </label>
                 <label class="radio-inline">
                   <input type="radio" name="pay" value="cash" checked> Наличными

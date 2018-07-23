@@ -66,3 +66,27 @@
   {{ $slide->links() }}
 
 @endsection
+
+                  <ul class="cd-dropdown-content">
+                    <?php $traverse = function ($categories, $addClass = '') use (&$traverse) { ?>
+                      <?php foreach ($categories as $category) : ?>
+                        <?php if ($category->children && count($category->children) > 0) : ?>
+                          <li class="has-children">
+                            <a href="/catalog/{{ $category->slug }}">{{ $category->title }}</a>
+                            <ul class="cd-dropdown-icons is-hidden">
+                              <li class="go-back"><a href="#0">Меню</a></li>
+                              <?php $traverse($category->children, $addClass = 'cd-dropdown-item'); $addClass = ''; ?>
+                              <img class="catalog-bg" src="/img/categories/{{ $category->image }}">
+                            </ul>
+                          </li>
+                        <?php else : ?>
+                          <?php if ($addClass == 'cd-dropdown-item') : ?>
+                            <li><a class="{{ $addClass }}" href="/catalog/{{ $category->slug }}">{{ $category->title }}</a></li>
+                          <?php else : ?>
+                            <li><a href="/catalog/{{ $category->slug }}">{{ $category->title }}</a></li>                              
+                          <?php endif; ?>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    <?php }; ?>
+                    <?php $traverse($categories); ?>
+                  </ul>
