@@ -27,17 +27,17 @@
         <?php $i = 1; ?>
         @forelse ($slide as $item)
           <tr>
-            <th>{{ $i++ }}</th>
-            <th>{{ $item->direction }}</th>
-            <th>{{ $item->title }}</th>
-            <th>{{ $item->slug }}</th>
-            <th>{{ $item->marketing }}</th>
-            <th>{{ $item->sort_id }}</th>
-            <th>{{ $item->lang }}</th>
+            <td>{{ $i++ }}</td>
+            <td>{{ $item->direction }}</td>
+            <td>{{ $item->title }}</td>
+            <td>{{ $item->slug }}</td>
+            <td>{{ $item->marketing }}</td>
+            <td>{{ $item->sort_id }}</td>
+            <td>{{ $item->lang }}</td>
             @if ($item->status == 1)
-              <th class="text-success">Активен</th>
+              <th class="text-success">Активен</td>
             @else
-              <th class="text-danger">Неактивен</th>
+              <th class="text-danger">Неактивен</td>
             @endif
             <th class="text-right text-nowrap">
               <a class="btn btn-link btn-xs" href="/goods/{{ $item->link }}" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
@@ -47,7 +47,7 @@
                 <input name="_token" type="hidden" value="{{ csrf_token() }}">
                 <button type="submit" class="btn btn-link btn-xs" onclick="return confirm('Удалить запись?')"><i class="material-icons md-18">clear</i></button>
               </form>
-            </th>
+            </td>
           </tr>
           <tr>
             <td colspan="9">

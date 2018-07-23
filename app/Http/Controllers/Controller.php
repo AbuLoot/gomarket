@@ -30,6 +30,8 @@ class Controller extends BaseController
             'companies' => $companies,
             'categories' => $categories,
             'languages' => $languages,
+            // 'items' => session('items'),
+            // 'favorites' => session('favorites'),
         ]);
     }
 }

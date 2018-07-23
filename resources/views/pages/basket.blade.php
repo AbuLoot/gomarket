@@ -65,21 +65,21 @@
               <div class="row">
                 <div class="col-md-4 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="name">ФИО</label>
-                  <input type="text" class="form-control" placeholder="ФИО *" name="name" id="name" value="{{ old('name') }}" minlength="2" maxlength="40" required>
+                  <input type="text" class="form-control form-control-lg" placeholder="ФИО *" name="name" id="name" value="{{ old('name') }}" minlength="2" maxlength="40" required>
                   @if ($errors->has('name'))
                     <span class="help-block text-danger">{{ $errors->first('name') }}</span>
                   @endif
                 </div>
                 <div class="col-md-4 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                   <label for="phone">Телефона</label>
-                  <input type="tel" class="form-control" placeholder="Телефона *" name="phone" id="phone" value="{{ old('phone') }}" minlength="5" maxlength="20" required>
+                  <input type="tel" class="form-control form-control-lg" placeholder="Телефона *" name="phone" id="phone" value="{{ old('phone') }}" minlength="5" maxlength="20" required>
                   @if ($errors->has('phone'))
                     <span class="help-block text-danger">{{ $errors->first('phone') }}</span>
                   @endif
                 </div>
                 <div class="col-md-4 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" placeholder="Email *" name="email" id="email" value="{{ old('email') }}" required>
+                  <input type="email" class="form-control form-control-lg" placeholder="Email *" name="email" id="email" value="{{ old('email') }}" required>
                   @if ($errors->has('email'))
                     <span class="help-block text-danger">{{ $errors->first('email') }}</span>
                   @endif
@@ -90,21 +90,21 @@
               <div class="row">
                 <div class="col-md-4 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="name">ФИО</label>
-                  <input type="text" class="form-control" placeholder="ФИО *" name="name" id="name" value="{{ (old('name')) ? old('name') : \Auth::user()->surname . ' ' . \Auth::user()->name }}" minlength="2" maxlength="40" required>
+                  <input type="text" class="form-control form-control-lg" placeholder="ФИО *" name="name" id="name" value="{{ (old('name')) ? old('name') : \Auth::user()->surname . ' ' . \Auth::user()->name }}" minlength="2" maxlength="40" required>
                   @if ($errors->has('name'))
                     <span class="help-block text-danger">{{ $errors->first('name') }}</span>
                   @endif
                 </div>
                 <div class="col-md-4 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                   <label for="phone">Телефона</label>
-                  <input type="tel" class="form-control" placeholder="Телефона *" name="phone" id="phone" value="{{ (old('phone')) ? old('phone') : \Auth::user()->phone }}" minlength="5" maxlength="20" required>
+                  <input type="tel" class="form-control form-control-lg" placeholder="Телефона *" name="phone" id="phone" value="{{ (old('phone')) ? old('phone') : \Auth::user()->phone }}" minlength="5" maxlength="20" required>
                   @if ($errors->has('phone'))
                     <span class="help-block text-danger">{{ $errors->first('phone') }}</span>
                   @endif
                 </div>
                 <div class="col-md-4 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" placeholder="Email *" name="email" id="email" value="{{ (old('email')) ? old('email') : \Auth::user()->email }}" required>
+                  <input type="email" class="form-control form-control-lg" placeholder="Email *" name="email" id="email" value="{{ (old('email')) ? old('email') : \Auth::user()->email }}" required>
                   @if ($errors->has('email'))
                     <span class="help-block text-danger">{{ $errors->first('email') }}</span>
                   @endif
@@ -114,12 +114,16 @@
             <div class="row">
               <div class="col-md-4 form-group">
                 <label for="city_id">Регион</label>
-                <select id="city_id" name="city_id" class="form-control" required>
+                <select id="city_id" name="city_id" class="form-control form-control-lg" required>
                   <option value=""></option>
                   @foreach($countries as $country)
                     <optgroup label="{{ $country->title }}">
-                      @foreach($country->cities as $city)
-                        <option value="{{ $city->id }}">{{ $city->title }}</option>
+                      @foreach($country->cities as $key => $city)
+                        @if($key == 0)
+                          <option value="{{ $city->id }}" selected>{{ $city->title }}</option>
+                        @else
+                          <option value="{{ $city->id }}">{{ $city->title }}</option>
+                        @endif
                       @endforeach
                     </optgroup>
                   @endforeach
@@ -127,7 +131,7 @@
               </div>
               <div class="col-md-4 form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                 <label for="address">Адрес</label>
-                <input type="text" class="form-control" placeholder="Адрес *" name="address" id="address" value="{{ old('address') }}" minlength="2" maxlength="40" required>
+                <input type="text" class="form-control form-control-lg" placeholder="Адрес *" name="address" id="address" value="{{ old('address') }}" minlength="2" maxlength="40" required>
                 @if ($errors->has('address'))
                   <span class="help-block text-danger">{{ $errors->first('address') }}</span>
                 @endif
@@ -150,10 +154,10 @@
             <div class="row">
               <div class="col-md-12">
                 <label class="radio-inline">
-                  <input type="radio" name="pay" value="card" checked> Оплата картой (Visa, MasterCard)
+                  <input type="radio" name="pay" value="card" disabled> Скоро - Оплата картой (Visa, MasterCard)
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="pay" value="cash"> Наличными
+                  <input type="radio" name="pay" value="cash" checked> Наличными
                 </label>
               </div>
             </div>

@@ -18,7 +18,7 @@
             <div class="row-">
               <div class="col-lg-7 float-{{ $slide_item->direction }}">
                 <div class="xs-banner-content content-{{ $slide_item->direction }} text-{{ $slide_item->direction }}">
-                  <h2 class="xs-banner-sub-title animInLeft">{{ $slide_item->title }}</h2>
+                  <h2 class="xs-banner-sub-title animInLeft" style="color: {{ $slide_item->color }};">{{ $slide_item->title }}</h2>
                   <h3 class="xs-banner-title animInLeft">{{ $slide_item->marketing }}</h3>
                   <div class="xs-btn-wraper-">
                     <a href="/{{ $slide_item->link }}" class="btn btn-primary btn-outline-cart- btn-sm text-uppercase">Подробнее</a>
