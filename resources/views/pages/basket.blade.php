@@ -118,12 +118,8 @@
                   <option value=""></option>
                   @foreach($countries as $country)
                     <optgroup label="{{ $country->title }}">
-                      @foreach($country->cities as $key => $city)
-                        @if($key == 0)
-                          <option value="{{ $city->id }}" selected>{{ $city->title }}</option>
-                        @else
-                          <option value="{{ $city->id }}">{{ $city->title }}</option>
-                        @endif
+                      @foreach($country->cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->title }}</option>
                       @endforeach
                     </optgroup>
                   @endforeach

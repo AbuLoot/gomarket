@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Joystick;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Country;
 
 class OrderController extends Controller
 {
@@ -25,8 +26,9 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
+        $countries = Country::all();
 
-        return view('joystick-admin.orders.edit', compact('order'));
+        return view('joystick-admin.orders.edit', compact('order', 'countries'));
     }
 
     public function update(Request $request, $id)

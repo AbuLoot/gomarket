@@ -42,8 +42,19 @@
     </div>
     <div class="form-group">
       <label for="countries">Страны</label>
-      <select id="country_id" name="country_id" class="form-control">
+      <select id="city_id" name="city_id" class="form-control">
         <option value=""></option>
+        @foreach($countries as $country)
+          <optgroup label="{{ $country->title }}">
+            @foreach($country->cities as $city)
+              @if($city->id == $order->city->id)
+                <option value="{{ $city->id }}" selected>{{ $city->title }}</option>
+              @else
+                <option value="{{ $city->id }}">{{ $city->title }}</option>
+              @endif
+            @endforeach
+          </optgroup>
+        @endforeach
       </select>
     </div>
     <div class="form-group">
