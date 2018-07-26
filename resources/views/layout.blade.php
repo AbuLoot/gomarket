@@ -252,10 +252,10 @@
           </div>
           <div class="col-md-4 col-lg-3 footer-widget">
             <h3 class="widget-title">Наши контакты</h3>
-            <span>GoMarket, Inc.</span><br>
+            <span>GoMarket</span><br>
             <span>ул. Желтоксан 78/86</span><br>
             <span>Алматы, Казахстан </span><br>
-            <span>Phone: +7 707 201 75 55</span><br>
+            <span>Номер: +7 707 201 75 55</span><br>
             <span>WhatsApp: +7 (707) 201-75-55</span><br>
             <span>Email: info@gomarket.kz</span>
           </div>
