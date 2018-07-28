@@ -35,8 +35,11 @@
                   <div class="xs-product-content"><br>
                     <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                     <span class="price version-2">
-                      {{ $product->price }}〒
-                      <del></del>
+                      @if($product->status == 1)
+                        {{ $product->price }}〒
+                      @else
+                        {{ trans('statuses.data.'.$product->status) }}
+                      @endif
                     </span>
                   </div>
                 </div>

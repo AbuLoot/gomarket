@@ -34,9 +34,10 @@
         <button type="button" id="submit" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Функции <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" id="actions">
-          <li><a data-action="active" href="#">Сделать активным</a></li>
-          <li><a data-action="inactive" href="#">Сделать неактивым</a></li>
+        <ul class="dropdown-menu dropdown-menu-right" id="actions">
+          @foreach(trans('statuses.data') as $num => $status)
+            <li><a data-action="{{ $num }}" href="#">Статус {{ $status }}</a></li>
+          @endforeach
           <li role="separator" class="divider"></li>
           @foreach($modes as $mode)
             <li><a data-action="{{ $mode->slug }}" href="#">Режим {{ $mode->title }}</a></li>
@@ -75,16 +76,12 @@
             <td>{{ (isset($product->company->title)) ? $product->company->title : '' }}</td>
             <td>{{ $product->sort_id }}</td>
             <td>{{ $product->lang }}</td>
-            <td>
+            <td class="text-nowrap">
               @foreach ($product->modes as $mode)
                 {{ $mode->title }}<br>
               @endforeach
             </td>
-            @if ($product->status != 0)
-              <td class="text-success">Активен</td>
-            @else
-              <td class="text-danger">Неактивен</td>
-            @endif
+            <td class="text-info">{{ trans('statuses.data.'.$product->status) }}</td>
             <td class="text-right text-nowrap">
               <a class="btn btn-link btn-xs" href="/goods/{{ $product->id.'-'.$product->slug }}" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
               <a class="btn btn-link btn-xs" href="{{ route('products.edit', $product->id) }}" title="Редактировать"><i class="material-icons md-18">mode_edit</i></a>

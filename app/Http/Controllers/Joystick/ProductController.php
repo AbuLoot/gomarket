@@ -113,18 +113,8 @@ class ProductController extends Controller
             return response()->json($validator);
         }
 
-        if (in_array($request->action, ['active', 'inactive'])) {
-
-            switch ($request->action)
-            {
-                case 'active':
-                    Product::whereIn('id', $request->products_id)->update(['status' => 1]);
-                    break;
-
-                case 'inactive':
-                    Product::whereIn('id', $request->products_id)->update(['status' => 0]);
-                    break;
-            }
+        if (is_numeric($request->action)) {
+            Product::whereIn('id', $request->products_id)->update(['status' => $request->action]);
         }
         else {
             $mode = Mode::where('slug', $request->action)->first();
@@ -219,7 +209,7 @@ class ProductController extends Controller
         $product->path = $dirName;
         $product->lang = $request->lang;
         $product->mode = (isset($request->mode)) ? $request->mode : 0;
-        $product->status = ($request->status == 'on') ? 1 : 0;
+        $product->status = $request->status;
         $product->save();
 
         if ( ! is_null($request->modes_id)) {
@@ -362,7 +352,7 @@ class ProductController extends Controller
         $product->images = serialize($images);
         $product->lang = $request->lang;
         // $product->mode = $request->mode;
-        $product->status = ($request->status == 'on') ? 1 : 0;
+        $product->status = $request->status;
         $product->save();
 
         if ( ! is_null($request->modes_id)) {

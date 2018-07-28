@@ -70,8 +70,11 @@
 
             {!! $product->characteristic !!}
             <span class="price highlight">
-              <del></del>
-              {{ $product->price }}〒
+              @if($product->status == 1)
+                {{ $product->price }}〒
+              @else
+                {{ trans('statuses.data.'.$product->status) }}
+              @endif
             </span>
             <div class="xs-add-to-chart-form row">
               <div class="col-md-8">

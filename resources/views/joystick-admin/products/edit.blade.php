@@ -184,9 +184,11 @@
     </div>
     <div class="form-group">
       <label for="status">Статус:</label>
-      <label>
-        <input type="checkbox" id="status" name="status" @if ($product->status == 1) checked @endif> Активен
-      </label>
+      @foreach(trans('statuses.data') as $num => $status)
+        <label>
+          <input type="radio" id="status" name="status" value="{{ $num }}" @if ($num == $product->status) checked @endif> {{ $status }}
+        </label>
+      @endforeach
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Обновить</button>

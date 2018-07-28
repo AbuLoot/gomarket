@@ -23,7 +23,7 @@ class InputController extends Controller
 	    //         ->orWhere('oem', 'LIKE', '%'.$text.'%');
 	    //     })->paginate(27);
 
-        $products = Product::search($text)->paginate(27);
+        $products = Product::search($text)->where('status', '<>', 0)->paginate(27);
 
         $products->appends([
             'text' => $request->text,
@@ -36,7 +36,7 @@ class InputController extends Controller
     {
         $text = trim(strip_tags($request->text));
 
-        $products = Product::search($text)->get();
+        $products = Product::search($text)->where('status', '<>', 0)->get();
 
         return response()->json($products);
     }

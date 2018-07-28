@@ -90,7 +90,13 @@
                   </div>
                   <div class="xs-product-content"><br>
                     <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
-                    <span class="price version-2">{{ $product->price }}〒</span>
+                    <span class="price version-2">
+                      @if($product->status == 1)
+                        {{ $product->price }}〒
+                      @else
+                        {{ trans('statuses.data.'.$product->status) }}
+                      @endif
+                    </span>
 
                     @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
                       <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>

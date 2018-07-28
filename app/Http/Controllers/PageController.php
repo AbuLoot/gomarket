@@ -63,7 +63,7 @@ class PageController extends Controller
 
             list($keys, $options_id) = array_divide($request->options_id);
 
-            $products = Product::where('status', 1)->where('category_id', $category->id)
+            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)
                 ->whereHas('options', function ($query) use ($options_id) {
                     $query->whereIn('option_id', $options_id);
                 })->paginate(12);
@@ -103,11 +103,11 @@ class PageController extends Controller
             return view('pages.products')->with(['category' => $category, 'products' => $products, 'grouped' => $grouped, 'price_from' => $price_from, 'price_to' => $price_to]);
         }*/
         else if ($request->ajax()) {
-            $products = Product::where('status', 1)->where('category_id', $category->id)->paginate(12);
+            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->paginate(12);
             return response()->json(view('pages.products-render', ['products' => $products])->render());
         }
         else {
-            $products = Product::where('status', 1)->where('category_id', $category->id)->paginate(12);
+            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->paginate(12);
         }
 
         $options = DB::table('products')
