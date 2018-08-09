@@ -37,7 +37,7 @@
             @else
               <td class="text-danger">Неактивен</td>
             @endif
-            <td class="text-right">
+            <td class="text-right text-nowrap">
               <a class="btn btn-link btn-xs" href="{{ route('news.edit', $new->id) }}" title="Редактировать"><i class="material-icons md-18">mode_edit</i></a>
               <form method="POST" action="{{ route('news.destroy', $new->id) }}" accept-charset="UTF-8" class="btn-delete">
                 <input name="_method" type="hidden" value="DELETE">

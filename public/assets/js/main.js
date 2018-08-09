@@ -350,9 +350,10 @@ $(document).ready(function() {
 	});
 	if ( $( '.xs-tab-slider' ).length > 0 ) {
 		$( ".xs-tab-slider" ).myOwl({
-			items: 3,
-			margin: 30,
-			stagePadding: 10,
+			items: 4,
+			rows: true,
+			margin: 20,
+			stagePadding: 1,
 			dots: true,
 			responsive : {
 				// breakpoint from 0 up
@@ -364,7 +365,9 @@ $(document).ready(function() {
 					items: 2,
 				},
 				1024: {
-					items: 3,
+					// multipleRow: true,
+					items: 8,
+					rowsCount: 2,
 				}
 			}
 		})

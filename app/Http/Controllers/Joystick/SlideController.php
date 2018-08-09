@@ -35,7 +35,7 @@ class SlideController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $imageName = $request->image->getClientOriginalName().'.'.$request->image->getClientOriginalExtension();
+            $imageName = $request->image->getClientOriginalName();
 
             $request->image->storeAs('img/slide', $imageName);
         }
@@ -77,7 +77,7 @@ class SlideController extends Controller
                 Storage::delete('img/slide/'.$item->image);
             }
 
-            $imageName = $request->image->getClientOriginalName().'.'.$request->image->getClientOriginalExtension();
+            $imageName = $request->image->getClientOriginalName();
 
             $request->image->storeAs('img/slide', $imageName);
         }

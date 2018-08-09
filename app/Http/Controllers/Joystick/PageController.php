@@ -10,14 +10,16 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::orderBy('sort_id')->get();
+        $pages = Page::orderBy('sort_id')->get()->toTree();
 
         return view('joystick-admin.pages.index', compact('pages'));
     }
 
     public function create()
     {
-        return view('joystick-admin.pages.create');
+        $pages = Page::orderBy('sort_id')->get()->toTree();
+
+        return view('joystick-admin.pages.create', ['pages' => $pages]);
     }
 
     public function store(Request $request)
@@ -37,6 +39,16 @@ class PageController extends Controller
         $page->content = $request->content;
         $page->lang = $request->lang;
         $page->status = ($request->status == 'on') ? 1 : 0;
+
+        $parent_node = Page::find($request->page_id);
+
+        if (is_null($parent_node)) {
+            $page->saveAsRoot();
+        }
+        else {
+            $page->appendNode($parent_node);
+        }
+
         $page->save();
 
         return redirect('/admin/pages')->with('status', 'Запись добавлена!');
@@ -45,8 +57,9 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::findOrFail($id);
+        $pages = Page::orderBy('sort_id')->get()->toTree();
 
-        return view('joystick-admin.pages.edit', compact('page'));
+        return view('joystick-admin.pages.edit', compact('page', 'pages'));
     }
 
     public function update(Request $request, $id)
@@ -65,6 +78,16 @@ class PageController extends Controller
         $page->content = $request->content;
         $page->lang = $request->lang;
         $page->status = ($request->status == 'on') ? 1 : 0;
+        $page->saveAsRoot();
+        $parent_node = Page::find($request->page_id);
+
+        if (is_null($parent_node)) {
+            $page->saveAsRoot();
+        }
+        elseif ($page->id != $request->page_id) {
+            $page->appendToNode($parent_node)->save();
+        }
+
         $page->save();
 
         return redirect('/admin/pages')->with('status', 'Запись обновлена!');

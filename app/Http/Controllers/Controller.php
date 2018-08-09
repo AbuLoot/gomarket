@@ -20,7 +20,7 @@ class Controller extends BaseController
     {
     	$languages = Language::orderBy('sort_id')->get();
 
-    	$pages = Page::where('status', 1)->orderBy('sort_id')->get();
+        $pages = Page::where('status', 1)->orderBy('sort_id')->get()->toTree();
         $companies = Company::where('status', 1)->orderBy('sort_id')->take(5)->get();
         $categories = Category::orderBy('sort_id')->get()->toTree();
         // $categories = Category::orderBy('sort_id')->get();
@@ -30,8 +30,6 @@ class Controller extends BaseController
             'companies' => $companies,
             'categories' => $categories,
             'languages' => $languages,
-            // 'items' => session('items'),
-            // 'favorites' => session('favorites'),
         ]);
     }
 }

@@ -4,7 +4,9 @@
     width: 1170px;
   }
 }
-
+.text-white {
+  color: #fff;
+}
 /* Menu */
 .navbar {
   margin-bottom: 0;
@@ -309,7 +311,6 @@ ol > li > .thumbnail {
   padding: 10px;
   border-radius: 0;
 }
-
 
 /* Sort panel */
 .sort {

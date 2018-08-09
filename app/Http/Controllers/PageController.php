@@ -9,6 +9,7 @@ use Session;
 use Storage;
 
 use App\Page;
+use App\News;
 use App\Mode;
 use App\Slide;
 use App\Option;
@@ -20,10 +21,11 @@ class PageController extends Controller
 {
     public function index()
     {
+        $news = News::where('status', 1)->orderBy('sort_id')->get();
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
         $trend_mode = Mode::where('slug', 'trend')->first();
-        $slide_items = Slide::where('status', 1)->get();
+        $slide_items = Slide::where('status', 1)->take(10)->get();
         $categories_part = Category::whereIn('slug', ['gadjets', 'life-style'])->orderBy('sort_id')->get();
 
         $ids = collect();
@@ -45,7 +47,7 @@ class PageController extends Controller
 
         $group_products = [0 => $products_part, 1 => $products_part2];
 
-        return view('pages.index', compact('modes', 'slide_mode', 'trend_mode', 'slide_items', 'categories_part', 'group_products'));
+        return view('pages.index', compact('news', 'modes', 'slide_mode', 'trend_mode', 'slide_items', 'categories_part', 'group_products'));
     }
 
     public function page($slug)

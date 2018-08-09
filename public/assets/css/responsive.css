@@ -375,7 +375,7 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 		display: none;
 	}
 	.xs-content-header .customNavigation {
-		display: none;
+		/*display: none;*/
 	}
 	[class*="xs-product-slider"] {
 		margin-bottom: 30px;

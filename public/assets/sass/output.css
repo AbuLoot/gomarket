@@ -301,7 +301,7 @@ body .xs-promotion ~ .header-transparent {
 .xs-menus .nav-menu > li:hover > a {
   color: #c71fad; }
 .xs-menus .nav-menu > li > a .submenu-indicator-chevron {
-  border-color: transparent #333333 #333333 transparent; }
+  border-color: transparent #ffffff #ffffff transparent; }
 .xs-menus .nav-menu > .focus > a .submenu-indicator-chevron,
 .xs-menus .nav-menu > li:hover > a .submenu-indicator-chevron,
 .xs-menus .nav-menu > .active > a .submenu-indicator-chevron {
@@ -1331,11 +1331,22 @@ body .xs-promotion ~ .header-transparent {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  min-height: 660px;
+  /*min-height: 600px;*/
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative; }
+  @media (min-width: 480px) {
+    .xs-banner-item {
+      min-height: 600px;
+    }
+  }
+  @media (max-width: 480px) {
+    .xs-banner-item {
+      align-items: baseline;
+      padding-top: 20px;
+    }
+  }
   .xs-banner-item .xs-watermark-text {
     z-index: 2; }
   .xs-banner-item .large-version {
@@ -1717,7 +1728,7 @@ body .xs-promotion ~ .header-transparent {
   .xs-product-wraper img {
     opacity: 1;
     transition: all 0.4s ease;
-    backface-visibility: hidden; }
+    backface-visibility: visible; }
   .xs-product-wraper .xs-product-header {
     opacity: 0;
     top: 0px; }

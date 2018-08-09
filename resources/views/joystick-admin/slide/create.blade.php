@@ -28,7 +28,7 @@
         <input type="color" class="form-control" id="color" name="color" minlength="2" maxlength="80" value="{{ (old('color')) ? old('color') : '#eeeeee' }}">
       </div>
       <div class="form-group col-md-6">
-        <label for="direction">Позиция</label><br>
+        <label for="direction">Позиция текста</label><br>
         <label class="radio-inline">
           <input type="radio" name="direction" value="left" checked> По левой стороне
         </label>
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="sort_id">Номер</label>
+      <label for="sort_id">Позиция фона в процентах</label>
       <input type="text" class="form-control" id="sort_id" name="sort_id" maxlength="5" value="{{ (old('sort_id')) ? old('sort_id') : NULL }}">
     </div>
     <div class="form-group">

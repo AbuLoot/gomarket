@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/assets/css/vertical-menu.css">
   <link rel="stylesheet" href="/assets/css/navigation.min.css">
 
+  <script src="/js/jquery.mobile/jquery.mobile.custom.js"></script>
   <link href="/bower_components/typeahead.js/dist/typeahead.bootstrap.css" rel="stylesheet">
 
   <!--For Plugins external css-->
@@ -42,7 +43,6 @@
   <link rel="stylesheet" href="/assets/css/responsive.css" />
   <link rel="stylesheet" href="/assets/css/custom.css">
   @yield('head')
-
 </head>
 <body>
   <!--[if lt IE 10]>
@@ -132,6 +132,7 @@
                           <a  href="#"><i class="material-icons">{{ $category->image }}</i> {{ $category->title }} <i class="fa fa-angle-right d-xs-none submenu-icon"></i></a>
                           <ul class="cd-secondary-dropdown is-hidden">
                             <li class="go-back"><a href="#0">Меню</a></li>
+                            <!-- <li class="see-all"><a href="/catalog/{{ $category->slug }}">Все {{ $category->title }}</a></li> -->
                             <li class="has-children">
                               <a href="/catalog/{{ $category->slug }}">{{ $category->title }}</a>
                               <ul class="is-hidden">
@@ -159,9 +160,20 @@
               </div>
               <div class="nav-menus-wrapper">
                 <ul class="nav-menu">
-                  @foreach ($pages as $page)
-                    <li><a href="/{{ $page->slug }}">{{ $page->title }}</a></li>
-                  @endforeach
+                  <?php $traverse = function ($nodes, $prefix = null) use (&$traverse) { ?>
+                    <?php foreach ($nodes as $page) : ?>
+                      <?php if ($page->children && count($page->children) > 0) : ?>
+                        <li><a href="/{{ $page->slug }}">{{ $page->title }}</a>
+                          <ul class="nav-dropdown">
+                            <?php $traverse($page->children); ?>
+                          </ul>
+                        </li>
+                      <?php else : ?>
+                        <li><a href="/{{ $page->slug }}">{{ $page->title }}</a></li>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  <?php }; ?>
+                  <?php $traverse($pages); ?>
                 </ul>
               </div>
             </nav>
@@ -375,7 +387,6 @@
         alert("Ошибка сервера");
       }
     }
-
   </script>
   @yield('scripts')
 

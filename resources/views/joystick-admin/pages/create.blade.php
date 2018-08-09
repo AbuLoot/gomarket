@@ -19,6 +19,19 @@
       <input type="text" class="form-control" id="slug" name="slug" maxlength="80" value="{{ (old('slug')) ? old('slug') : '' }}">
     </div>
     <div class="form-group">
+      <label for="category_id">Категории</label>
+      <select id="category_id" name="category_id" class="form-control">
+        <option value=""></option>
+        <?php $traverse = function ($nodes, $prefix = null) use (&$traverse) { ?>
+          <?php foreach ($nodes as $node) : ?>
+            <option value="{{ $node->id }}">{{ PHP_EOL.$prefix.' '.$node->title }}</option>
+            <?php $traverse($node->children, $prefix.'___'); ?>
+          <?php endforeach; ?>
+        <?php }; ?>
+        <?php $traverse($pages); ?>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="icon">Icon</label>
       <input type="text" class="form-control" id="icon" name="icon" minlength="2" maxlength="80" value="{{ (old('icon')) ? old('icon') : '' }}">
     </div>

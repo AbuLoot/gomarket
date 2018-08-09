@@ -8,7 +8,7 @@
   <p class="text-right">
     <a href="/admin/news" class="btn btn-primary btn-sm">Назад</a>
   </p>
-  <form action="{{ route('news.store') }}" method="post">
+  <form action="{{ route('news.store') }}" method="post" enctype="multipart/form-data">
     {!! csrf_field() !!}
     <div class="form-group">
       <label for="title">Название</label>
@@ -19,12 +19,43 @@
       <input type="text" class="form-control" id="slug" name="slug" minlength="2" maxlength="80" value="{{ (old('slug')) ? old('slug') : '' }}">
     </div>
     <div class="form-group">
+      <label for="page_id">Категории</label>
+      <select id="page_id" name="page_id" class="form-control">
+        <option value=""></option>
+        <?php $traverse = function ($nodes, $prefix = null) use (&$traverse) { ?>
+          <?php foreach ($nodes as $node) : ?>
+            <option value="{{ $node->id }}">{{ PHP_EOL.$prefix.' '.$node->title }}</option>
+            <?php $traverse($node->children, $prefix.'___'); ?>
+          <?php endforeach; ?>
+        <?php }; ?>
+        <?php $traverse($pages); ?>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="headline">Заголовок</label>
-      <input type="text" class="form-control" id="headline" name="headline" minlength="2" maxlength="80" value="{{ (old('headline')) ? old('headline') : '' }}">
+      <input type="text" class="form-control" id="headline" name="headline" minlength="2" maxlength="500" value="{{ (old('headline')) ? old('headline') : '' }}">
+    </div>
+    <div class="form-group">
+      <label for="video">Код видео</label>
+      <input type="text" class="form-control" id="video" name="video" minlength="2" maxlength="500" value="{{ (old('video')) ? old('video') : '' }}">
     </div>
     <div class="form-group">
       <label for="sort_id">Номер</label>
       <input type="text" class="form-control" id="sort_id" name="sort_id" maxlength="5" value="{{ (old('sort_id')) ? old('sort_id') : NULL }}">
+    </div>
+    <div class="form-group">
+      <label for="image">Картинка</label><br>
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-preview thumbnail" style="width:100%;height:auto;" data-trigger="fileinput"></div>
+        <div>
+          <span class="btn btn-default btn-sm btn-file">
+            <span class="fileinput-new"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Выбрать</span>
+            <span class="fileinput-exists"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;</span>
+            <input type="file" name="image" accept="image/*">
+          </span>
+          <a href="#" class="btn btn-default btn-sm fileinput-exists" data-dismiss="fileinput"><i class="glyphicon glyphicon-trash"></i> Удалить</a>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="title_description">Мета название</label>
@@ -65,6 +96,7 @@
 
 @section('head')
   <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+  <link href="/joystick/css/jasny-bootstrap.min.css" rel="stylesheet">
   <script>
     tinymce.init({
       selector: 'textarea',
@@ -85,4 +117,8 @@
       external_plugins: { "filemanager" : "/responsive_filemanager/filemanager/plugin.min.js"}
     });
   </script>
+@endsection
+
+@section('scripts')
+  <script src="/joystick/js/jasny-bootstrap.js"></script>
 @endsection

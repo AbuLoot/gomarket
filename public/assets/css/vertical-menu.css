@@ -283,7 +283,7 @@ Main Components
   white-space: nowrap;
   border-top-width: 1px;
   border-color: #242643;
-  border-style: solid;
+  /*border-style: solid;*/
 }
 .cd-dropdown-content li:first-of-type > a, .cd-dropdown-content ul li:first-of-type > a {
   border-top-width: 0;

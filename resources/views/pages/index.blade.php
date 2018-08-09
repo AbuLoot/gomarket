@@ -13,9 +13,14 @@
   <section class="xs-banner">
     <div class="xs-banner-slider owl-carousel">
       @foreach($slide_items as $slide_item)
-        <div class="xs-banner-item" style="color: {{ $slide_item->color }}; max-height: 600px; background-image:url('/img/slide/{{ $slide_item->image }}'); background-repeat: no-repeat; background-position: center center;">
+        <div class="xs-banner-item" style="color:{{ $slide_item->color }}; background-image:url('/img/slide/{{ $slide_item->image }}'); background-repeat:no-repeat;">
+          <style type="text/css">
+            @media (max-width: 480px) {
+              .xs-banner-item { background-position:{{ $slide_item->sort_id  }}% 0; }
+            }
+          </style>
           <div class="container">
-            <div class="row-">
+            <div class="row">
               <div class="col-lg-7 float-{{ $slide_item->direction }}">
                 <div class="xs-banner-content content-{{ $slide_item->direction }} text-{{ $slide_item->direction }}">
                   <h2 class="xs-banner-sub-title animInLeft" style="color: {{ $slide_item->color }};">{{ $slide_item->title }}</h2>
@@ -78,54 +83,56 @@
           </div>
         </li>
       </ul>
+
     </div>
-  </section><br><br><br>
+  </section><br><br>
 
   <!-- MODES PRODUCTS -->
   @foreach($modes as $k => $mode)
     <section class="modes-products">
       <div class="container">
         <h2>{{ $mode->title }}</h2><br>
-        @foreach($mode->products->where('status', 1)->take(8)->chunk(4) as $key => $chunk)
-          <div class="row">
-            @foreach($chunk as $product)
-              <div class="col-lg-3 col-md-6 col-xs-6">
-                <div class="xs-product-wraper version-3 text-center">
-                  <a href="/goods/{{ $product->id.'-'.$product->slug }}">
-                    <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->title }}">
-                  </a>
-                  <div class="offer">
-                    @foreach($product->modes as $m)
-                      @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
-                        <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+        @foreach($mode->products->where('status', 1)->take(16)->chunk(8) as $key => $chunk)
+          <div class="fade @if($key == 0 ) show active @endif">
+            <div class="xs-tab-slider owl-carousel category-v4">
+              @foreach($chunk as $product)
+                <div class="xs-tab-slider-item  -col-lg-3 -col-md-6 -col-xs-6">
+                  <div class="xs-product-wraper version-3 text-center">
+                    <a href="/goods/{{ $product->id.'-'.$product->slug }}">
+                      <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->title }}">
+                    </a>
+                    <div class="offer">
+                      @foreach($product->modes as $m)
+                        @if(in_array($m->slug, ['novelty', 'best-price', 'stock', 'plus-gift']))
+                          <div class="offer-{{ $m->slug }}">{{ $m->title }}</div>
+                        @endif
+                      @endforeach
+                    </div>
+                    <div class="xs-product-content">
+                      <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
+                      <span class="price"><b>{{ $product->price }}〒</b></span>
+
+                      @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
+                        <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
+                      @else
+                        <button type="button" class="btn btn-outline-primary btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
                       @endif
-                    @endforeach
-                  </div>
-                  <div class="xs-product-content">
-                    <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
-                    <span class="price"><b>{{ $product->price }}〒</b> <del></del></span>
 
-                    @if (is_array($favorites) AND in_array($product->id, $favorites['products_id']))
-                      <button type="button" class="btn btn-dark btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавлено в избранные"><span class="icon icon-heart h5"></span></button>
-                    @else
-                      <button type="button" class="btn btn-outline-primary btn-compact m-10 btn-sm" data-favorite-id="{{ $product->id }}" onclick="toggleFavorite(this);" title="Добавить в избранные"><span class="icon icon-heart h5"></span></button>
-                    @endif
-
-                    @if (is_array($items) AND isset($items['products_id'][$product->id]))
-                      <a href="/basket" class="btn btn-dark btn-compact m-10" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
-                    @else
-                      <button class="btn btn-primary btn-compact m-10 btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
-                    @endif
+                      @if (is_array($items) AND isset($items['products_id'][$product->id]))
+                        <a href="/basket" class="btn btn-dark btn-compact m-10" data-toggle="tooltip" data-placement="top" title="Перейти в корзину"><i class="icon icon-bag h5"></i></a>
+                      @else
+                        <button class="btn btn-primary btn-compact m-10 btn-sm" data-basket-id="{{ $product->id }}" onclick="addToBasket(this);" title="Добавить в корзину"><span class="icon icon-cart h5"></span></button>
+                      @endif
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endforeach
+              @endforeach
+            </div>
           </div>
         @endforeach
       </div>
     </section>
   @endforeach
-
 
   <!-- GOMARKET TRENDS -->
   <section class="xs-deal-of-the-day-section bg-semi-black bg-semi-black">
@@ -235,6 +242,47 @@
     </div>
   </section>
 
+  <!-- NEWS -->
+  <section class="xs-section-padding bg-gray">
+    <div class="container">
+      <div class="xs-content-header version-2">
+        <h2 class="xs-content-title">Новости</h2>
+        <a href="/news" class="xs-simple-btn">Все Новости</a>
+        <div class="clearfix"></div>
+      </div>
+      <div class="row">
+        @foreach($news as $newsSingle)
+          <div class="col-md-6 col-lg-4">
+            <div class="xs-single-news">
+              <div class="entry-thumbnail">
+                @if(empty($newsSingle->video))
+                  <img src="/img/news/present-{{ $newsSingle->image }}" class="img-responsive" alt="">
+                @else
+                  <div class="thumb-wrap">
+                    {!! $newsSingle->video !!}
+                  </div>
+                @endif
+              </div>
+              <div class="xs-news-content">
+                <div class="entry-header">
+                  <div class="entry-meta">
+                    <span class="tags-links">
+                      <!-- <a href="#">Electronics</a> -->
+                    </span>
+                  </div>
+                  <h4 class="entry-title"><a href="/news/{{ $newsSingle->slug }}">{{ $newsSingle->title }}</a></h4>
+                </div>
+                <div class="post-meta">
+                  <span class="post-meta-date"><i class="fa fa-calendar"></i> {{ $newsSingle->getRusDateAttribute() }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  </section>
+
   <!-- VIEWED PRODUCTS -->
   <!-- <section class="xs-section-padding">
     <div class="container">
@@ -336,5 +384,10 @@
         alert("Ошибка сервера");
       }
     }
+
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel();
+
+    });
   </script>
 @endsection

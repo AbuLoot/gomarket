@@ -51,7 +51,7 @@ class FavoriteController extends Controller
         if ($request->session()->has('favorites')) {
 
             $favorites = $request->session()->get('favorites');
-            $products = Product::whereIn('id', $favorites['products_id'])->paginate(24);
+            $products = Product::whereIn('id', $favorites['products_id'])->get();
         }
         else {
             $products = collect();

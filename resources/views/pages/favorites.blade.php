@@ -62,10 +62,6 @@
               </div>
             @endforeach
           </div>
-
-          <!-- Pagination -->
-          {{ $products->links('vendor.pagination.bootstrap-4') }}
-
         </section>
       </div>
     </div>

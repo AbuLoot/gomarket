@@ -12,4 +12,9 @@ class News extends Model
     {
     	return strtr(date("j F Y ", strtotime($this->created_at)), trans('data.month'));
     }
+
+    public function Page()
+    {
+    	return $this->belongsTo('App\Page', 'page_id');
+    }
 }

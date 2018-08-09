@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('countries', 'Joystick\CountryController');
     Route::resource('companies', 'Joystick\CompanyController');
     Route::resource('cities', 'Joystick\CityController');
-    Route::resource('news', 'Joystick\NewController');
+    Route::resource('news', 'Joystick\NewsController');
     Route::resource('languages', 'Joystick\LanguageController');
     Route::resource('modes', 'Joystick\ModeController');
     Route::resource('options', 'Joystick\OptionController');
@@ -93,5 +93,8 @@ Route::get('catalog', 'PageController@catalog');
 Route::get('catalog/{category}', 'PageController@categoryProducts');
 Route::get('goods/{id}-{product}', 'PageController@product');
 Route::get('catalog/brand/{company}', 'PageController@brandProducts');
+Route::get('news', 'NewsController@news');
+Route::get('news-category/{page}', 'NewsController@newsCategory');
+Route::get('news/{page}', 'NewsController@newsSingle');
 Route::get('kontakty', 'PageController@contacts');
 Route::get('{page}', 'PageController@page');

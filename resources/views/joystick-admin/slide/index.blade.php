@@ -13,11 +13,11 @@
       <thead>
         <tr class="active">
           <td>№</td>
-          <td>Позиция</td>
+          <td>Позиция текста</td>
           <td>Название</td>
           <td>URI</td>
           <td>Заголовок</td>
-          <td>Номер</td>
+          <td>Позиция фона (%)</td>
           <td>Язык</td>
           <td>Статус</td>
           <td class="text-right">Функции</td>
@@ -40,7 +40,7 @@
               <th class="text-danger">Неактивен</td>
             @endif
             <th class="text-right text-nowrap">
-              <a class="btn btn-link btn-xs" href="/goods/{{ $item->link }}" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
+              <a class="btn btn-link btn-xs" href="/{{ $item->link }}" title="Просмотр товара" target="_blank"><i class="material-icons md-18">link</i></a>
               <a class="btn btn-link btn-xs" href="{{ route('slide.edit', $item->id) }}" title="Редактировать"><i class="material-icons md-18">mode_edit</i></a>
               <form method="POST" action="{{ route('slide.destroy', $item->id) }}" accept-charset="UTF-8" class="btn-delete">
                 <input name="_method" type="hidden" value="DELETE">

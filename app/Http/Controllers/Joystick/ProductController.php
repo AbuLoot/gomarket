@@ -396,5 +396,4 @@ class ProductController extends Controller
 
         return redirect('/admin/products');
     }
-
 }

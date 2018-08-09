@@ -23,8 +23,8 @@
       <tbody>
         <?php $i = 1; ?>
         <?php $traverse = function ($nodes, $prefix = null) use (&$traverse, &$i) { ?>
-          <tr>
-            <?php foreach ($nodes as $node) : ?>
+          <?php foreach ($nodes as $node) : ?>
+            <tr>
               <td>{{ $i++ }}</td>
               <td>{{ PHP_EOL.$prefix.' '.$node->title }}</td>
               <td>{{ $node->slug }}</td>
@@ -44,8 +44,8 @@
                 </form>
               </td>
               <?php $traverse($node->children, $prefix.'___'); ?>
-            <?php endforeach; ?>
-          </tr>
+            </tr>
+          <?php endforeach; ?>
         <?php }; ?>
         <?php $traverse($categories); ?>
       </tbody>
