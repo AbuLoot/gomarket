@@ -1343,7 +1343,8 @@ body .xs-promotion ~ .header-transparent {
 .xs-banner-slider {
   position: relative; }
   .xs-banner-slider.owl-carousel .owl-item img {
-    width: auto; }
+    width: auto;
+  }
   .xs-banner-slider .owl-next,
   .xs-banner-slider .owl-prev,
   .xs-banner-slider .owl-dots {

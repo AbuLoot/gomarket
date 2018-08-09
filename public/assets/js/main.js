@@ -351,23 +351,21 @@ $(document).ready(function() {
 	if ( $( '.xs-tab-slider' ).length > 0 ) {
 		$( ".xs-tab-slider" ).myOwl({
 			items: 4,
-			rows: true,
 			margin: 20,
 			stagePadding: 1,
 			dots: true,
 			responsive : {
 				// breakpoint from 0 up
 				0 : {
-					items: 1,
+					items: 2,
+					margin: 10,
 				},
 				// breakpoint from 768 up
 				768 : {
 					items: 2,
 				},
 				1024: {
-					// multipleRow: true,
-					items: 8,
-					rowsCount: 2,
+					items: 4,
 				}
 			}
 		})

@@ -1357,7 +1357,8 @@ body .xs-promotion ~ .header-transparent {
 .xs-banner-slider {
   position: relative; }
   .xs-banner-slider.owl-carousel .owl-item img {
-    width: auto; }
+    width: auto;
+    margin: 0 auto;}
   .xs-banner-slider .owl-next,
   .xs-banner-slider .owl-prev,
   .xs-banner-slider .owl-dots {
@@ -5888,7 +5889,8 @@ img[src="assets/images/image_loader.gif"] {
 
 /* owl image setting */
 .owl-carousel .owl-item img {
-  width: auto; }
+  width: auto;
+  margin: 0 auto; }
 
 .owl-carousel .owl-item img[src="assets/images/image_loader.gif"] {
   max-width: 100px;
