@@ -93,10 +93,10 @@
       <div class="container">
         <h2>{{ $mode->title }}</h2><br>
         @foreach($mode->products->where('status', 1)->take(16)->chunk(8) as $key => $chunk)
-          <div class="fade @if($key == 0 ) show active @endif">
-            <div class="xs-tab-slider owl-carousel category-v4">
+          <div class="">
+            <div class="xs-tab-slider- -carousel- row category-v4">
               @foreach($chunk as $product)
-                <div class="xs-tab-slider-item  -col-lg-3 -col-md-6 -col-xs-6">
+                <div class="xs-tab-slider-item-  col-lg-3 col-md-6 col-xs-6">
                   <div class="xs-product-wraper version-3 text-center">
                     <a href="/goods/{{ $product->id.'-'.$product->slug }}">
                       <img src="/img/products/{{ $product->path.'/'.$product->image }}" alt="{{ $product->title }}">
