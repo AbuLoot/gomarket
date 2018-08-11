@@ -32,7 +32,8 @@
               //   foreach ($options_query as $option_query) {
               //     list($params, $options_id[]) = explode('=', $option_query);
               //   }
-              // } @if(isset($options_id) AND in_array($option->id, $options_id)) checked @endif
+              // } @if(isset($options_id) AND in_array($option->id, $options_id)) checked @endif\
+
             ?>
             <form action="/catalog/{{ $category->slug }}" method="get" id="filter">
               {{ csrf_field() }}
