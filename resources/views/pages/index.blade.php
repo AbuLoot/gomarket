@@ -253,8 +253,8 @@
           <div class="col-md-6 col-lg-4">
             <div class="xs-single-news">
               <div class="entry-thumbnail">
-                @if(empty($newsSingle->video))
-                  <img src="/img/news/present-{{ $newsSingle->image }}" class="img-responsive" alt="">
+                @if(strlen($newsSingle->video) < 10)
+                  <img src="/img/news/present-{{ $newsSingle->image }}" class="img-responsive" alt="{{ $newsSingle->title }}">
                 @else
                   <div class="thumb-wrap">
                     {!! $newsSingle->video !!}
@@ -306,7 +306,7 @@
   </section> -->
 
   <!-- BRAND LIST -->
-  <section class="xs-brand-section">
+  <!-- <section class="xs-brand-section">
     <div class="container">
       <div class="row">
         <div class="offset-md-1 col-md-2"><a href="#"><img class="mx-auto d-block" src="/img/brands/apple.png" alt="Partners"></a><br></div>
@@ -316,7 +316,7 @@
         <div class="col-md-2"><a href="#"><img class="mx-auto d-block" style="margin-top: 25px;" src="/img/brands/meizu.png" alt="Partners"></a><br></div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 @endsection
 

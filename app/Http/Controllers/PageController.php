@@ -12,7 +12,6 @@ use App\Page;
 use App\News;
 use App\Mode;
 use App\Slide;
-use App\Option;
 use App\Product;
 use App\Company;
 use App\Category;
@@ -21,7 +20,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $news = News::where('status', 1)->orderBy('sort_id')->get();
+        $news = News::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
         $trend_mode = Mode::where('slug', 'trend')->first();
@@ -78,34 +77,11 @@ class PageController extends Controller
                 return response()->json(view('pages.products-render', ['products' => $products])->render());
             }
         }
-        /*else if (isset($request->options_id) AND !empty($request->options_id) AND isset($request->price_from, $request->price_to)) {
-
-            $price_from = ($request->price_from) ? (int) $request->price_from : 0;
-            $price_to = ($request->price_to) ? (int) $request->price_to : 9999999999;
-
-            $products = Product::where('status', 1)->where('category_id', $category->id)->whereBetween('price', [$price_from, $price_to])->paginate(12);
-
-            $options = DB::table('products')
-                ->join('product_option', 'products.id', '=', 'product_option.product_id')
-                ->join('options', 'options.id', '=', 'product_option.option_id')
-                ->select('options.id', 'options.slug', 'options.title')
-                ->where('category_id', $category->id)
-                ->where('status', 1)
-                ->distinct()
-                ->get();
-
-            $products->appends([
-                // 'options' => $options,
-                'price_from' => $price_from,
-                'price_to' => $price_to
-            ]);
-
-            $grouped = $options->groupBy('data');
-
-            return view('pages.products')->with(['category' => $category, 'products' => $products, 'grouped' => $grouped, 'price_from' => $price_from, 'price_to' => $price_to]);
-        }*/
         else if ($request->ajax()) {
             $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->paginate(12);
+            // $products->appends([
+            //     'options_id' => $options_id
+            // ]);
             return response()->json(view('pages.products-render', ['products' => $products])->render());
         }
         else {

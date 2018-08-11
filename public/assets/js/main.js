@@ -354,6 +354,7 @@ $(document).ready(function() {
 			margin: 20,
 			stagePadding: 1,
 			dots: true,
+			autoplay: false,
 			responsive : {
 				// breakpoint from 0 up
 				0 : {

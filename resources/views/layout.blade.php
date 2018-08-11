@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="/assets/css/vertical-menu.css">
   <link rel="stylesheet" href="/assets/css/navigation.min.css">
 
-  <script src="/js/jquery.mobile/jquery.mobile.custom.js"></script>
   <link href="/bower_components/typeahead.js/dist/typeahead.bootstrap.css" rel="stylesheet">
 
   <!--For Plugins external css-->

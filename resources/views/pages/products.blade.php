@@ -25,34 +25,17 @@
         <section class="col-md-3 col-lg-3">
           <!-- SIDEBAR -->
           <aside class="shop-category">
-
-            <!-- <h4>Фильтр</h4> -->
+            <?php
+              if (isset($_SERVER['QUERY_STRING'])) {
+                $options_query = explode('&', $_SERVER['QUERY_STRING']);
+                $options_id = [];
+                foreach ($options_query as $option_query) {
+                  list($params, $options_id[]) = explode('=', $option_query);
+                }
+              }
+            ?>
             <form action="/catalog/{{ $category->slug }}" method="get" id="filter">
               {{ csrf_field() }}
-              <!-- <div class="widget widget_range">
-                <div class="price_label media">
-                  <label for="amount">Фильтр:</label>
-                </div>
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="form-group input-price {{ $errors->has('from') ? 'has-error' : '' }}">
-                      <input type="text" class="form-control " name="price_from" id="price-from" placeholder="От" minlength="2" maxlength="40" value="{{ '' }}" required>
-                      @if ($errors->has('from'))
-                        <span class="help-block">{{ $errors->first('from') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group input-price {{ $errors->has('to') ? 'has-error' : '' }}">
-                      <input type="text" class="form-control " name="price_to" id="price-to" placeholder="До" minlength="5" maxlength="80" value="{{ '' }}" required>
-                      @if ($errors->has('to'))
-                        <span class="help-block">{{ $errors->first('to') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-outline-primary btn-compact" id="filter-btn">Поиск</button>
-              </div> -->
               <h4>Фильтр</h4><br>
 
               @foreach ($grouped as $data => $group)
@@ -60,7 +43,7 @@
                   <h5 class="widget-title">{{ $data }}</h5>
                   @foreach ($group as $option)
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="o{{ $option->id }}" name="options_id[]" value="{{ $option->id }}">
+                      <input type="checkbox" class="custom-control-input" id="o{{ $option->id }}" name="options_id[]" value="{{ $option->id }}" @if(isset($options_id) AND in_array($option->id, $options_id)) checked @endif>
                       <label class="custom-control-label" for="o{{ $option->id }}">{{ $option->title }}</label>
                     </div>
                   @endforeach
@@ -194,11 +177,15 @@
     $('#filter').on('click', 'input', function(e) {
 
       var optionsId = new Array();
-      var page = $(location).attr('href').split('catalog')[1];
 
       $('input[name="options_id[]"]:checked').each(function() {
         optionsId.push($(this).val());
       });
+
+      var page = $(location).attr('href').split('catalog')[1];
+
+      // window.history.pushState('', '', '/'.optionsId);
+      console.log($(location).attr('href'));
 
       if (optionsId.length > 0) {
         $.ajax({
@@ -206,45 +193,6 @@
           url: '/catalog' + page,
           dataType: "json",
           data: {
-            "options_id": optionsId
-          },
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      } else {
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          success: function(data) {
-            $('#products').html(data);
-          }
-        });
-      }
-    });
-
-    // Filter products
-    $('#filter-bt1  ').click(function() {
-
-      var priceFrom = $('#price-from').val();
-      var priceTo = $('#price-to').val();
-      var optionsId = new Array();
-      var page = $(location).attr('href').split('catalog')[1];
-
-      $('input[name="options_id[]"]:checked').each(function() {
-        optionsId.push($(this).val());
-      });
-
-      if (priceFrom > 0) {
-
-        $.ajax({
-          type: "get",
-          url: '/catalog' + page,
-          dataType: "json",
-          data: {
-            "price_from": priceFrom,
-            "price_to": priceTo,
             "options_id": optionsId
           },
           success: function(data) {
