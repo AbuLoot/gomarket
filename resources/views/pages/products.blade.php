@@ -26,13 +26,13 @@
           <!-- SIDEBAR -->
           <aside class="shop-category">
             <?php
-              if (isset($_SERVER['QUERY_STRING'])) {
-                $options_query = explode('&', $_SERVER['QUERY_STRING']);
-                $options_id = [];
-                foreach ($options_query as $option_query) {
-                  list($params, $options_id[]) = explode('=', $option_query);
-                }
-              }
+              // if (isset($_SERVER['QUERY_STRING'])) {
+              //   $options_query = explode('&', $_SERVER['QUERY_STRING']);
+              //   $options_id = [];
+              //   foreach ($options_query as $option_query) {
+              //     list($params, $options_id[]) = explode('=', $option_query);
+              //   }
+              // } @if(isset($options_id) AND in_array($option->id, $options_id)) checked @endif
             ?>
             <form action="/catalog/{{ $category->slug }}" method="get" id="filter">
               {{ csrf_field() }}
@@ -43,7 +43,7 @@
                   <h5 class="widget-title">{{ $data }}</h5>
                   @foreach ($group as $option)
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="o{{ $option->id }}" name="options_id[]" value="{{ $option->id }}" @if(isset($options_id) AND in_array($option->id, $options_id)) checked @endif>
+                      <input type="checkbox" class="custom-control-input" id="o{{ $option->id }}" name="options_id[]" value="{{ $option->id }}">
                       <label class="custom-control-label" for="o{{ $option->id }}">{{ $option->title }}</label>
                     </div>
                   @endforeach
