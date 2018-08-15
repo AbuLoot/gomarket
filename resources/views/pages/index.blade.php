@@ -209,7 +209,6 @@
             <div class="clearfix"></div>
           </div>
 
-          <!-- TAB CONTENT -->
           <div class="tab-content">
             @foreach($categories_part as $k => $category_item)
               <div class="tab-pane fade show @if($k == '0') active @endif" id="today-{{ $category_item->slug }}" role="tabpanel" aria-labelledby="{{ $category_item->slug }}-tab">
@@ -271,80 +270,53 @@
   <section class="xs-section-padding bg-gray">
     <div class="container">
       <div class="xs-content-header version-2">
-        <h2 class="xs-content-title">Новости</h2>
+        <h2 class="xs-content-title">Новости
+          <a class="icon-nav-news" href="#carouselNews" role="button" data-slide="prev"><i class="material-icons">arrow_back_ios</i></a>
+          <a class="icon-nav-news" href="#carouselNews" role="button" data-slide="next"><i class="material-icons">arrow_forward_ios</i></a>
+        </h2>
         <a href="/news" class="xs-simple-btn">Все Новости</a>
         <div class="clearfix"></div>
       </div>
-      <div class="row">
-        @foreach($news as $newsSingle)
-          <div class="col-md-6 col-lg-4">
-            <div class="xs-single-news">
-              <div class="entry-thumbnail">
-                @if(strlen($newsSingle->video) < 10)
-                  <img src="/img/news/present-{{ $newsSingle->image }}" class="img-responsive" alt="{{ $newsSingle->title }}">
-                @else
-                  <div class="thumb-wrap">
-                    {!! $newsSingle->video !!}
+      <div id="carouselNews" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          @foreach($news->chunk(3) as $key => $chunk)
+            <div class="carousel-item @if($key == 0) active @endif">
+              <div class="row">
+                @foreach($chunk as $newsSingle)
+                  <div class="col-sm-4 col-md-6 col-lg-4">
+                    <div class="xs-single-news">
+                      <div class="entry-thumbnail">
+                        @if(strlen($newsSingle->video) < 10)
+                          <img src="/img/news/present-{{ $newsSingle->image }}" class="img-responsive" alt="{{ $newsSingle->title }}">
+                        @else
+                          <div class="thumb-wrap">
+                            {!! $newsSingle->video !!}
+                          </div>
+                        @endif
+                      </div>
+                      <div class="xs-news-content">
+                        <div class="entry-header">
+                          <div class="entry-meta">
+                            <span class="tags-links">
+                              <!-- <a href="#">Electronics</a> -->
+                            </span>
+                          </div>
+                          <h4 class="entry-title"><a href="/news/{{ $newsSingle->slug }}">{{ $newsSingle->title }}</a></h4>
+                        </div>
+                        <div class="post-meta">
+                          <span class="post-meta-date"><i class="fa fa-calendar"></i> {{ $newsSingle->getRusDateAttribute() }}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                @endif
-              </div>
-              <div class="xs-news-content">
-                <div class="entry-header">
-                  <div class="entry-meta">
-                    <span class="tags-links">
-                      <!-- <a href="#">Electronics</a> -->
-                    </span>
-                  </div>
-                  <h4 class="entry-title"><a href="/news/{{ $newsSingle->slug }}">{{ $newsSingle->title }}</a></h4>
-                </div>
-                <div class="post-meta">
-                  <span class="post-meta-date"><i class="fa fa-calendar"></i> {{ $newsSingle->getRusDateAttribute() }}</span>
-                </div>
+                @endforeach
               </div>
             </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </section>
-
-  <!-- VIEWED PRODUCTS -->
-  <!-- <section class="xs-section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="xs-content-header">
-            <h2 class="xs-content-title">Hot New Arrivals</h2>
-            <div class="clearfix"></div>
-          </div>
-
-          <div class="xs-tab-slider-6-col owl-carousel">
-            foreach($products_viewed as $product_viewed)
-              <div class="xs-product-category text-center">
-                <img src="/img/products/ $product->path.'/'.$product->image }}" alt=" $product->category->title }}">
-                <h4 class="product-title"><a href="/goods/ $product->id.'-'.$product->slug }}"> $product->title }}</a></h4>
-                <span class="price"> $product->price }}〒</span>
-              </div>
-            endforeach
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
-  </section> -->
-
-  <!-- BRAND LIST -->
-  <!-- <section class="xs-brand-section">
-    <div class="container">
-      <div class="row">
-        <div class="offset-md-1 col-md-2"><a href="#"><img class="mx-auto d-block" src="/img/brands/apple.png" alt="Partners"></a><br></div>
-        <div class="col-md-2"><a href="#"><img class="mx-auto d-block" src="/img/brands/xiaomi.png" alt="Partners"></a><br></div>
-        <div class="col-md-2"><a href="#"><img class="mx-auto d-block" src="/img/brands/samsung.png" alt="Partners"></a><br></div>
-        <div class="col-md-2"><a href="#"><img class="mx-auto d-block" src="/img/brands/huawei.png" alt="Partners"></a><br></div>
-        <div class="col-md-2"><a href="#"><img class="mx-auto d-block" style="margin-top: 25px;" src="/img/brands/meizu.png" alt="Partners"></a><br></div>
-      </div>
-    </div>
-  </section> -->
-
+  </section>
 @endsection
 
 @section('scripts')

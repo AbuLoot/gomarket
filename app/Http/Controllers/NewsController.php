@@ -15,7 +15,7 @@ class NewsController extends Controller
     public function news()
     {
         $newsCategories = Page::where('slug', 'news')->get()->toTree();
-        $news = News::orderBy('sort_id')->paginate(10);
+        $news = News::orderBy('created_at', 'desc')->paginate(10);
 
         return view('pages.news', compact('news', 'newsCategories'));
     }

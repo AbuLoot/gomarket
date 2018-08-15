@@ -20,7 +20,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $news = News::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
+        $news = News::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
         $trend_mode = Mode::where('slug', 'trend')->first();
