@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="xs-blog-list xs-section-padding">
+<div class="xs-blog-list xs-section-padding-2">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-8">

@@ -46,7 +46,24 @@
 .col-xs-2 {
   width: 16.666667%;
 }
-
+.card {
+  border-width: 0px;
+}
+.card-header {
+  padding: 1rem 1.25rem;
+  background-color: rgb(52, 62, 72);
+  border-bottom: 1px solid #535e69;
+}
+.card-header:first-child {
+     border-radius: 0 0 0 0; 
+}
+.card-header > h4 > a {
+  color: #fff;
+}
+.card-header .expand_more {
+  position: absolute;
+  right: 15px;
+}
 .bg-dark {
   color: #fff;
   background-color: #111;
@@ -182,6 +199,14 @@
   font-size: 0.9em;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+.shop-cate-title h4 {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+select.form-control:not([size]):not([multiple]) {
+  height: calc(2rem);
 }
 .offer-best-price { background-color: rgba(128, 232, 12, 0.74); }
 .offer-novelty { background-color: rgba(0, 205, 255, 0.74); }

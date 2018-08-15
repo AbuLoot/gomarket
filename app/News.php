@@ -17,4 +17,9 @@ class News extends Model
     {
     	return $this->belongsTo('App\Page', 'page_id');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'parent');
+    }
 }

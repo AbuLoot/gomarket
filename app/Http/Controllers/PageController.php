@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
-use Session;
-use Storage;
+use URL;
 
 use App\Page;
 use App\News;
 use App\Mode;
 use App\Slide;
 use App\Product;
+use App\Comment;
 use App\Company;
 use App\Category;
 
@@ -29,21 +29,17 @@ class PageController extends Controller
 
         $ids = collect();
 
-        foreach ($categories_part as $key => $category_item) {
-
+        foreach ($categories_part as $key => $category_item)
+        {
             if ($category_item->children && count($category_item->children) > 0) {
-
                 $ids[$key] = $category_item->children->pluck('id');
             }
         }
 
         $group_ids = $ids->collapse();
 
-        // $viewed = session('viewed');
-        // $products_viewed = Product::where('status', 1)->whereIn('id', $viewed['products_id'])->orderBy('sort_id')->take(18)->get();
         $products_part = Product::where('status', 1)->whereIn('category_id', $ids[0])->orderBy('sort_id')->take(16)->get();
         $products_part2 = Product::where('status', 1)->whereIn('category_id', $ids[1])->orderBy('sort_id')->take(16)->get();
-
         $group_products = [0 => $products_part, 1 => $products_part2];
 
         return view('pages.index', compact('news', 'modes', 'slide_mode', 'trend_mode', 'slide_items', 'categories_part', 'group_products'));
@@ -60,32 +56,39 @@ class PageController extends Controller
     {
         $category = Category::where('slug', $category_slug)->first();
 
-        if (isset($request->options_id) AND !empty($request->options_id)) {
+        // Action operations
+        $actions = ['default' => 'id', 'low' => 'price', 'expensive' => 'price DESC', 'popular' => 'views DESC'];
+        $sort = ($request->session()->has('action')) ? $actions[session('action')] : 'id';
 
-            list($keys, $options_id) = array_divide($request->options_id);
+        if ($request->ajax() AND isset($request->action)) {
+            $request->session()->put('action', $request->action);
+        }
 
-            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)
+        // Option operations
+        if ($request->ajax() AND isset($request->options_id)) {
+            $request->session()->put('options', $request->options_id);
+        }
+
+        if ($request->ajax() AND empty($request->action) AND empty($request->options_id)) {
+            $request->session()->forget('options');
+        }
+
+        if ($request->session()->has('options')) {
+
+            $options_id = session('options');
+
+            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->orderByRaw($sort)
                 ->whereHas('options', function ($query) use ($options_id) {
                     $query->whereIn('option_id', $options_id);
                 })->paginate(12);
-
-            // $products->appends([
-            //     'options_id' => $options_id
-            // ]);
-
-            if ($request->ajax()) {
-                return response()->json(view('pages.products-render', ['products' => $products])->render());
-            }
-        }
-        else if ($request->ajax()) {
-            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->paginate(12);
-            // $products->appends([
-            //     'options_id' => $options_id
-            // ]);
-            return response()->json(view('pages.products-render', ['products' => $products])->render());
         }
         else {
-            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->paginate(12);
+            $products = Product::where('status', '<>', 0)->where('category_id', $category->id)->orderByRaw($sort)
+                ->paginate(12);
+        }
+
+        if ($request->ajax()) {
+            return response()->json(view('pages.products-render', ['products' => $products])->render());
         }
 
         $options = DB::table('products')
@@ -93,17 +96,13 @@ class PageController extends Controller
             ->join('options', 'options.id', '=', 'product_option.option_id')
             ->select('options.id', 'options.slug', 'options.title', 'options.data')
             ->where('category_id', $category->id)
-            ->where('status', 1)
+            // ->where('products.status', '<>', 0)
             ->distinct()
             ->get();
 
         $grouped = $options->groupBy('data');
 
-        if ($request->ajax()) {
-            return response()->json(view('pages.products-render', ['products' => $products])->render());
-        }
-
-        return view('pages.products')->with(['category' => $category, 'result' => $request->options_id, 'products' => $products, 'options' => $options, 'grouped' => $grouped]);
+        return view('pages.products')->with(['category' => $category, 'products' => $products, 'grouped' => $grouped]);
     }
 
     public function brandProducts($company_slug)
@@ -120,31 +119,40 @@ class PageController extends Controller
         $category = Category::where('id', $product->category_id)->firstOrFail();
         $products = Product::search($product->title)->where('status', 1)->take(4)->get();
 
-/*        if (Session::has('viewed')) {
+        $product->views = $product->views + 1;
+        $product->save();
 
-            $viewed = Session::get('viewed');
-            $viewed['products_id'][$product->id] = $product->id;
-
-            Session::set('viewed', $viewed);
-        }
-        else {
-
-            $viewed = [];
-            $viewed['products_id'][$product->id] = $product->id;
-
-            Session::set('viewed', $viewed);
-        }
-*/
         return view('pages.product')->with(['product' => $product, 'recent_products' => $products]);
     }
 
-    public function catalogs()
+    public function saveComment(Request $request)
     {
-        $page = Page::where('slug', 'katalog-zapchastey')->firstOrFail();
+        $this->validate($request, [
+            'stars' => 'required|integer|between:1,5',
+            'comment' => 'required|min:5|max:500',
+        ]);
 
-        $files = Storage::files('catalogs');
 
-        return view('pages.parts-catalogs')->with(['page' => $page, 'files' => $files]);
+        $url = explode('/', URL::previous());
+        $uri = explode('-', end($url));
+
+        if ($request->id == $uri[0]) {
+            $comment = new Comment;
+            $comment->parent_id = $request->id;
+            $comment->parent_type = 'App\Product';
+            $comment->name = \Auth::user()->name;
+            $comment->email = \Auth::user()->email;
+            $comment->comment = $request->comment;
+            $comment->stars = (int) $request->stars;
+            $comment->save();
+        }
+
+        if ($comment) {
+            return redirect()->back()->with('status', 'Отзыв добавлен!');
+        }
+        else {
+            return redirect()->back()->with('status', 'Ошибка!');
+        }
     }
 
     public function contacts()

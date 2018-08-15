@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use URL;
+
 use App\Page;
 use App\News;
+use App\Comment;
 
 class NewsController extends Controller
 {
@@ -30,5 +34,33 @@ class NewsController extends Controller
         $newsSingle = News::where('slug', $page)->first();
 
         return view('pages.news-single', compact('newsSingle'));
+    }
+
+    public function saveComment(Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'required|min:5|max:500',
+        ]);
+
+        $url = explode('news/', URL::previous());
+        $newsSingle = News::where('slug', $url[1])->first();
+
+        if ($request->id == $newsSingle->id) {
+            $comment = new Comment;
+            $comment->parent_id = $request->id;
+            $comment->parent_type = 'App\News';
+            $comment->name = \Auth::user()->name;
+            $comment->email = \Auth::user()->email;
+            $comment->comment = $request->comment;
+            // $comment->stars = (int) $request->stars;
+            $comment->save();
+        }
+
+        if ($comment) {
+            return redirect()->back()->with('status', 'Отзыв добавлен!');
+        }
+        else {
+            return redirect()->back()->with('status', 'Ошибка!');
+        }
     }
 }

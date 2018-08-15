@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div class="xs-blog-list xs-section-padding">
+<div class="xs-blog-list xs-section-padding-2">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-8">
@@ -38,7 +38,7 @@
                       </span>
                       <span class="post-meta-date"><i class="fa fa-calendar"></i> {{ $newsSingle->getRusDateAttribute() }}</span>
                       <span class="post-cat">
-                        <i class="fa fa-folder-open"></i><a href="#"> Info</a>
+                        <i class="fa fa-comments"></i><a href="#"> {{ $newsSingle->comments->count() }} Комментарии</a>
                       </span>
                     </div>
                   </div>

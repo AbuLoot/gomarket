@@ -57,4 +57,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Order', 'product_order', 'product_id', 'order_id');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'parent');
+    }
 }

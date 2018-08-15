@@ -122,7 +122,7 @@
           <a class="nav-link" id="characteristic-tab" data-toggle="tab" href="#characteristic" role="tab" aria-controls="characteristic" aria-selected="false">Характеристика</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Отзывы <span>(0)</span></a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Отзывы <span>({{ $product->comments->count() }})</span></a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
@@ -135,7 +135,7 @@
         <div class="tab-pane animated slideInUp" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
             <div class="col-lg-10 mx-auto">
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <div class="rate-detail">
                     <ul class="rate-list">
@@ -189,7 +189,58 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
+              @if(Auth::check())
+                <br>
+                <h4>Добавить комментарий</h4><br>
+                <form action="/comment-product" method="POST">
+                  {!! csrf_field() !!}
+                  <input name="id" type="hidden" value="{{ $product->id }}">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="name">Ваше имя</label>
+                      <input type="text" class="form-control" id="name" name="name" minlength="3" maxlength="60" placeholder="Введите имя" value="{{ Auth::user()->name }}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="stars">На сколько оцените продукт?</label>
+                      <select class="form-control" name="stars" id="stars">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="comment">Сообщение</label>
+                    <textarea rows="3" class="form-control" id="comment" name="comment" maxlength="2000" required>{{ old('comment') }}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
+                  </div>
+                </form>
+              @else
+                <br>
+                <h4><a href="/login-or-reg">Заведите аккаунт</a> чтобы участвовать в комментариях</h4><br>
+              @endif
+              <br>
+              <h4>Комментарии</h4><br>
+              @foreach ($product->comments as $comment)
+                <div class="card">
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <p>{{ $comment->comment }}</p>
+                      <footer class="blockquote-footer">
+                        {{ $comment->name }} оценил продукт на:
+                        @for($i = 1; $i <= $comment->stars; ++$i)
+                          <span class="text-gold"><i class="material-icons">grade</i></span>
+                        @endfor
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div><br>
+              @endforeach
             </div>
           </div>
         </div>
@@ -225,7 +276,7 @@
                 <h4 class="product-title"><a href="/goods/{{ $product->id.'-'.$product->slug }}">{{ $product->title }}</a></h4>
                 <span class="price">
                   {{ $product->price }}〒
-                  <del>{{ $product->price * 1.1 }}〒</del>
+                  <!-- <del></del> -->
                 </span>
               </div>
               <!-- <div class="xs-product-hover-area clearfix">
@@ -415,8 +466,6 @@
                 }
                 nodeIndex++;
             }
-
-
 
             if(index >= 0) {
                 // open PhotoSwipe if valid index found

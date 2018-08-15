@@ -37,6 +37,33 @@
     </div>
   </section>
 
+  <!-- MOBILE CATEGORIES -->
+  <div class="accordion d-md-none" id="accordionCategories">
+    <div class="card">
+      <?php $traverse = function ($categories) use (&$traverse) { ?>
+        <?php foreach ($categories as $category) : ?>
+          <?php if ($category->isRoot()) : ?>
+            <div class="card-header" id="heading{{ $category->id }}">
+              <h4 class="mb-0">
+                <a class="d-block collapsed" href="/catalog/{{ $category->slug }}" data-toggle="collapse" data-target="#collapse{{ $category->id }}" aria-expanded="true" aria-controls="collapseOne"><i class="material-icons">{{ $category->image }}</i> {{ $category->title }} <span class=""><i class="material-icons expand_more">expand_more</i></span></a>
+              </h4>
+            </div>
+            <div id="collapse{{ $category->id }}" class="collapse" aria-labelledby="heading{{ $category->id }}" data-parent="#accordionCategories">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <?php $traverse($category->children); ?>
+                </ul>
+              </div>
+            </div>
+          <?php else : ?>
+            <li><p><a class="d-block" href="/catalog/{{ $category->slug }}">{{ $category->title }}</a></p></li>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      <?php }; ?>
+      <?php $traverse($categories); ?>
+    </div>
+  </div>
+
   <!-- FEATURE LIST -->
   <section class="xs-featureList-section">
     <div class="container">
