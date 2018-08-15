@@ -50,7 +50,7 @@
             </div>
           </div>
         </article>
-        @auth
+        @if(Auth::check())
           <br>
           <h4>Добавить комментарий</h4><br>
           <form action="/comment-news" method="POST">
@@ -80,7 +80,10 @@
               <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
             </div>
           </form>
-        @endauth
+        @else
+          <br>
+          <h4><a href="/login-or-reg">Заведите аккаунт</a> чтобы участвовать в комментариях</h4><br>
+        @endif
         <br>
         <h4>Комментарии</h4><br>
         @foreach ($newsSingle->comments as $comment)
