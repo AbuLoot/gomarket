@@ -131,6 +131,9 @@
 .xs-navDown.secondary-color-v .xs-menus .nav-menu > li > a:hover {
   color: #ffffff;
 }
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   .btn-search.input-group-btn {
     width: 11%;
