@@ -10,13 +10,13 @@ use Storage;
 use Validator;
 
 use App\Http\Controllers\Controller;
-use App\ImageTrait;
-use App\Category;
-use App\Company;
-use App\Comment;
-use App\Product;
-use App\Option;
 use App\Mode;
+use App\Option;
+use App\Comment;
+use App\Company;
+use App\Product;
+use App\Category;
+use App\ImageTrait;
 
 class ProductController extends Controller
 {
@@ -171,11 +171,10 @@ class ProductController extends Controller
                     }
 
                     // $watermark = Image::make('img/watermark.png');
-                    $color = 'rgba(255, 255, 255, 0)';
 
                     // Storing original images
                     // $image->storeAs('/img/products/'.$dirName, $imageName);
-                    $this->resizeImage($image, 1024, 768, '/img/products/'.$dirName.'/'.$imageName, 90, null, $color);
+                    $this->resizeImage($image, 1024, 768, '/img/products/'.$dirName.'/'.$imageName, 90);
 
                     // Creating present images
                     $this->resizeImage($image, 250, 250, '/img/products/'.$dirName.'/present-'.$imageName, 100);
@@ -274,10 +273,8 @@ class ProductController extends Controller
                     }
 
                     // $watermark = Image::make('img/watermark.png');
-                    $color = 'rgba(255, 255, 255, 0)';
-
                     // Storing original images
-                    $this->resizeImage($image, 1024, 768, '/img/products/'.$product->path.'/'.$imageName, 90, null, $color);
+                    $this->resizeImage($image, 1024, 768, '/img/products/'.$product->path.'/'.$imageName, 90);
 
                     // Creating present images
                     $this->resizeImage($image, 250, 250, '/img/products/'.$product->path.'/present-'.$imageName, 100);

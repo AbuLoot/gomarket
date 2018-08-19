@@ -651,7 +651,7 @@ Main Components
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    /*width: 100%;*/
   }
   .cd-dropdown-content .cd-dropdown-gallery {
     width: 600px;

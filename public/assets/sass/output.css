@@ -731,7 +731,7 @@ body .xs-promotion ~ .header-transparent {
 @media (min-width: 768px) {
   .xs-vartical-menu .cd-dropdown-content {
     border: 2px solid;
-    padding: 60px 30px;
+    padding: 30px;
     width: 100%; }
     .xs-vartical-menu .cd-dropdown-content li a {
       font-size: 1.1428571429em;
