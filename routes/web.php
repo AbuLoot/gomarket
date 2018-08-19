@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('pages', 'Joystick\PageController');
     Route::resource('products', 'Joystick\ProductController');
     Route::resource('slide', 'Joystick\SlideController');
+    Route::get('products/{id}/comments', 'Joystick\ProductController@comments');
+    Route::get('products/{id}/destroy-comment', 'Joystick\ProductController@destroyComment');
     Route::get('products-search', 'Joystick\ProductController@search');
     Route::get('products-category/{id}', 'Joystick\ProductController@categoryProducts');
     Route::get('products-actions', 'Joystick\ProductController@actionProducts');
@@ -90,6 +92,7 @@ Route::get('toggle-favorite/{id}', 'FavoriteController@toggleFavorite');
 // Pages
 Route::get('/', 'PageController@index');
 Route::get('catalog', 'PageController@catalog');
+Route::get('catalog/all/{category}', 'PageController@allCategoryProducts');
 Route::get('catalog/{category}', 'PageController@categoryProducts');
 Route::get('goods/{id}-{product}', 'PageController@product');
 Route::post('comment-product', 'PageController@saveComment');

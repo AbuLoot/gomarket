@@ -52,6 +52,63 @@ class PageController extends Controller
         return view('pages.page')->with('page', $page);
     }
 
+    public function allCategoryProducts(Request $request, $category_slug)
+    {
+        $category = Category::where('slug', $category_slug)->first();
+
+        $categories = $category->descendants()->pluck('id');
+
+        // Include the id of category itself
+        $categories[] = $category->getKey();
+
+        // Action operations
+        $actions = ['default' => 'id', 'low' => 'price', 'expensive' => 'price DESC', 'popular' => 'views DESC'];
+        $sort = ($request->session()->has('action')) ? $actions[session('action')] : 'id';
+
+        if ($request->ajax() AND isset($request->action)) {
+            $request->session()->put('action', $request->action);
+        }
+
+        // Option operations
+        if ($request->ajax() AND isset($request->options_id)) {
+            $request->session()->put('options', $request->options_id);
+        }
+
+        if ($request->ajax() AND empty($request->action) AND empty($request->options_id)) {
+            $request->session()->forget('options');
+        }
+
+        if ($request->session()->has('options')) {
+    
+            $options_id = session('options');
+            $products = Product::where('status', '<>', 0)->whereIn('category_id', $categories)->orderByRaw($sort)
+                ->whereHas('options', function ($query) use ($options_id) {
+                    $query->whereIn('option_id', $options_id);
+                })->paginate(12);
+        }
+        else {
+            $products = Product::where('status', '<>', 0)->whereIn('category_id', $categories)->orderByRaw($sort)
+                ->paginate(12);
+        }
+
+        if ($request->ajax()) {
+            return response()->json(view('pages.products-render', ['products' => $products])->render());
+        }
+
+        $options = DB::table('products')
+            ->join('product_option', 'products.id', '=', 'product_option.product_id')
+            ->join('options', 'options.id', '=', 'product_option.option_id')
+            ->select('options.id', 'options.slug', 'options.title', 'options.data')
+            ->whereIn('category_id', $categories)
+            // ->where('products.status', '<>', 0)
+            ->distinct()
+            ->get();
+
+        $grouped = $options->groupBy('data');
+
+        return view('pages.products')->with(['category' => $category, 'products' => $products, 'grouped' => $grouped]);
+    }
+
     public function categoryProducts(Request $request, $category_slug)
     {
         $category = Category::where('slug', $category_slug)->first();

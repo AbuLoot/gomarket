@@ -131,7 +131,7 @@
                           <a  href="#"><i class="material-icons">{{ $category->image }}</i> {{ $category->title }} <i class="fa fa-angle-right d-xs-none submenu-icon"></i></a>
                           <ul class="cd-secondary-dropdown is-hidden">
                             <li class="go-back"><a href="#0">Меню</a></li>
-                            <!-- <li class="see-all"><a href="/catalog/{{ $category->slug }}">Все {{ $category->title }}</a></li> -->
+                            <li class="see-all"><a href="/catalog/all/{{ $category->slug }}">Все {{ $category->title }}</a></li>
                             <li class="has-children">
                               <a href="/catalog/{{ $category->slug }}">{{ $category->title }}</a>
                               <ul class="is-hidden">

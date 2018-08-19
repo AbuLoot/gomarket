@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\ImageTrait;
 use App\Category;
 use App\Company;
+use App\Comment;
 use App\Product;
 use App\Option;
 use App\Mode;
@@ -395,5 +396,20 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/admin/products');
+    }
+
+    public function comments($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('joystick-admin.products.comments', ['product' => $product]);
+    }
+
+    public function destroyComment($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return redirect('/admin/products/'.$comment->parent_id.'/comments')->with('status', 'Запись удалена!');
     }
 }

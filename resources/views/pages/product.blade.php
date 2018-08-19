@@ -239,7 +239,7 @@
                       </footer>
                     </blockquote>
                   </div>
-                </div><br>
+                </div>
               @endforeach
             </div>
           </div>

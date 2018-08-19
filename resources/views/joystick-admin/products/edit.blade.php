@@ -5,9 +5,20 @@
 
   @include('joystick-admin.partials.alerts')
 
-  <p class="text-right">
-    <a href="/admin/products" class="btn btn-primary btn-sm">Назад</a>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Инфо</a></li>
+        <li role="presentation"><a href="/admin/products/{{ $product->id }}/comments">Коментарии</a></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <p class="text-right">
+        <a href="/admin/products" class="btn btn-primary btn-sm">Назад</a>
+      </p>
+    </div>
+  </div><br>
+
   <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT">
     {!! csrf_field() !!}
