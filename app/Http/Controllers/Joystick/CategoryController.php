@@ -35,6 +35,7 @@ class CategoryController extends Controller
         $category->sort_id = ($request->sort_id > 0) ? $request->sort_id : $category->count() + 1;
         $category->slug = (empty($request->slug)) ? str_slug($request->title) : $request->slug;
         $category->title = $request->title;
+        $category->title_extra = $request->title_extra;
         $category->image = (isset($request->image)) ? $request->image : 'no-image-mini.png';
         $category->title_description = $request->title_description;
         $category->meta_description = $request->meta_description;
@@ -73,6 +74,7 @@ class CategoryController extends Controller
         $category->sort_id = ($request->sort_id > 0) ? $request->sort_id : $category->count() + 1;
         $category->slug = (empty($request->slug)) ? str_slug($request->title) : $request->slug;
         $category->title = $request->title;
+        $category->title_extra = $request->title_extra;
         $category->image = (isset($request->image)) ? $request->image : 'no-image-mini.png';
         $category->title_description = $request->title_description;
         $category->meta_description = $request->meta_description;

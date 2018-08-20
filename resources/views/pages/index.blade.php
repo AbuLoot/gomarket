@@ -51,7 +51,7 @@
             <div id="collapse{{ $category->id }}" class="collapse" aria-labelledby="heading{{ $category->id }}" data-parent="#accordionCategories">
               <div class="card-body">
                 <ul class="list-unstyled">
-                  <li><p><a class="d-block" href="/catalog/all/{{ $category->slug }}">Все {{ $category->title }}</a></p></li>
+                  <li><p><a class="d-block" href="/catalog/all/{{ $category->slug }}">{{ $category->title_extra }}</a></p></li>
                   <?php $traverse($category->children); ?>
                 </ul>
               </div>

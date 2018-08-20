@@ -15,6 +15,10 @@
       <input type="text" class="form-control" id="title" name="title" minlength="2" maxlength="80" value="{{ (old('title')) ? old('title') : '' }}" required>
     </div>
     <div class="form-group">
+      <label for="title_extra">Название дополнительное</label>
+      <input type="text" class="form-control" id="title_extra" name="title_extra" minlength="2" maxlength="80" value="{{ (old('title_extra')) ? old('title_extra') : '' }}" required>
+    </div>
+    <div class="form-group">
       <label for="slug">Slug</label>
       <input type="text" class="form-control" id="slug" name="slug" minlength="2" maxlength="80" value="{{ (old('slug')) ? old('slug') : '' }}">
     </div>

@@ -57,13 +57,13 @@
               <li>
                 <div class="dropdown">
                   <button class="btn btn-outline-primary btn-compact dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if(session('action')) {{ trans('data.actions.'.session('action')) }} @else Поумолчанию @endif
+                    @if(session('action')) {{ trans('data.actions.'.session('action')) }} @else По умолчанию @endif
                   </button>
                   <div class="dropdown-menu dropdown-menu-right" id="actions" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-action="default">Поумолчанию</a>
-                    <a class="dropdown-item" data-action="low">Самые низкие цены</a>
-                    <a class="dropdown-item" data-action="expensive">Самые дорогие цены</a>
-                    <a class="dropdown-item" data-action="popular">Самые популярные</a>
+                    <a class="dropdown-item" data-action="default">По умолчанию</a>
+                    <a class="dropdown-item" data-action="popular">По популярности</a>
+                    <a class="dropdown-item" data-action="expensive">По возрастанию цены</a>
+                    <a class="dropdown-item" data-action="low">По убыванию цены</a>
                   </div>
                 </div>
               </li>

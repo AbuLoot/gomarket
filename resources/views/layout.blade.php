@@ -131,13 +131,13 @@
                           <a  href="#"><i class="material-icons">{{ $category->image }}</i> {{ $category->title }} <i class="fa fa-angle-right d-xs-none submenu-icon"></i></a>
                           <ul class="cd-secondary-dropdown is-hidden">
                             <li class="go-back"><a href="#0">Меню</a></li>
-                            <li class="see-all d-md-none"><a href="/catalog/all/{{ $category->slug }}"><b>Все {{ $category->title }}</b></a></li>
+                            <li class="see-all d-md-none"><a href="/catalog/all/{{ $category->slug }}"><b>{{ $category->title_extra }}</b></a></li>
                             <li class="has-children">
                               <a href="/catalog/{{ $category->slug }}">{{ $category->title }}</a>
                               <ul class="is-hidden">
                                 <li class="go-back"><a href="#0">{{ $category->title }}</a></li>
+                                <li><a href="/catalog/all/{{ $category->slug }}"><b>{{ $category->title_extra }}</b></a></li>
                                 <?php $traverse($category->children); ?>
-                                <li><a href="/catalog/all/{{ $category->slug }}"><b>Все {{ $category->title }}</b></a></li>
                               </ul>
                             </li>
                           </ul>
@@ -245,6 +245,9 @@
     <div class="xs-footer-main">
       <div class="container">
         <div class="row">
+          <div class="col-md-4 col-lg-3 footer-widget">
+            
+          </div>
           <div class="col-md-4 col-lg-3 footer-widget">
             <h3 class="widget-title">О нас</h3>
             <p>Gomarket.kz – один из ведущих интернет-магазинов мобильной и цифровой техники в Казахстане.</p>
