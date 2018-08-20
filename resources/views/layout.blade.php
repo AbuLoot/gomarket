@@ -246,9 +246,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-lg-3 footer-widget">
-            
-          </div>
-          <div class="col-md-4 col-lg-3 footer-widget">
             <h3 class="widget-title">О нас</h3>
             <p>Gomarket.kz – один из ведущих интернет-магазинов мобильной и цифровой техники в Казахстане.</p>
             <p>Интернет-магазин «Go Market» – это удобство оплаты и доставки</p>

@@ -23,7 +23,6 @@ class PageController extends Controller
         $news = News::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $modes = Mode::whereIn('slug', ['new', 'top', 'budgetary'])->get();
         $slide_mode = Mode::where('slug', 'slide')->first();
-        $trend_mode = Mode::where('slug', 'trend')->first();
         $slide_items = Slide::where('status', 1)->take(10)->get();
         $categories_part = Category::whereIn('slug', ['gadjets', 'life-style'])->orderBy('sort_id')->get();
 
@@ -36,13 +35,11 @@ class PageController extends Controller
             }
         }
 
-        $group_ids = $ids->collapse();
-
         $products_part = Product::where('status', 1)->whereIn('category_id', $ids[0])->orderBy('sort_id')->take(16)->get();
         $products_part2 = Product::where('status', 1)->whereIn('category_id', $ids[1])->orderBy('sort_id')->take(16)->get();
         $group_products = [0 => $products_part, 1 => $products_part2];
 
-        return view('pages.index', compact('news', 'modes', 'slide_mode', 'trend_mode', 'slide_items', 'categories_part', 'group_products'));
+        return view('pages.index', compact('news', 'modes', 'slide_mode', 'slide_items', 'categories_part', 'group_products'));
     }
 
     public function page($slug)
