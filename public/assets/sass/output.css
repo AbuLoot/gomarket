@@ -736,7 +736,7 @@ body .xs-promotion ~ .header-transparent {
     .xs-vartical-menu .cd-dropdown-content li a {
       font-size: 1.1428571429em;
       font-weight: 400;
-      /*color: #222222;*/
+      color: #222222;
       text-transform: capitalize;
       height: auto;
       line-height: unset;
