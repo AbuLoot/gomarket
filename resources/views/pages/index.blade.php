@@ -258,7 +258,7 @@
         <a href="/news" class="xs-simple-btn">Все Новости</a>
         <div class="clearfix"></div>
       </div>
-      <div id="carouselNews" class="carousel slide" data-ride="carousel">
+      <div id="carouselNews" class="carousel slide" data-interval="false" data-ride="carousel">
         <div class="carousel-inner">
           @foreach($news->chunk(3) as $key => $chunk)
             <div class="carousel-item @if($key == 0) active @endif">
