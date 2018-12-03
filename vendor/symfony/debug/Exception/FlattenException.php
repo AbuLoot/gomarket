@@ -90,9 +90,14 @@ class FlattenException
         return $this->statusCode;
     }
 
+    /**
+     * @return $this
+     */
     public function setStatusCode($code)
     {
         $this->statusCode = $code;
+
+        return $this;
     }
 
     public function getHeaders()
@@ -100,9 +105,14 @@ class FlattenException
         return $this->headers;
     }
 
+    /**
+     * @return $this
+     */
     public function setHeaders(array $headers)
     {
         $this->headers = $headers;
+
+        return $this;
     }
 
     public function getClass()
@@ -110,9 +120,14 @@ class FlattenException
         return $this->class;
     }
 
+    /**
+     * @return $this
+     */
     public function setClass($class)
     {
-        $this->class = $class;
+        $this->class = 'c' === $class[0] && 0 === strpos($class, "class@anonymous\0") ? get_parent_class($class).'@anonymous' : $class;
+
+        return $this;
     }
 
     public function getFile()
@@ -120,9 +135,14 @@ class FlattenException
         return $this->file;
     }
 
+    /**
+     * @return $this
+     */
     public function setFile($file)
     {
         $this->file = $file;
+
+        return $this;
     }
 
     public function getLine()
@@ -130,9 +150,14 @@ class FlattenException
         return $this->line;
     }
 
+    /**
+     * @return $this
+     */
     public function setLine($line)
     {
         $this->line = $line;
+
+        return $this;
     }
 
     public function getMessage()
@@ -140,9 +165,20 @@ class FlattenException
         return $this->message;
     }
 
+    /**
+     * @return $this
+     */
     public function setMessage($message)
     {
+        if (false !== strpos($message, "class@anonymous\0")) {
+            $message = preg_replace_callback('/class@anonymous\x00.*?\.php0x?[0-9a-fA-F]++/', function ($m) {
+                return \class_exists($m[0], false) ? get_parent_class($m[0]).'@anonymous' : $m[0];
+            }, $message);
+        }
+
         $this->message = $message;
+
+        return $this;
     }
 
     public function getCode()
@@ -150,9 +186,14 @@ class FlattenException
         return $this->code;
     }
 
+    /**
+     * @return $this
+     */
     public function setCode($code)
     {
         $this->code = $code;
+
+        return $this;
     }
 
     public function getPrevious()
@@ -160,9 +201,14 @@ class FlattenException
         return $this->previous;
     }
 
+    /**
+     * @return $this
+     */
     public function setPrevious(self $previous)
     {
         $this->previous = $previous;
+
+        return $this;
     }
 
     public function getAllPrevious()
@@ -186,16 +232,19 @@ class FlattenException
      */
     public function setTraceFromException(\Exception $exception)
     {
-        @trigger_error(sprintf('"%s" is deprecated since Symfony 4.1, use "setTraceFromThrowable()" instead.', __METHOD__), E_USER_DEPRECATED);
+        @trigger_error(sprintf('The "%s()" method is deprecated since Symfony 4.1, use "setTraceFromThrowable()" instead.', __METHOD__), E_USER_DEPRECATED);
 
         $this->setTraceFromThrowable($exception);
     }
 
-    public function setTraceFromThrowable(\Throwable $throwable): void
+    public function setTraceFromThrowable(\Throwable $throwable)
     {
-        $this->setTrace($throwable->getTrace(), $throwable->getFile(), $throwable->getLine());
+        return $this->setTrace($throwable->getTrace(), $throwable->getFile(), $throwable->getLine());
     }
 
+    /**
+     * @return $this
+     */
     public function setTrace($trace, $file, $line)
     {
         $this->trace = array();
@@ -229,6 +278,8 @@ class FlattenException
                 'args' => isset($entry['args']) ? $this->flattenArgs($entry['args']) : array(),
             );
         }
+
+        return $this;
     }
 
     private function flattenArgs($args, $level = 0, &$count = 0)
@@ -241,9 +292,9 @@ class FlattenException
             if ($value instanceof \__PHP_Incomplete_Class) {
                 // is_object() returns false on PHP<=7.1
                 $result[$key] = array('incomplete-object', $this->getClassNameFromIncomplete($value));
-            } elseif (is_object($value)) {
-                $result[$key] = array('object', get_class($value));
-            } elseif (is_array($value)) {
+            } elseif (\is_object($value)) {
+                $result[$key] = array('object', \get_class($value));
+            } elseif (\is_array($value)) {
                 if ($level > 10) {
                     $result[$key] = array('array', '*DEEP NESTED ARRAY*');
                 } else {
@@ -251,13 +302,13 @@ class FlattenException
                 }
             } elseif (null === $value) {
                 $result[$key] = array('null', null);
-            } elseif (is_bool($value)) {
+            } elseif (\is_bool($value)) {
                 $result[$key] = array('boolean', $value);
-            } elseif (is_int($value)) {
+            } elseif (\is_int($value)) {
                 $result[$key] = array('integer', $value);
-            } elseif (is_float($value)) {
+            } elseif (\is_float($value)) {
                 $result[$key] = array('float', $value);
-            } elseif (is_resource($value)) {
+            } elseif (\is_resource($value)) {
                 $result[$key] = array('resource', get_resource_type($value));
             } else {
                 $result[$key] = array('string', (string) $value);

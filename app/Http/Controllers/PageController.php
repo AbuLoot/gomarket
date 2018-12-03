@@ -69,9 +69,10 @@ class PageController extends Controller
         // Option operations
         if ($request->ajax() AND isset($request->options_id)) {
             $request->session()->put('options', $request->options_id);
+            $request->session()->put('category_id', $category->id);
         }
 
-        if ($request->ajax() AND empty($request->action) AND empty($request->options_id)) {
+        if ($request->ajax() AND empty($request->action) AND empty($request->options_id) OR session('category_id') != $category->id) {
             $request->session()->forget('options');
         }
 
@@ -121,11 +122,16 @@ class PageController extends Controller
         // Option operations
         if ($request->ajax() AND isset($request->options_id)) {
             $request->session()->put('options', $request->options_id);
+            $request->session()->put('category_id', $category->id);
         }
 
         if ($request->ajax() AND empty($request->action) AND empty($request->options_id)) {
             $request->session()->forget('options');
         }
+
+        // if (session('category_id') != $category->id) {
+        //     $request->session()->forget('options');
+        // }
 
         if ($request->session()->has('options')) {
 
