@@ -7,6 +7,7 @@
 
   <title>@yield('title_description', 'GoMarket.kz')</title>
   <meta name="description" content="@yield('meta_description', 'GoMarket.kz')">
+  <meta name="yandex-verification" content="7d0d96a79ae2cd2b" />
 
   <link rel="icon" type="image/icon" href="/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
